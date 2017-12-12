@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- dojo配置 -->
+    <script type="text/javascript">
+        var dojoConfig = {
+            isDebug: true, // 调试
+            async: true,
+            parseOnLoad: false,
+            packages: [
+                { name: "widgets", location: "/../widgets" }
+            ]
+        };
+
+
+
+    </script>
+ <link href="widgets/themes/light/swiper-3.3.1.min.css" rel="stylesheet" />
+ <script src="widgets/GlobleConfig.js"></script>    
+<script src="widgets/themes/JS/jquery-1.12.3.js"></script>
+   <script src="widgets/themes/JS/swiper-3.3.1.jquery.min.js"></script>
+    <script type="text/javascript" src="http://192.168.30.242:80/arcgis_js_api/library/3.16/3.16/init.js"></script>
+    <link href="widgets/themes/light/light.css" rel="stylesheet" />
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #divDialog {
+            width: 350px;
+            /*height: 464px;*/
+            background: #fff;
+            border: 1px solid #a5b9c4;
+            position: absolute;
+            left: 30%;
+            top: 20%;
+            z-index: 223;
+            display: none;
+            cursor: move;
+        }
+
+        #divDialogTitle {
+            height: 35px;
+            background-color: #8a8a8a;
+        }
+    </style>
+    <script type="text/javascript">
+ document.getElementsByTagName("title")[0].innerHTML = sysName;
+        require([
+            "widgets/MapControl1",
+            "dojo/text!widgets/assets/mapServiceConfig.html",
+            "esri/config"
+        ], function (
+            MapControl1,
+            mapServiceConfig,
+            esriConfig
+        ) {
+            var mapControl = new MapControl1({
+                mapServiceConfig: eval("(" + mapServiceConfig + ")")
+            }, "base");
+            mapControl.startup();
+        });
+    </script>
+</head>
+<body class="claro light">
+    <div id="base" style="width: 100%; height: 100%">
+    </div>
+
+    <!--弹窗-->
+    <div class="pop_bg" id="pop_bg">
+    </div>
+    <div id="divDialog">
+        <div id="divDialogTitle">
+            <span style="color: white; font-weight: bolder; line-height: 35px;padding-left: 10px">其他属性</span> <i class="close_emer_icon" id="closeIcon"></i>
+        </div>
+        <div style="font-size: 14px; padding-left: 7px; padding-top: 7px;" id="divContent">
+            <!--<div>涉水企业</div>
+            <hr style="margin-top: 5px;"/>
+            <ul style="margin-bottom: 15px; margin-top: 5px;">
+                <li>工业废气排放量（万立方米）：3200.00</li>
+                <li>工业废气排放量（万立方米）：3200.00</li>
+            </ul>
+            <div>涉水企业</div>
+            <hr style="margin-top: 5px;"/>
+            <ul style="margin-bottom: 15px; margin-top: 5px;">
+                <li>工业废气排放量（万立方米）：3200.00</li>
+                <li>工业废气排放量（万立方米）：3200.00</li>
+            </ul>
+            <div>涉水企业</div>
+            <hr style="margin-top: 5px;"/>
+            <ul style="margin-bottom: 15px; margin-top: 5px;">
+                <li>工业废气排放量（万立方米）：3200.00</li>
+                <li>工业废气排放量（万立方米）：3200.00</li>
+            </ul>
+            <div>涉水企业</div>
+            <hr style="margin-top: 5px;"/>
+            <ul style="margin-bottom: 15px; margin-top: 5px;">
+                <li>工业废气排放量（万立方米）：3200.00</li>
+                <li>工业废气排放量（万立方米）：3200.00</li>
+            </ul>-->
+            <span style="height: 50px; line-height: 50px;">无其他属性</span>
+        </div>
+    </div>
+    <div class="pop_con_emer" id="pop_con_emer">
+        <h3 class="pop_con_emerTit">
+            应急预案
+            <i class="close_emer_icon" id="close_emer_icon"></i>
+        </h3>
+        <div class="pop_con_emerTags">
+            <ul id="pop_con_emerTagsWrap">
+                <li class="cur">
+                    一级预案
+                </li>
+                <li>
+                    二级预案
+                </li>
+                <li>
+                    三级预案
+                </li>
+                <li>
+                    四级预案
+                </li>
+            </ul>
+        </div>
+        <div class="pop_con_emerArt" id="pop_con_emerArt">
+            <div class="pop_con_emerArt_01 cur">
+                <h5>
+                    蓝色预警
+                </h5>
+                <p>
+                    （一）预警条件
+                </p>
+                <p>
+                    将出现或出现200＜AQI≤300且连续2日气象条件不利于污染物扩散的重污染天气，或300＜AQI＜500且1日气象条件不利于污染物扩散的重污染天气。
+                </p>
+                <p>
+                    （二）应急响应等级
+                </p>
+                <p>
+                    当发布蓝色预警信息时，启动Ⅳ级应急响应。
+                </p>
+                <p>
+                    （三）应急响应措施
+                </p>
+                <p>
+                    1.健康防护提示措施
+                </p>
+                <p>
+                    提示儿童、老年人和呼吸系统、心脑血管疾病患者等易感人群减少户外活动；室外作业人员减少作业时间，加强防护。
+                </p>
+                <p>
+                    2.建议性减排措施
+                </p>
+                <p>
+                    ①提醒公众乘坐公共或低碳交通工具出行，减少机动车上路行驶；<br />
+                    ②机动车驻车时应及时熄火，减少车辆原地怠速运行，减少机动车昼间加油；<br />
+                    ③增加各类施工工地洒水降尘频次，加强施工扬尘管理；<br />
+                    ④增加道路清扫保洁频次，减少交通扬尘污染；<br />
+                    ⑤排污单位控制污染工序生产，减少大气污染物排放；<br />
+                    ⑥钢铁、焦化、水泥、玻璃、石油化工等大气污染物排放量大的企业，根据大气污染情况适当调整产能，减少污染物排放。
+                </p>
+                <p>
+                    3.其他措施
+                </p>
+                <p>
+                    禁止燃放烟花爆竹。
+                </p>
+            </div>
+            <div class="pop_con_emerArt_02">
+                <h5>
+                    黄色预警
+                </h5>
+                <p>
+                    （一）预警条件
+                </p>
+                <p>
+                    将出现或出现200＜AQI＜500且连续3日及以上气象条件不利于污染物扩散，未达到橙色和红色预警级别的重污染天气，或300＜AQI＜500且连续2日气象条件不利于污染物扩散的重污染天气。
+                </p>
+                <p>
+                    （二）应急响应等级
+                </p>
+                <p>
+                    当发布黄色预警信息时，启动Ⅲ级应急响应。
+                </p>
+                <p>
+                    （三）应急响应措施
+                </p>
+                <p>
+                    1.健康防护提示措施
+                </p>
+                <p>
+                    提示儿童、老年人和呼吸系统、心脑血管疾病患者等易感人群留在室内，确需外出做好防护措施；建议一般人群减少户外运动和室外作业时间；建议中、小学、幼儿园减少户外活动；建议各医疗机构做好易发、多发疾病的诊疗工作。
+                </p>
+                <p>
+                    2.建议性减排措施
+                </p>
+                <p>
+                    ①建议公众乘坐公共或低碳交通工具出行，尽量不要驾驶机动车出行；<br />
+                    ②机动车驻车时应及时熄火，减少车辆原地怠速运行，减少机动车昼间加油；<br />
+                    ③公众尽量减少能源消耗，夏季空调温度设定不低于26℃，冬季不高于18℃；<br />
+                    ④公众减少涂料、油漆、溶剂等含挥发性有机物的原材料及产品的使用；<br />
+                    ⑤化工、钢铁、水泥等大气污染物排放量大的企业，在12时至16时进行炉膛清洁和烟尘清除工作。
+                </p>
+                <p>
+                    3.强制性减排措施
+                </p>
+                <p>
+                    ①机动车减排措施
+                </p>
+                <p>
+                    除城市运行保障车辆和执行任务特种车辆外，城市主城区内禁止重型、中型货车、无标车、黄标车和三轮汽车、低速载货汽车、拖拉机通行（当紧急发布预警信息时，当天不采取机动车限行措施）。
+                </p>
+                <p>
+                    ②工业减排措施
+                </p>
+                <p>
+                    企事业单位按照“一厂一策”采取降低生产负荷、加强污染治理以及停产等措施，最低减少15%的大气污染物排放量。
+                </p>
+                <p>
+                    ③防止扬尘措施
+                </p>
+                <p>
+                    除应急抢险外，停止所有房屋建筑、拆迁、混凝土搅拌公司、市政、道路、水利、绿化、电信以及供水、输油（气）管道等施工工地的土石方作业；停止施工工地石材切割、渣土运输、喷涂粉刷等作业；建筑施工现场禁止进行砂浆现场搅拌。
+                </p>
+                <p>
+                    增加对城市道路清扫保洁频次；（非冰冻期）增加湿扫、喷水频次。
+                </p>
+                <p>
+                    煤堆、料堆以及各类施工工地内土堆和闲置、裸露的空地全部用密目网覆盖并增加各类施工工地洒水降尘频次。
+                </p>
+                <p>
+                    ④其他措施
+                </p>
+                <p>
+                    禁止燃放烟花爆竹、露天烧烤和露天喷涂作业，严禁焚烧垃圾、杂草和秸秆的行为。
+                </p>
+                <p>
+                    4.补充说明
+                </p>
+                <p>
+                    重污染天气期间，市国资委应增加公交车运行能力；市发改委协调省发改委和华北电监局河北业务办，在确保居民用电供应的原则下，落实发电（包括热电）企业应急响应期间“一厂一策”限产限排方案，督导发电（包括热电）企业按照省电网调度系统下达的调度指令落实限产限排；市环保局通过在线监控或现场检查，加强对重点大气污染源的监管，对治理设施不能有效运行的，提请当地政府依法采取关停措施。
+                </p>
+            </div>
+            <div class="pop_con_emerArt_03">
+                <h5>
+                    橙色预警
+                </h5>
+                <p>
+                    （一）预警条件
+                </p>
+                <p>
+                    将出现或出现300＜AQI＜500且连续3日及以上气象条件不利于污染物扩散的重污染天气。
+                </p>
+                <p>
+                    （二）启动应急响应
+                </p>
+                <p>
+                    当发布橙色预警信息时，启动Ⅱ级应急响应。
+                </p>
+                <p>
+                    （三）应急响应措施
+                </p>
+                <p>
+                    1.健康防护提示措施
+                </p>
+                <p>
+                    提醒儿童、老年人和呼吸系统、心脑血管疾病患者等易感人群留在室内，确需外出必须加强防护措施；提醒一般人群停止户外运动和室外作业，如不可避免必须做好必要的防护措施；各中、小学、幼儿园停止户外活动；各医疗机构增设相关疾病门诊，增加医务人员、延长工作时间。
+                </p>
+                <p>
+                    2.建议性减排措施
+                </p>
+                <p>
+                    ①建议公众如无必须，不要驾驶机动车出行；确需驾驶机动车出行的驻车时及时熄火，减少机动车昼间加油；<br />
+                    ②公众减少能源消耗，夏季空调温度设定不低于26℃，冬季不高于18℃；<br />
+                    ③公众减少涂料、油漆、溶剂等含挥发性有机物的原材料及产品的使用；<br />
+                    ④化工、钢铁、水泥等大气污染物排放量大的企业，在12时至16时进行炉膛清洁和烟尘清除工作。
+                </p>
+                <p>
+                    3.强制性减排措施
+                </p>
+                <p>
+                    ①机动车减排措施
+                </p>
+                <p>
+                    除公交、城市运行保障和正在执行紧急公务的车辆外，限制主城区20%的机动车通行（法定节假日和公休日不限行）；同时，禁止重型、中型货车、无标车、黄标车和三轮汽车、低速载货汽车、拖拉机通行（当紧急发布预警信息时，当天不采取机动车限行措施）。
+                </p>
+                <p>
+                    ②工业减排措施
+                </p>
+                <p>
+                    企事业单位按照“一厂一策”采取降低生产负荷、加强污染治理以及停产等措施，最低减少30%的大气污染物排放量。
+                </p>
+                <p>
+                    ③防止扬尘措施
+                </p>
+                <p>
+                    除应急抢险外，停止所有房屋建筑、拆迁、混凝土搅拌公司、市政、道路、水利、绿化、电信以及供水、输油（气）管道等施工工地的土石方作业；停止施工工地石材切割、渣土运输、喷涂粉刷等作业；建筑施工现场禁止进行砂浆现场搅拌。
+                </p>
+                <p>
+                    增加对城市道路清扫保洁频次；（非冰冻期）增加湿扫、喷水频次。
+                </p>
+                <p>
+                    煤堆、料堆以及各类施工工地内土堆和闲置、裸露的空地全部用密目网覆盖并增加洒水降尘频次。
+                </p>
+                <p>
+                    ④其他措施
+                </p>
+                <p>
+                    禁止燃放烟花爆竹、露天烧烤和露天喷涂作业，严禁焚烧垃圾、杂草和秸秆的行为。
+                </p>
+                <p>
+                    4.补充说明
+                </p>
+                <p>
+                    重污染天气期间，市国资委应增加公交车运行能力；市发改委协调省发改委和华北电监局河北业务办，在确保居民用电供应的原则下，落实发电（包括热电）企业应急响应期间“一厂一策”限产限排方案，督导发电（包括热电）企业按照省电网调度系统下达的调度指令落实限产限排；市环保局通过在线监控或现场检查，加强对重点大气污染源的监管，对治理设施不能有效运行的，提请当地政府依法采取关停措施；市气象局负责采取可行的气象干预措施。
+                </p>
+            </div>
+            <div class="pop_con_emerArt_04">
+                <h5>
+                    红色预警
+                </h5>
+                <p>
+                    （一）预警条件
+                </p>
+                <p>
+                    将出现或出现AQI达到500且1日及以上气象条件不利于污染物扩散的重污染天气。
+                </p>
+                <p>
+                    （二）启动应急响应
+                </p>
+                <p>
+                    当发布红色预警信息时，启动Ⅰ级应急响应。
+                </p>
+                <p>
+                    1.健康防护提示措施
+                </p>
+                <p>
+                    要求儿童、老年人和呼吸系统、心脑血管疾病患者等易感人群留在室内，不要外出；要求一般人群停止户外运动和室外作业，如不可避免必须加强必要的防护措施；各中、小学、幼儿园采取停课措施（当紧急发布预警信息时，当天不采取停课措施；有住校生的学校，可由校方灵活掌握）；各医疗机构增设相关疾病门诊，增加医务人员，24小时值班。
+                </p>
+                <p>
+                    2.建议性减排措施
+                </p>
+                <p>
+                    ①建议公众不要驾驶机动车出行；确需驾驶机动车出行的驻车时及时熄火；减少机动车昼间加油。<br />
+                    ②公众减少能源消耗，夏季空调温度设定不低于26℃，冬季不高于18℃；<br />
+                    ③公众避免涂料、油漆、溶剂等含挥发性有机物的原材料及产品的使用；<br />
+                    ④化工、钢铁、水泥等大气污染物排放量大的企业，在12时至16时进行炉膛清洁和烟尘清除工作；<br />
+                    ⑤建议企、事业单位实行弹性工作制。
+                </p>
+                <p>
+                    3.强制性减排措施
+                </p>
+                <p>
+                    ①机动车减排措施
+                </p>
+                <p>
+                    除公交、城市运行保障和正在执行紧急公务的车辆外，主城区实行非营运客车单双号限行措施；同时，禁止重型、中型货车、无标车、黄标车和三轮汽车、低速载货汽车、拖拉机通行（当紧急发布预警信息时，当天不采取机动车限行措施）。
+                </p>
+                <p>
+                    ②工业减排措施
+                </p>
+                <p>
+                    企事业单位按照“一厂一策”采取降低生产负荷、加强污染治理以及停产等措施，最低减少30%的大气污染物排放量。
+                </p>
+                <p>
+                    ③防止扬尘措施
+                </p>
+                <p>
+                    除应急抢险外，停止所有房屋建筑、拆迁、混凝土搅拌公司、市政、道路、水利、绿化、电信以及供水、输油（气）管道等施工工地的土石方作业；停止施工工地石材切割、渣土运输、喷涂粉刷等作业；建筑施工现场禁止进行砂浆现场搅拌。
+                </p>
+                <p>
+                    增加对城市道路清扫保洁频次；（非冰冻期）增加湿扫、喷水频次。
+                </p>
+                <p>
+                    煤堆、料堆以及各类施工工地内土堆和闲置、裸露的空地全部用密目网覆盖并增加洒水降尘频次。
+                </p>
+                <p>
+                    ④其他措施
+                </p>
+                <p>
+                    禁止燃放烟花爆竹、露天烧烤和露天喷涂作业，严禁焚烧垃圾、杂草和秸秆的行为。
+                </p>
+                <p>
+                    4.补充说明
+                </p>
+                <p>
+                    重污染天气期间，市国资委应增加公交车运行能力；市发改委协调省发改委和华北电监局河北业务办，在确保居民用电供应的原则下，落实发电（包括热电）企业应急响应期间“一厂一策”限产限排方案，督导发电（包括热电）企业按照省电网调度系统下达的调度指令落实限产限排；市环保局通过在线监控或现场检查，加强对重点大气污染源的监管，对治理设施不能有效运行的，提请当地政府依法采取关停措施；市气象局负责采取可行的气象干预措施；市公安局暂停审批在重污染天气期间举办的户外大型活动，通知并监督已经得到审批的单位在重污染天气期间暂停举办大型户外活动。
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<script>
+    //tag切换
+    var pop_con_emerTagsWrap = document.getElementById('pop_con_emerTagsWrap').getElementsByTagName('li');
+    var pop_con_emerArt = document.getElementById('pop_con_emerArt').getElementsByTagName('div');
+    for (i = 0; i < pop_con_emerTagsWrap.length; i++) {
+        pop_con_emerTagsWrap[i].onclick = function () {
+            for (j = 0; j < pop_con_emerTagsWrap.length; j++) {
+                pop_con_emerTagsWrap[j].className = "";
+                this.className = 'cur';
+                pop_con_emerArt[j].style.display = "none";
+                if (this == pop_con_emerTagsWrap[j]) {
+                    pop_con_emerArt[j].style.display = "block";
+                }
+            }
+        }
+    }
+
+    //关闭按钮
+    var close_emer_icon = document.getElementById('close_emer_icon');
+    var pop_con_emer = document.getElementById('pop_con_emer');
+    var pop_bg = document.getElementById('pop_bg');
+    close_emer_icon.onclick = function () {
+        pop_con_emer.style.display = 'none';
+        pop_bg.style.display = 'none';
+    }
+
+
+    var divClose = document.getElementById('closeIcon');
+    var divDialog = document.getElementById('divDialog');
+    var pop_bg = document.getElementById('pop_bg');
+    divClose.onclick = function () {
+        divDialog.style.display = 'none';
+        pop_bg.style.display = 'none';
+    }
+
+    //实现拖拽  
+    var drag = document.getElementById('divDialog');
+    drag.onmousedown = function (e) {
+        var e = e || window.event;
+        var diffX = e.clientX - drag.offsetLeft;
+        var diffY = e.clientY - drag.offsetTop;
+        //if (typeof drag.setCapture != 'undefined') {
+        //    drag.setCapture();
+        //}
+        document.onmousemove = function (e) {
+            var e = e || window.event;
+            var left = e.clientX - diffX;
+            var top = e.clientY - diffY;
+            if (left < 0) {
+                left = 0;
+            } else if (left > window.innerWidth - drag.offsetWidth) {
+                left = window.innerWidth - drag.offsetWidth;
+            }
+            if (top < 0) {
+                top = 0;
+            } else if (top > window.innerHeight - drag.offsetHeight) {
+                top = window.innerHeight - drag.offsetHeight;
+            }
+            drag.style.left = left + 'px';
+            drag.style.top = top + 'px';
+        };
+        //document.onmouseup = function (e) {
+        //    this.onmousemove = null;
+        //    this.onmouseup = null;
+        //    if (typeof drag.releaseCapture != 'undefined') {
+        //        drag.releaseCapture();
+        //    }
+        //};
+    };
+ //2017-04-19油烟扬尘
+    window.onload = function () {
+        $('#pppp').text('空气质量监测');
+        $('#ppppp').text('企业污染监测');
+        $('.ycyy').css({
+            'width': '80px',
+            'height': '30px',
+            'marginLeft': '12px',
+            'marginTop': '10px',
+            'background': '#0899ff',
+            'line-height': '30px',
+            'color': 'white',
+            'padding':'0px 10px'
+        });
+    }
+    function airP() {
+        $('#ppppp').text('空气质量检测');
+    }
+
+</script>
