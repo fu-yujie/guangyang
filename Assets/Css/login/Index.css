@@ -1,0 +1,139 @@
+﻿*{margin:0;padding:0;}
+html,body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background: url(../../Images/login/IndexBg.png) 0px 0px no-repeat;
+    background-size: 100% 100%;
+}
+.loginText{
+    display:block;
+    margin:90px auto 40px;
+}
+.content{
+    overflow:hidden;
+    width:1100px;
+    margin: auto;
+}
+    .content .cleft {
+        float: left;
+        width: 450px;
+        height: 300px;
+        margin-top: 80px;
+        background:url(../../Images/login/logo.png) no-repeat 10px 80px;
+    }
+
+.content .cleft ul{
+    overflow:hidden;
+    width:300px;
+    margin:100px 0px 0px 10px;
+    list-style-type:square;
+    padding-left:80px;
+    color:white;
+    font-weight:bold;
+}
+.content .cleft li{
+    float:left;
+    width:150px;
+    height:30px;
+    line-height:30px;
+}
+.content .cleft li b{
+    color:#8d93a0
+}
+.content .cright{
+    float:right;
+    width:350px;
+    height:220px;
+    /*background:white;*/
+    margin:80px 125px 0px 0px;
+}
+.content .cright .tittl{
+    width:120px;
+    height:25px;
+    line-height:25px;
+    background:#f8f8f8;
+    border-radius:10px 10px 0px 0px;
+    font-size:13px;
+    font-family:'Microsoft YaHei';
+    text-align:center;
+}
+.content .cright .crcontent{
+    width:350px;
+    height:190px;
+    background:#f8f8f8;
+    border-radius:0px 10px 10px 10px;
+    padding-top:30px;
+}
+.content .cright .crcontent ul{
+    width:250px;
+    list-style-type:none;
+    margin:auto;
+}
+.content .cright .crcontent ul li{
+    height:40px;
+    line-height:40px;
+}
+.content .cright .crcontent ul em{
+    font-family:'Microsoft YaHei';
+    font-style:normal;
+    font-size:15px;
+    display:inline-block;
+    width:60px;
+}
+.content .cright .crcontent ul input{
+    height:22px;
+    background:white;
+}
+.content .cright .crcontent ul .department{
+    margin-left:67px;
+}
+.content .cright .crcontent ul .department em{
+    width:60px;
+    font-size:12px;
+    color:#999999;
+}
+.content .cright .crcontent ul .department select{
+    width:106px;
+    font-size:12px;
+}
+    .content .cright .crcontent .login {
+        width: 80px;
+        height: 35px;
+        margin-left: 212px;
+        margin-top: 20px;
+        background: url('../../Images/login/loginnew.png') 0px 0px no-repeat;
+    }
+.content .cright .crcontent .login:hover{
+	background:url('../../Images/login/loginnew1.png') 0px 0px no-repeat;
+}
+#pageTittle{
+    overflow:hidden;
+}
+#sideWeather{
+    position:relative;
+    width:1020px;
+    margin:auto;
+}
+.pageTittleLi{
+    list-style:none;
+    background:white;
+    float:left;
+    width:80px;
+    height:30px;
+    border-right:1px solid lightgray;
+    line-height:30px;
+    text-align:center;
+}
+.TabSection p {
+    height:20px;
+    line-height:20px;
+}
+.TabSection{
+    display:none;
+    padding:5px;
+    font-size:12px;
+    position:absolute;
+    border:1px solid lightgray;
+    background:white;
+}

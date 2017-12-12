@@ -1,0 +1,449 @@
+body {
+    background: #265780 url(/Assets/images/login/shadow.jpg); overflow:hidden;color: #535353;font: 12px/20px Tahoma,Verdana,"宋体";
+}
+
+body, div, p, blockquote, form, textarea, input,
+ul, li, ol, dl, dt, dd,
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+a { text-decoration:none;}
+a:hover { color:#f94400; text-decoration:underline;}
+
+
+.wrapper {
+    width: 980px;
+    margin: 0 auto;
+}
+
+.wrapper .header {
+    position: relative;
+    width: 980px;
+    height: 150px;
+}
+
+#login .header {
+    height: 250px;
+}
+
+.wrapper .header h1 {
+    position: absolute;
+    left: -99999px; 
+    top: -99999px;
+}
+
+.wrapper .header .logo {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 146px;
+    height: 95px;
+    margin: 0 0 0 -73px;
+}
+
+#login .header .logo {
+    width: 381px;
+    height: 109px;
+    margin: 0 0 0 -200px;
+}
+
+#loginBoxShadow {
+    width: 980px;
+    height: 265px;
+    margin-top: 55px;
+    background: url(/Assets/images/login/loginBox_shadow.png) no-repeat 0 45px;
+}
+
+#loginBox, #loginBox .beta,
+#loginBox .form .input-item, 
+#loginBox .form .login-item .btn, #applyBox .apply-btn,
+.page-main .inner .submit-item .btn,
+#applySuccessfully s, #getPassword s, #errorMsg s,
+#reg .header .line, .validate, #apply .validate em {
+    background: url(/Assets/images/login/login.png) no-repeat;
+}
+
+#loginBox {
+    position: relative;
+    width: 800px;
+    height: 104px;
+    margin: 0 auto;
+}
+
+#loginBox .beta {
+    display: block;
+    position: absolute;
+    left: 30px;
+    top: -5px;
+    width: 56px;
+    height: 99px;
+    background-position: -2px -105px;
+}
+
+#loginBox .form {
+    margin: 0 0 0 115px;
+    zoom: 1;
+}
+
+#loginBox .error {
+    display: block;
+    position: absolute;
+    left: 117px;
+    top: 76px;
+    z-index: 1;
+    width: 236px;
+    padding-left: 15px;
+    border: 1px solid #ffdad0;
+    background: #fff7f4;
+    color: #f94400;
+}
+
+#loginBox .form .input-item, #loginBox .form .login-item {
+    position: relative;
+    float: left;
+    display: inline;
+    height: 42px;
+    margin: 29px 17px 0 0;
+}
+
+#loginBox .form .input-item {
+    width: 256px;
+    background-position: -347px -105px;
+    _background-position: -347px -148px;
+}
+
+#loginBox .form .input-item label {
+    position: absolute;
+    left: 18px;
+    top: 11px;
+    display: block;
+    width: 98%;
+    color: #728290;
+    font-size: 14px;
+}
+
+#loginBox .form .text-input {
+    width: 237px;
+    height: 16px;
+    line-height: 16px;
+    margin: 2px 3px 0 2px;
+    padding:10px 0 10px 14px;
+    border: none;
+    outline: none;
+	color:#555;
+	font:500 16px/16px "microsoft yahei";
+}
+
+#loginBox .form .forget-password {
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+}
+
+#loginBox .form .forget-password a { color: #94adc3;}
+
+#loginBox .form .login-item { width: 100px;}
+
+#loginBox .form .login-item .btn {
+    width: 100px;
+    height: 41px;
+    border: none;
+    background-position: -229px -105px;
+    cursor: pointer;
+}
+
+#applyBox {
+    overflow: hidden;
+    position: relative;
+    top: -80px;
+    width: 660px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#applyBox span {
+    margin-right: 10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+#applyBox .apply-btn {
+    display: inline-block;
+}
+
+#applyBox .apply-btn {
+    width: 138px;
+    height: 43px;
+    background-position: -72px -105px;
+    vertical-align: middle;
+}
+
+#footer {
+    padding: 0;
+    color: #779cbc;
+}
+
+.container {
+    width: 660px;
+    margin: 50px auto;
+}
+
+.page-main, .page-bottom {
+    width: 660px;
+    background: url(/Assets/images/login/page_bg.png) no-repeat;
+}
+
+.page-main .inner {
+    margin: 0 65px;
+    padding: 35px 0 20px;
+}
+
+#applySuccessfully, #getPassword, #regBinding, #errorMsg { padding: 120px 0;}
+#errorMsg { margin-left: 180px; line-height: 45px;}
+#applySuccessfully s, #getPassword s, #errorMsg s {
+    float: left;
+    display: inline;
+    width: 48px;
+    height: 48px;
+    margin: -4px 10px 0 0;
+}
+#applySuccessfully s, #getPassword s { background-position: -230px -152px;}
+#applySuccessfully .pass { background-position: -180px -152px;}
+#errorMsg s { background-position: -280px -152px;}
+
+#getPassword {
+    width: 350px;
+    margin: 0 auto;
+    line-height: 42px;
+}
+#getPassword .text-input, #getPassword .btn { vertical-align: top;}
+#getPassword .text-input {
+    width: 223px;
+    height: 16px;
+    padding: 7px 6px;
+    line-height: 16px;
+}
+#getPassword div, #getPassword h4, #regBinding h4 { text-align: center;}
+#getPassword h4, #regBinding h4 {
+    margin-bottom: 35px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.placeholder {
+    position: absolute;
+    left: 6px;
+    top: 0;
+    width: 229px;
+    height: 30px;
+    padding-left: 6px;
+    line-height: 30px;
+    color: #728290;
+    text-align: left;
+}
+
+#regBinding p {
+    width: 364px;
+    margin: 0 auto;
+}
+#regBinding p a, #shareBtns a {
+    float: left;
+    display: inline;
+    width: 172px;
+    height: 34px;
+    margin-right: 20px;
+    background: url(/Assets/images/login/binding_icon.png) no-repeat;
+}
+#regBinding p .qq {
+    margin-right: 0;
+    background-position: 0 -35px;
+}
+#shareBtns { padding-top: 35px; padding-left: 80px;}
+#shareBtns a {
+    height: 43px;
+    margin-right: 40px;
+    text-indent: -9999px;
+}
+#shareBtns .sina {
+    width: 173px;
+    background-position: 0 -73px;
+}
+#shareBtns .sina:hover { background-position: 0 -116px;}
+#shareBtns .qq { background-position: 0 -159px;}
+#shareBtns .qq:hover { background-position: 0 -202px;}
+
+.page-main .inner .apply-info, .page-main .inner h3 { margin-bottom: 25px;}
+
+.page-main .inner p, .page-main .inner .input-item { font-size: 14px;}
+
+.page-main .inner h3 { color: #28547b;}
+
+.page-main .inner p { margin-bottom: 5px;}
+.page-main .inner .input-item { margin-bottom: 10px;}
+.page-main .inner .input-item span { color: #7d7d7d; font-size: 12px;}
+.page-main .inner .input-item .highlight { color: #e70010;}
+.page-main .inner .input-item .validate { color: #fff;}
+.page-main .inner .input-item p { margin-top: 10px;}
+.page-main .inner .input-item .textarea {
+    overflow: auto;
+    width: 360px;
+    height: 80px;
+    text-indent: 5px;
+}
+.page-main .inner .submit-item { margin-top: 30px;}
+.page-main .inner .submit-item .btn {
+    width: 96px;
+    height: 33px;
+    border: none;
+    background-position: -72px -161px;
+    cursor: pointer;
+}
+#apply .input-item p { width: 355px; height: 35px;}
+#apply .input-item p { _overflow: hidden; width: auto;}
+#apply .text-input, #apply .validate {
+    float: left;
+    display: inline;
+    margin: 0;
+}
+#apply .validate {
+    display: none;
+    width: auto;
+    margin: -3px 0 0 10px;
+    padding: 0 0 0 28px;
+}
+#apply .tip { background-position: -442px -307px;}
+#apply .error { background-position: -442px -270px;}
+#apply .validate em {
+    float: right;
+    display: inline;
+    width: 5px;
+    height: 35px;
+    margin-left: 20px;
+    background-position: -787px -307px;
+}
+#apply .error em { background-position: -787px -270px;}
+
+.page-bottom {
+    height: 18px;
+    background-position: 0 bottom;
+}
+
+#reg .header {
+    overflow: hidden;
+    width: 450px;
+}
+#reg .header .line, .validate {
+    width: 699px;
+    height: 19px;
+    margin: 40px 0 0 -110px;
+    background-position: 0 -350px;
+}
+#reg .header .welcome { padding-top: 20px; font-weight: bold;}
+#reg .header .m-img { margin-right: 20px;}
+#reg .inner { margin: 0 100px;}
+#reg .form { margin-left: 10px;}
+#reg .input-item { margin-bottom: 20px;}
+#reg .input-item label, .verify .input-item label {
+    float: left;
+    display: inline;
+    width: 85px;
+    height: 29px;
+    line-height: 29px;
+}
+#reg .input-item .text-input { width: 182px; text-indent: 5px; padding: 6px 0;}
+#reg #userName { width: 88px;}
+#reg .input-item .domain { 
+    float: left;
+    display: inline;
+    line-height: 27px;
+}
+#reg .input-item .not-editable, .verify .input-item .not-editable {
+    display: inline-block;
+    width: 177px;
+    height: 27px;
+    padding-left: 5px;
+    line-height: 28px;
+    border: 1px solid #c6dbe6;
+    background-color: #eef3f8;
+    color: #535353;
+}
+#reg .submit-item, #reg .agreement { padding-left: 85px;}
+#reg .submit-item { margin-top: 0;}
+#reg .submit-item .btn {
+    width: 149px;
+    height: 42px;
+    margin-top: 10px;
+    background-position: -620px -105px;
+}
+.verify .input-item p { clear: both;}
+.verify .input-item .not-editable { width: 250px;}
+#apply .verify .submit-item .btn {
+    display: inline-block;
+    width: 259px;
+    height: 37px;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-position: -533px -224px;
+}
+
+.validate {
+    float: right;
+    display: none;
+    width: 173px;
+    height: 36px;
+    margin-top: -3px;
+    line-height: 36px;
+    text-align: center;
+}
+.tip { background-position: -619px -148px;}
+.error { background-position: -619px -186px;}
+
+.form-error {
+    display: block;
+    margin-top: 10px;
+    border: 1px solid #ffdad0;
+    background-color: #fff7f4;
+    color: #f60;
+}
+
+/* reset password*/
+#resetPassword {
+    width: 293px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+#resetPassword p {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    font-weight: bold;
+}
+#resetPassword .reset-password .input-item { margin-bottom: 20px;}
+#resetPassword .reset-password .input-item label {
+    float: left;
+    display: inline;
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    text-align: right;
+}
+#resetPassword .submit-item {
+    margin-top: 20px;
+    padding-left: 100px;
+}
+
+#footer { clear: both; padding: 10px 0 20px;}
+#footer span { font-family: "微软雅黑";}
+.footer-nav {
+    padding-bottom:10px;
+    text-align: center;
+}
+.footer-nav a, #footer a { color: #535353;}
+#footer .widget { color: #134874;}
+#footer .sign a { color: #c1d6e9;}
+#footer .sign .home-page { color: #779cbc;}
+
+
+.txt-r { text-align: right;}
+.txt-c { text-align: center;}
+.txt-c span { color:#92b7d6;}
+.txt-l { text-align: left;}

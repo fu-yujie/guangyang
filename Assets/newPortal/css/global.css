@@ -1,0 +1,37 @@
+﻿@charset "utf-8";
+body{position:relative;background: #fff;color:#353535;}
+body, div, td,font{font-size:12px;line-height:1.2em;font-family:"Microsoft YaHei",Tahoma,Arial,"宋体","黑体";}
+body, div, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input, textarea, p, th, td, dl, dt, dd{margin: 0;padding: 0;}
+body, html {height:100%;}
+body{height:auto; min-height:100%;}
+/*给body和html规定宽度，目的是让他做父级，然后footer做子集，通过子绝父相，达到footer定位在最下方的目的*/
+table{border-collapse:collapse;border-spacing:0;}
+img{border:none;}
+address, caption, cite, code, dfn, em, th, var,b,font,i{font-style:normal;font-weight: normal;}
+ul li{list-style-image: none;list-style-position: outside;list-style-type: none;}
+caption, th{text-align: left;}
+h1, h2, h3, h4, h5, h6{font-size: 100%;font-weight: normal;vertical-align:baseline;zoom: 1;}
+input, textarea, select, button{font-size: 12px;font-weight: inherit; vertical-align:middle;}
+input[type=radio],input[type=checkbox]{vertical-align: -2px;}
+textarea{resize:none; overflow-x:hidden;overflow-y:auto; outline:medium none; word-wrap:break-word;}
+a{text-decoration:none;color:#4f4c57;cursor: pointer;}
+a:focus{outline-style: none;outline-width: 0;outline: none;}
+/*a{_blr:expression(this.onFocus=this.blur());}*/
+a:link, a:visited, a:active{text-decoration: none;}
+a:hover{text-decoration:none;}
+.floatL{float: left;}
+.floatR{float: right;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
