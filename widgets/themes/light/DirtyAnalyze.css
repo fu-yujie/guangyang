@@ -1,0 +1,92 @@
+.light .dirtyAnalyze{
+    /*display:inline-flex;*/
+    /*margin-top:28px;*/
+}
+.light .dirtyAnalyze .dirtyAnalyzeText{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 18px;
+}
+.light .dirtyAnalyze .dirtyAnalyzeBtn{
+    width:30px;
+    height:30px;
+    border:1px solid #454545;
+    border-radius: 4px;
+    background-color: #ffffff;
+    background-image: url("../../assets/images/dirtyAnalyze_close.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    float:left;
+}
+.light .dirtyAnalyze .dirtyAnalyzeBtn:hover{
+    background-color:#dddddd;
+    cursor: pointer;
+}
+.light .dirtyAnalyze .dirtyAnalyzePane{
+    /*padding:0px !important;*/
+    /*padding-left:10px !important;*/
+    margin:0;
+    height:30px;
+    border-bottom: 1px solid #454545;
+    /*border-radius: 4px;
+    background-color: darkgray;*/
+    display: none;
+    margin-left: 0px;
+    overflow: hidden;
+    width:100%;
+}
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane{
+    padding:0;
+    display: inline-block;
+    border-right:2px solid #ffffff;
+    border-radius: 4px 0 0 4px;
+    height:30px;
+    overflow: hidden;
+    margin-left:14px;
+}
+/*.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dPolyline,*/
+/*.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dFreehandPolyline,*/
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dRectangle,
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dPolygon,
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dCircle{
+     display: inline-block;
+    height:28px;
+    width:70px;
+    padding:0;
+    margin:2px 0 0 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dRectangle{
+    margin-left:5px;
+    background:url("../../assets/images/rectang.png") 0px 0px no-repeat;
+}
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dCircle{
+    margin-right:5px;
+    background:url("../../assets/images/circle.png") 0px 0px no-repeat;
+}
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dPolygon{
+    background:url("../../assets/images/polygon.png") 0px 0px no-repeat;
+}
+/*.light .dirtyAnalyze .dirtyAnalyzePane .printPane{
+    display: inline-block;
+    height:25px;
+    width:25px;
+    position: relative;
+    top: 0px;
+    left: -2px;
+    text-align: center;
+    cursor: pointer;
+}*/
+/*.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dPolyline:hover,*/
+/*.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dFreehandPolyline:hover,*/
+/*.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dRectangle:hover,
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dPolygon:hover,
+.light .dirtyAnalyze .dirtyAnalyzePane .drawingPane .dCircle:hover,
+.light .dirtyAnalyze .dirtyAnalyzePane .printPane:hover{
+    background-color: #dddddd;
+}*/

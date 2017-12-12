@@ -1,0 +1,100 @@
+#PollutionSourcesTable0,#PollutionSourcesTable1,#PollutionSourcesTable2,#PollutionSourcesTable3,#PollutionSourcesTable4,#PollutionSourcesTable5,#PollutionSourcesTable6,#PollutionSourcesTable7,#PollutionSourcesTable8,#PollutionSourcesTable9{
+    width:390px;
+    margin:15px auto;
+    cursor:pointer;
+}
+#PollutionSourcesTable0 td,#PollutionSourcesTable0 th,#PollutionSourcesTable1 td,#PollutionSourcesTable1 th,#PollutionSourcesTable2 td,#PollutionSourcesTable2 th,#PollutionSourcesTable3 td,#PollutionSourcesTable3 th,#PollutionSourcesTable4 td,#PollutionSourcesTable4 th,#PollutionSourcesTable5 td,#PollutionSourcesTable5 th,#PollutionSourcesTable6 td,#PollutionSourcesTable6 th,#PollutionSourcesTable7 td,#PollutionSourcesTable7 th,#PollutionSourcesTable8 td,#PollutionSourcesTable8 th,#PollutionSourcesTable9 td,#PollutionSourcesTable9 th{
+    text-align:center;
+    font-size:12px;
+    
+}
+#PollutionSourcesTable0 thead,#PollutionSourcesTable1 thead,#PollutionSourcesTable2 thead,#PollutionSourcesTable3 thead,#PollutionSourcesTable4 thead,#PollutionSourcesTable5 thead,#PollutionSourcesTable6 thead,#PollutionSourcesTable7 thead,#PollutionSourcesTable8 thead,#PollutionSourcesTable9 thead{
+    font-size:14px;
+	background:#eeeeee;
+}
+#PollutionSourcesTable0 thead tr,#PollutionSourcesTable1 thead tr,#PollutionSourcesTable2 thead tr,#PollutionSourcesTable3 thead tr,#PollutionSourcesTable4 thead tr,#PollutionSourcesTable5 thead tr,#PollutionSourcesTable6 thead tr,#PollutionSourcesTable7 thead tr,#PollutionSourcesTable8 thead tr,#PollutionSourcesTable9 thead tr{
+	height:30px;
+    font-size:14px;
+	background:#eeeeee;
+}
+
+#PollutionSourcesTable0 .a0,#PollutionSourcesTable1 .a0,#PollutionSourcesTable2 .a0,#PollutionSourcesTable3 .a0,#PollutionSourcesTable4 .a0,#PollutionSourcesTable5 .a0,#PollutionSourcesTable6 .a0,#PollutionSourcesTable7 .a0,#PollutionSourcesTable8 .a0,#PollutionSourcesTable9 .a0{
+    width:160px;
+	height:35px;
+    /*text-align: left;*/
+    padding-left: 8px;
+}
+#PollutionSourcesTable0 .a1,#PollutionSourcesTable1 .a1,#PollutionSourcesTable2 .a1,#PollutionSourcesTable3 .a1,#PollutionSourcesTable4 .a1,#PollutionSourcesTable5 .a1,#PollutionSourcesTable6 .a1,#PollutionSourcesTable7 .a1,#PollutionSourcesTable8 .a1,#PollutionSourcesTable9 .a1{
+    width:70px;
+	height:35px;
+    text-align: center;
+}
+#PollutionSourcesTable0 .a2,#PollutionSourcesTable1 .a2,#PollutionSourcesTable2 .a2,#PollutionSourcesTable3 .a2,#PollutionSourcesTable4 .a2,#PollutionSourcesTable5 .a2,#PollutionSourcesTable6 .a2,#PollutionSourcesTable7 .a2,#PollutionSourcesTable8 .a2,#PollutionSourcesTable9 .a2{
+    width:170px;
+	height:35px;
+    /*text-align: left;*/
+    padding-left: 5px;
+}
+#PollutionSourcesTable0 .a3,#PollutionSourcesTable1 .a3,#PollutionSourcesTable2 .a3,#PollutionSourcesTable3 .a3,#PollutionSourcesTable4 .a3,#PollutionSourcesTable5 .a3,#PollutionSourcesTable6 .a3,#PollutionSourcesTable7 .a3,#PollutionSourcesTable8 .a3,#PollutionSourcesTable9 .a3{
+    width:70px;
+	height:35px;
+}
+.PollutionSourcesTableTitle{
+	background:white;
+	text-align:center;
+	font-size:14px;
+	float:left;
+	width:79px;
+}
+.menuPollutionSourcesContent{
+	font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+}
+.ctrpollutionSources{
+	overflow: hidden;
+	line-height:25px;
+    margin: 0px;
+    padding: 0;
+}
+.barbecuePollution {
+	float:left;
+	margin-left:25px;
+}
+.coalPollution {
+	float:left;
+   margin-left:25px;
+}
+.sewagePollution {
+	float:left;
+    margin-left:25px;
+}
+.boilerPollution {
+	float:left;
+	margin-left:25px;
+}
+.sitePollution {
+	float:left;
+   margin-left:25px;
+}
+.farmPollution {
+	float:left;
+    margin-left:25px;
+}
+.roadPollution {
+	float:left;
+	margin-left:25px;
+}
+.exposedLandPollution {
+	float:left;
+   margin-left:25px;
+}
+.companyPollution {
+	float:left;
+    margin-left:25px;
+}
+.carPollution {
+	float:left;
+	margin-left:25px;
+}

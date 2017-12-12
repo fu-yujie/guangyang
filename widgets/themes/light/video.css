@@ -1,0 +1,104 @@
+#box {
+    width: 522px;
+    height: 425px;
+    font-size: 12px;
+    background-image: url('../../assets/images/video/video-bg.png');
+}
+#box .top {
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  position: relative;
+}
+#box .top a {
+  position: absolute;
+  left: 10px;
+  color: #f2b126;
+}
+#box .top span {
+  font-weight: bold;
+}
+#ocxContainer {
+    width: 500px;
+    height: 300px;
+    background: black;
+    margin-left: 10px;
+}
+#box .mid {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  
+}
+.picc {
+    display:inline-block;
+    float:right;
+    margin-right:25px
+}
+#box .mid .im1 {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+#box .mid .ui-widget-content {
+  margin-left: 18px;
+}
+#box .mid .ui-widget-content #red {
+  float: left;
+  clear: left;
+  width: 120px;
+  height: 3px;
+  margin: 15px;
+}
+#box .mid .ui-widget-content #swatch {
+  width: 120px;
+  height: 100px;
+  margin-top: 18px;
+  margin-left: 350px;
+  background-image: none;
+}
+#box .mid span {
+  margin-left: 300px;
+}
+#box .mid .im2 {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  cursor: pointer;
+}
+#box .line {
+  width: 500px;
+  margin: 0 auto;
+  border-bottom: 1px dashed #dcdcdc;
+}
+#box .bottom {
+  height: 48px;
+  line-height: 48px;
+}
+#box .bottom span:first-child {
+  margin-left: 60px;
+}
+    #box .bottom a:nth-child(2),
+    #box .bottom a:nth-child(3),
+    #box .bottom a:nth-child(5),
+    #box .bottom a:nth-child(6) {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        width: 40px;
+        height: 20px;
+        line-height: 20px;
+        background-image: url('../../assets/images/video/again-no.png');
+        color: white;
+        margin-left: 12px;
+        cursor: pointer;
+    }
+    #box .bottom a:nth-child(3),
+    #box .bottom a:nth-child(6) {
+        background-image: url('../../assets/images/video/voldisable.png');
+    }
+#box .bottom span:nth-child(4) {
+  margin-left: 95px;
+}
+/*# sourceMappingURL=index.css.map */

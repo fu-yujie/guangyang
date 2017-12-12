@@ -1,0 +1,28 @@
+﻿<form @(ViewBag.EditAction == null ? "" : "action=" + ViewBag.EditAction) data-ajax="true" data-ajax-method="POST" data-ajax-success="@(ViewBag.SubmitCallback ?? "showSubmitResult")" data-ajax-failure="showErrorMsg" id="editForm">
+    <div class="page">
+        <table class="table tb-type2 nobdb">
+            <thead>
+                <tr class="thead">
+                    @RenderSection("Head", false)
+                </tr>
+            </thead>
+            <tbody id="DialogContainer">
+                @RenderSection("Items", false)
+            </tbody>
+            <tfoot>
+                <tr class="tfoot">
+                    <td colspan="16">
+                        <div class="cpage">
+                            <span class="fl">共找到 @Model.TotalItemCount 条记录</span>
+                            <div id="pagerContainer" class="fr pagination" page_size="@Model.PageSize" total_count="@Model.TotalItemCount">
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</form>
+@RenderSection("Scripts", false)
+@RenderBody()

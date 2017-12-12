@@ -1,0 +1,23 @@
+.light .secondGrid {
+    height: 100%;
+    width: 100%;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.light .secondGrid .secondGridContent .secondGridIcon{
+    background-image: url("../../assets/images/secondGrid.png");
+    background-position: 0 4px;
+    background-repeat: no-repeat;
+    /*background-size: 22px 22px;*/
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.light .secondGrid .secondGridContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}

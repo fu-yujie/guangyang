@@ -1,0 +1,176 @@
+﻿@using BasicUPMS.Models.Core
+@{
+    Layout = null;
+    List<MainMonitoringPoint> MainPoint = ViewBag.MainMonitoringPointPaiMing;//所有重点监测点
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        广阳区网格化环境管理平台
+    </title>
+    <link href="~/Assets/newPortal/css/global.css" rel="stylesheet" />
+    <link href="~/Assets/newPortal/css/style.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/artDialog/css/ui-dialog.css" rel="stylesheet" />
+    <script src="~/Assets/Plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="~/Assets/Js/Core/Tools.js"></script>
+    <script src="~/Assets/Plugins/artDialog/dist/dialog-plus.js"></script>
+    <style>
+         .paiming_list td{
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="envir_pro_tit">
+        <div class="envir_pro_titCon">
+            <span class="floatL">
+                您好，欢迎来到 @ViewBag.portalName
+            </span>
+            <span class="floatR">
+                <a href="../Home/Logout">
+                    退出  |
+                </a>
+                @{
+                    if (SessionContext.Principal.RoleId == UPMSConfig.SystemRole)
+                    {
+                        <span>系统管理员不允许修改密码</span>
+                    }
+                    else
+                    {
+                        <a class="edit" style="color: blue;" href="javascript:showDataFormModalDialog('@Url.Action("UpdatePasswordForm")?Id=@ViewBag.Id','修改密码')">修改密码</a>
+                    }
+                }
+            </span>
+        </div>
+    </div>
+    <!--登录板块-->
+    <div class="header_con">
+        <div class="floatL header_conL">
+            <span class="title">@ViewBag.portalName<br /><span class="entitle">@ViewBag.portalenName</span></span>
+        </div>
+        <div class="floatR header_conR">
+            <ul>
+                <li class="header_conR_andr">
+                    <div class="header_conR_andrW">
+                        <img src="@ViewBag.Android" alt="安卓二维码">
+                    </div>
+                    <p>Android</p>
+                </li>
+                @*<li class="header_conR_IOS">
+                    <div class="header_conR_IOSW">
+                        <img src="@ViewBag.Ios" alt="IOS二维码">
+                    </div>
+                    <p>IOS</p>
+                </li>*@
+                <li class="header_conR_tips">
+                    <img src="~/Assets/newPortal/images/header_conR_tips.png" alt="扫一扫，有惊喜">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--logo区域-->
+    <div class="nav_wrap">
+        <div class="nav_con">
+            <span class="cur">
+                <a href="@Url.Action("Portal")">
+                    首页
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="/Index1.html">
+                    网格化管理
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="@Url.Action("Index")">
+                    业务管理
+                </a>
+            </span>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    function GetSubstrS(str, str2) {
+        var result = "—";
+        if (str != "10000" && str2 != "") {
+            result = str2;
+        }
+        return result;
+    }
+    </script>
+
+    <div class="paiming">
+        <!--全国主要城市空气质量-->
+        <div class="paiming_list">
+            <div class="con" style="width:1100px;">
+                <h1>重点监测点排名&nbsp;</h1>
+            </div>
+            <table width="1100">
+                <thead>
+                    <tr>
+                        <td width="40">
+                            排名
+                        </td>
+                        <td width="120">
+                            名称
+                        </td>
+                        <td width="80">
+                            AQI
+                        </td>
+                        <td width="100">
+                            级别
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                 @{
+                     int mmCount = MainPoint == null ? 0 : MainPoint.Count;
+                     if (mmCount > 0)
+                     {
+                         for (int i = 0; i < mmCount; i++)
+                         {
+                            <tr>
+                                <td>
+                                    <div class="num7">@(i + 1)</div>
+                                </td>
+                                <td>@MainPoint[i].Nname</td>
+                                <td>@MainPoint[i].AQI</td>
+                                <td>@MainPoint[i].Name</td>
+                            </tr>
+                         }
+                     }
+                     else
+                     {
+                        <tr><td align="center" colspan="4"><span>暂无数据...</span></td></tr>
+                     }
+                }
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+    <br />
+    <!--底部声明不用改-->
+    <div class="footer" style="bottom:0;">
+        <p class="marT30">
+            技术支撑单位
+        </p>
+        <p>
+            河北志晟信息技术股份有限公司
+        </p>
+    </div>
+</body>
+
+</html>
+<script>
+    sessionStorage.setItem("dat", '@Html.Raw(ViewBag.SessionStorage)');
+
+</script>
+

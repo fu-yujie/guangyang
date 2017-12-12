@@ -1,0 +1,47 @@
+#PatrolTable0{
+    width:390px;
+    margin:15px auto;
+    cursor:pointer;
+}
+#PatrolTable0 td,#PatrolTable0 th{
+    text-align:center;
+    font-size:12px;
+    
+}
+#PatrolTable0 thead{
+    font-size:14px;
+	background:#eeeeee;
+}
+#PatrolTable0 thead tr{
+	height:30px;
+    font-size:14px;
+	background:#eeeeee;
+}
+
+#PatrolTable0 .a0{
+    width:140px;
+	height:35px;
+}
+#PatrolTable0 .a1{
+    width:100px;
+	height:35px;
+}
+#PatrolTable0 .a2{
+    width:150px;
+	height:35px;
+}
+
+.PatrolTableTitle{
+	background:white;
+	text-align:center;
+	font-size:14px;
+	float:left;
+	padding:0 3px;
+}
+.menuConductorContent{
+	font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+}
+

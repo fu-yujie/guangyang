@@ -1,0 +1,118 @@
+.searchPart{
+	 background:white;
+    position: absolute;
+    left: 60px;
+    z-index: 50;
+    border:1px solid #91c0e8;
+	width:250px;
+	opacity:0.9
+	top:50px;
+	display:none;
+}
+.searchPartTitle{
+    height:34px;
+    background-color:#0899ff;
+    line-height:34px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+	overflow: hidden;
+	display:block;
+}
+.searchPartTitleText{
+	margin-left:12px;
+	float:left;
+}
+.deleteIcon{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    background: url("../../assets/images/delete.png") 8px no-repeat;
+	float:right;
+}
+.shrinkIcon{
+	 width: 30px;
+    height: 30px;
+    margin-right: 0px;
+    background: url("../../assets/images/tucengshou.png") 8px no-repeat;
+	float:right;
+}
+.TabIcon{
+	 width: 30px;
+    height: 30px;
+    margin-right: 3px;
+    background: url("../../assets/images/Tab1.png") 8px no-repeat;
+	float:right;
+}
+.ListIcon{
+	 width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    background: url("../../assets/images/List.png") 8px no-repeat;
+	float:right;
+}
+.searchPartContent{
+	height: 100%;
+    font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+}
+.tableTitle{
+    line-height: 38px;
+    background: lightblue;
+	cursor:pointer;
+	font-size:12px;
+	overflow:hidden;
+}
+#searchPartContent{
+    width:250px;
+    margin:15px auto;
+    cursor:pointer;
+}
+#searchPartContent td,#searchPartContent th{
+    text-align:center;
+    font-size:12px;
+}
+#searchPartContent thead{
+    font-size:14px;
+	background:#eeeeee;
+}
+#searchPartContent thead tr{
+	height:30px;
+    font-size:14px;
+	background:#f0f7ff
+;
+}
+
+#searchPartContent .a0{
+    width:60px;
+	height:35px;
+}
+#searchPartContent .a1{
+    width:220px;
+	height:35px;
+}
+#searchPartContent .a2{
+    width:110px;
+	height:35px;
+}
+#searchPartContent .a3{
+    width:130px;
+	height:35px;
+}
+.searchPart .tabContent{
+	margin-left:15px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.searchPart .tabContent input{
+	margin-left:5px;
+	height:20px;
+	width:150px;
+}
+.searchPart .tabContent button{
+	margin-left:5px;
+	height:24px;
+	width:50px;
+}

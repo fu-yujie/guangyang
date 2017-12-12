@@ -1,0 +1,28 @@
+﻿
+<table class="table tb-type2">
+    <thead>
+        <tr class="space">
+            <th colspan="15" class="nobg">列表</th>
+        </tr>
+        <tr class="thead">
+            @RenderSection("Head", false)
+        </tr>
+    </thead>
+    <tbody id="listContainer">
+        @RenderSection("Items", false)
+    </tbody>
+    <tfoot>
+        <tr class="tfoot">
+            <td colspan="16">
+                <div class="cpage">
+                    <span class="fl">共找到 @Model.TotalItemCount 条记录</span>
+                    <div id="pagerContainer" class="fr pagination" page_size="@Model.PageSize" total_count="@Model.TotalItemCount">
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+@RenderBody()

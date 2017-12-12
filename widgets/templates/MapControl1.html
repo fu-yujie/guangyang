@@ -1,0 +1,58 @@
+<div class="mapControl">
+    <div data-dojo-attach-point="headerNode" class="header">
+        <div class="headline">
+            <div class="headTitle">
+                <p>广阳区环境管理平台</p>
+                <span>网格化管理系统</span>
+            </div>
+            <p data-dojo-attach-point="currentDepartNode" class="currentDepart"></p>
+            <div data-dojo-attach-point="currentDepartAllNode" class="currentDepartAll">
+                <p data-dojo-attach-point="hbNode" class="evreyDepart hbDepart">环保局</p>
+                <p data-dojo-attach-point="zhzfNode" class="evreyDepart zhzfDepart">综合执法局</p>
+                <p data-dojo-attach-point="ggsyglNode" class="evreyDepart ggsyglDepart">公共事业管理局</p>
+                <p data-dojo-attach-point="ghNode" class="evreyDepart ghDepart">规划局</p>
+                <p data-dojo-attach-point="shfzNode" class="evreyDepart  shfzDepart">社会发展局</p>
+                <p data-dojo-attach-point="scjdglNode"  class="evreyDepart scjdglDepart">市场监督管理局</p>          
+            </div>
+            <div class="optionFunctionPart">
+                <div data-dojo-attach-point="optionNode" class="option"> 选项</div>
+                <div class="optionList">
+                    <a data-dojo-attach-point="goHomeNode" class="goHome" href="/Home/Portal">回到首页</a>
+                    <a data-dojo-attach-point="userInfoNode" class="userInfo" href="#">用户信息</a>
+                    <a data-dojo-attach-point="quitNode" class="quit" href="/Home/Login">退出</a>
+                </div>
+            </div>
+            <div data-dojo-attach-point="functionPartNode" class="functionPart">
+                <div data-dojo-attach-point="monitoringPointTNode" class="monitoringPointT"></div>
+                <div data-dojo-attach-point="pollutionSourcesTNode" class="pollutionSourcesT"></div>
+                <div data-dojo-attach-point="realTimeTNode" class="realTimeT"></div>
+                <div data-dojo-attach-point="caseTNode" class="caseT"></div>
+                <div data-dojo-attach-point="patrolTNode" class="patrolT"></div>
+                <div data-dojo-attach-point="conductorTNode" class="conductorT"></div>
+            </div>
+        </div>
+       
+    </div>
+    <div id="map" data-dojo-attach-point="mapNode" class="map">       
+        <span data-dojo-attach-point="scalebarNode" class="scalebar"></span>
+        <span data-dojo-attach-point="zoomToFullBtnNode" class="zoomToFullBtn"></span>
+        <span data-dojo-attach-point="navZoomInBtnNode" class="navZoomInBtn"></span>
+        <span data-dojo-attach-point="navZoomOutBtnNode" class="navZoomOutBtn"></span>
+        <span data-dojo-attach-point="navPanBtnNode" class="navPanBtn"></span>
+        <span data-dojo-attach-point="searchPartPaneNode" class="navPanBtn"></span>
+        <span data-dojo-attach-point="coordinateNode" class="coordinate"></span>
+         <span data-dojo-attach-point="searchPartNode" class=""></span>
+        <span data-dojo-attach-point="layerControlNode" class=""></span>
+        <span data-dojo-attach-point="monitoringPointNode" class=""></span>
+        <span data-dojo-attach-point="pollutionSourcesNode" class=""></span>
+        <span data-dojo-attach-point="realTimeNode" class=""></span>
+        <span data-dojo-attach-point="caseNode" class=""></span>
+        <span data-dojo-attach-point="patrolNode" class=""></span>
+        <span data-dojo-attach-point="conductorNode" class=""></span>
+        <span data-dojo-attach-point="toolBoxNode" class="toolBox"></span>
+        <div class="floatPane">
+            <div id="floatPane"></div>
+        </div>
+        <span id="legendNode" class="legend"></span>
+    </div>
+</div>

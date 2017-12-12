@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><span>@ViewBag.Title</span></div>
+    </div>
+    <div class="fixed-empty"></div>
+    <form @(ViewBag.EditAction == null ? "" : "action=" + ViewBag.EditAction) method="post" id="editForm">
+        <div class="page">
+            <table class="table tb-type2 nobdb">
+                <tbody>
+                    @Html.AntiForgeryToken()
+                    @RenderSection("Form", false)
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </form>
+</div>
+@RenderBody()

@@ -1,0 +1,99 @@
+#PatrolTable0{
+    width:390px;
+    margin:15px auto;
+    cursor:pointer;
+}
+#PatrolTable0 td,#PatrolTable0 th{
+    text-align:center;
+    font-size:12px;
+    
+}
+#PatrolTable0 thead{
+    font-size:14px;
+	background:#eeeeee;
+}
+#PatrolTable0 thead tr{
+	height:30px;
+    font-size:14px;
+	background:#eeeeee;
+}
+
+#PatrolTable0 .a0{
+    width:80px;
+	height:35px;
+}
+#PatrolTable0 .a1{
+    width:100px;
+	height:35px;
+}
+#PatrolTable0 .a2{
+    width:80px;
+	height:35px;
+}
+#PatrolTable0 .a3{
+    width:130px;
+	height:35px;
+}
+
+
+.PatrolTableTitle{
+	background:white;
+	text-align:center;
+	font-size:14px;
+	float:left;
+	padding:0 3px;
+}
+.menuPatrolContent{
+	font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+}
+.ctrlPatrol{
+	overflow: hidden;
+    height: 50px;
+	line-height:50px;
+    margin: 0px 0 0 15px;
+    padding: 0;
+}
+.patrolOnline {
+	float:left;
+}
+.department_tit {
+	padding-top:5px;
+}
+.selectContent{
+	padding:0px 0px 0px 90px;
+	display;none;
+}
+.department_tit li{
+	 float: left;
+    overflow: hidden;
+    padding-top: 4px;
+}
+.department_tit li span {
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    float: left;
+    font-size: 14px;
+    line-height: 25px;
+    padding-left: 8px;
+}
+.department_tit li input {
+    width: 260px;
+    height: 23px;
+    float: left;
+}
+.department_tit li .department_search{
+	width: 50px;
+    height: 25px;
+    background: #0899ff;
+    color: #fff;
+    border: 1px solid #0899ff;
+    border-radius: 2px;
+    box-sizing: border-box;
+    float: right;
+    margin-left: 5px;
+    margin-top: 0px;
+}

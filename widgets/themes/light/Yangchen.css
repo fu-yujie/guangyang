@@ -1,0 +1,45 @@
+﻿
+.light .yangchen .yangchenContent .yangchenIcon{
+    background-image: url("../../assets/images/yangchen(1).png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.light .yangchen .indexList{
+    width:70px;
+    height:259px;
+    padding:0;
+    margin: 0;
+    position: fixed;
+    left:20px;
+    top:290px;
+    z-index:50;
+    background-color: rgba(255, 255, 255 ,0.7);
+}
+.light .yangchen .indexList .indexRow{
+    width:68px;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid darkgrey;
+    padding: 0;
+    margin:0;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    cursor: pointer;
+    display: block;
+}
+.light .yangchen .indexList .indexRow:hover {
+    padding: 0px 0px 0px 3px;
+}
+.light .yangchen .yangchenContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}
+

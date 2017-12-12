@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><span>@ViewBag.Title</span></div>
+    </div>
+    <div class="fixed-empty"></div>
+    <form action="@(ViewBag.EditAction ??  ViewBag.OperateType.ToString() + "/" + @Model.Id)" data-ajax="true" data-ajax-method="POST" data-ajax-success="@(ViewBag.SubmitCallback ?? "showSubmitResult")" data-ajax-failure="showErrorMsg" id="editForm">
+        <div class="page">
+            <table class="table tb-type2 nobdb">
+                <tbody>
+                    @Html.AntiForgeryToken()
+                    @RenderSection("Form", false)
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </form>
+</div>
+@RenderBody()
+

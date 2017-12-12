@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="UPMS" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Assets/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/Plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>
+<script src="~/Assets/Plugins/jquery/jquery-1.11.1.min.js"></script>
+<script src="~/Assets/Js/Core/Permission.js"></script>
+<script src="~/Assets/Plugins/jquery.unobtrusive-ajax/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Assets/Plugins/html5shiv/html5shiv.js"></script>
+<script src="~/Assets/Plugins/jquery-cookie/jquery.cookie.js"></script>
+<script src="~/Assets/Js/Core/ToolsAdapterForCrossFrame.js"></script>
+@RenderSection("Scripts", false)

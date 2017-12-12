@@ -1,0 +1,57 @@
+.light .wCtrlInfo{
+     width:100%;
+     height:100%;
+ }
+.light .wCtrlInfo .border{
+    padding:0;
+    width:350px;
+    height:auto;
+    overflow: hidden;
+}
+.light .wCtrlInfo .border .wCtrlTitle{
+    width:350px;
+    height:30px;
+    padding: 0;
+    background-color:#428bef;
+    color:#fff;
+    border-bottom: 1px solid darkgray;
+}
+.light .wCtrlInfo .border .wCtrlTitle .wCtrlTitleContent{
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    line-height: 30px;
+    margin-left:8px;
+}
+.light .wCtrlInfo .border .wCtrlTitle .wCtrlCloseIcon{
+    height: 12px;
+    width: 12px;
+    padding: 2px 0 2px 0;
+    cursor: pointer;
+    float:right;
+    margin:8px;
+    background-image: url("../../assets/images/tabClose.png");
+    background-repeat: no-repeat;
+}
+.light .wCtrlInfo .border .wCtrlInfoGrid{
+    height:auto;
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+}
+.light .wCtrlInfo .border .gridLabel{
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+}
+.light .wCtrlInfo .border .wCtrlInfoChart{
+    width:350px;
+    padding: 0;
+}
+.light .wCtrlInfo .border .wCtrlInfoChart .chartLabel{
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+    margin-left:8px;
+}
+.light .wCtrlInfo .border .chartContent{
+    width:350px;
+    height:150px;
+ 
+}

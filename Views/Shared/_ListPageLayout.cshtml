@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><span>@ViewBag.Title</span></div>
+    </div>
+    <div class="fixed-empty"></div>
+
+    <form action="@(ViewBag.SearchAction ?? "Index")" data-ajax="true" data-ajax-mode="replace" data-ajax-success="renderPager" data-ajax-update="#listContainer" id="searchForm">
+        <table class="tb-type1 noborder search">
+            <tbody>
+                @RenderSection("SearchCondition", false)
+            </tbody>
+        </table>
+    </form>
+
+    <div id="listContainer">
+        @Html.Partial("_Items", (object) Model)
+    </div>
+    @RenderSection("Description", false)
+</div>
+@RenderBody()
+@section Scripts
+{
+    <script src="~/Assets/Js/Core/PureJsPagination.js"></script>
+    <script src="~/Assets/Js/Core/PureJsPaginationInitializer.js"></script>
+    @RenderSection("ScriptsPlug", false)
+}

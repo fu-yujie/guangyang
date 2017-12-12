@@ -1,0 +1,67 @@
+.light .search{
+    
+}
+.light .search .searchGroup{
+    margin: 0;
+    padding: 0;
+}
+.light .search .searchGroup .menuButton{
+    border:1px solid #454545;
+    border-radius: 4px 0 0 4px;
+    width:30px;
+    height: 30px;
+    float:left;
+    background-color: white;
+    background-image: url("../../assets/images/pointerbottom.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 8px;
+}
+.light .search .searchGroup .searchInput{
+    /*background-color: white;
+    padding-top: 3px;
+    border:1px solid #454545;
+    border-left:0;
+    border-right:0;
+    width:200px;
+    height: 30px;
+    font-size: 15px;
+    font-family: "Microsoft YaHei";
+    vertical-align: middle;*/
+}
+.light .search .searchGroup .searchButton{
+    border:1px solid #454545;
+    border-radius: 0 4px 4px 0;
+    width:30px;
+    height: 30px;
+    float:right;
+    background-color: white;
+    background-image: url("../../assets/images/search.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.light .search .searchLayerPane{
+    background-color: white;
+    border:1px solid #454545;
+    border-radius: 4px;
+    display: none;
+    width:120px;
+    max-height: 183px;
+    overflow-y: auto;
+    margin:0;
+    padding:0;
+}
+.light .search .searchLayerPane .searchRow{
+    cursor: pointer;
+    padding: 0 0 0 10px;
+    margin:3px 0 0;
+    vertical-align: middle;
+    font-size: 15px;
+    font-family: "Microsoft YaHei";
+}
+.light .search .searchGroup .menuButton:hover,
+.light .search .searchGroup .searchButton:hover,
+.light .search .searchLayerPane .searchRow:hover{
+    background-color: #dddddd;
+    cursor:pointer;
+}

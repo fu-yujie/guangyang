@@ -1,0 +1,28 @@
+.light .shadowGraph{
+    height: 34px;
+    line-height:34px;
+    width: 100%;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    margin-bottom:5px;
+   border-top: 1px dashed #dcdcdc !important;
+   font-weight:bold;
+   /*text-align:center;*/
+}
+.light .shadowGraph .shadowGraphContent .shadowGraphIcon{
+    background-image: url("../../assets/images/yingxiangtu.png");
+    background-position: -2px 0px;
+    background-repeat: no-repeat;
+    /*background-size: 22px 22px;*/
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.light .shadowGraph .shadowGraphContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}

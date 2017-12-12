@@ -1,0 +1,44 @@
+
+.light .gController .gControllerContent .gControllerIcon{
+    background-image: url("../../assets/images/GController_green.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.light .gController .indexList{
+    width:70px;
+    height:259px;
+    padding:0;
+    margin: 0;
+    position: fixed;
+    left:20px;
+    top:290px;
+    z-index:50;
+    background-color: rgba(255, 255, 255 ,0.7);
+}
+.light .gController .indexList .indexRow{
+    width:68px;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid darkgrey;
+    padding: 0;
+    margin:0;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    cursor: pointer;
+    display: block;
+}
+.light .gController .indexList .indexRow:hover {
+    padding: 0px 0px 0px 3px;
+}
+.light .gController .gControllerContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}

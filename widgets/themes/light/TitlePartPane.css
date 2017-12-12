@@ -1,0 +1,23 @@
+.light .titlePartPane{
+    width: 100%;
+    height: 100%;
+}
+.light .titlePartPane .titleContent{
+    width: auto;
+    height: 24px;
+    background-color: #259ae0;
+    color:#ffffff;
+}
+.light .titlePartPane .titleContent .label{
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    margin-left: 6px;
+}
+.light .titlePartPane .titleContent .icon{
+    width: 12px;
+    height: 12px;
+    float: right;
+    margin-top: 6px;
+    margin-right: 6px;
+    background-image: url("../../assets/images/tabClose.png");
+}

@@ -1,0 +1,56 @@
+#CaseTable0{
+    width:390px;
+    margin:15px auto;
+    cursor:pointer;
+}
+#CaseTable0 td,#CaseTable0 th{
+    text-align:center;
+    font-size:12px;
+    
+}
+#CaseTable0 thead{
+    font-size:14px;
+	background:#eeeeee;
+}
+#CaseTable0 thead tr{
+	height:30px;
+    font-size:14px;
+	background:#eeeeee;
+}
+
+#CaseTable0 .a0{
+    width:60px;
+	height:35px;
+}
+#CaseTable0 .a1{
+    width:70px;
+	height:35px;
+}
+#CaseTable0 .a2{
+    width:260px;
+	height:35px;
+}
+#CaseTable0 .a3{
+    width:130px;
+	height:35px;
+}
+.CaseTableTitle{
+	background:white;
+	text-align:center;
+	font-size:14px;
+	float:left;
+	padding:0 3px;
+}
+.menuCaseContent{
+	font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+}
+.ctrlCase{
+	line-height:50px;
+    /*margin: 0px 0 0 15px;*/
+    padding: 0;
+}
+.caseInfo {
+}

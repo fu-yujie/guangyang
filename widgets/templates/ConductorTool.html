@@ -1,0 +1,26 @@
+﻿<div class="conductorTool">
+    <div data-dojo-attach-point="conductorToolContentNode" class="conductorToolContent">
+        <span data-dojo-attach-point="checkBoxNode" class="checkBox"></span>
+        <span data-dojo-attach-point="conductorToolIconNode" class="conductorToolIcon"
+              data-dojo-attach-event="ondijitclick:select"></span>
+        <span data-dojo-attach-point="labelNode" class="label"
+              data-dojo-attach-event="ondijitclick:select">巡查员</span>
+        <span data-dojo-attach-point="labelNodeYJ" class="labelNodeYJ">应急预案</span>
+    
+    </div>
+    <div data-dojo-attach-point="conductorSelectContentNode" class="conductorSelectContent" style="display:none">
+        <div class="selectCheck">
+            <div data-dojo-attach-point="conductorCheckNode" class="conductorCheck"></div>
+            <div data-dojo-attach-point="departmentSHNode" class="conductorDepartment_tit"></div>
+        </div>
+        <div data-dojo-attach-point="departmentBtnNode" class="selectButton"></div>
+    </div>
+    <div data-dojo-attach-point="conductorToolPaneNode" class="conductorToolPane">
+        <div data-dojo-attach-point="drawingPaneNode" class="drawingPane">
+            <span data-dojo-attach-point="dRectangleNode" class="dRectangle">框选</span>
+            <span data-dojo-attach-point="dPolygonNode" class="dPolygon">多边选</span>
+            <span data-dojo-attach-point="dCircleNode" class="dCircle">圆选</span>
+        </div>
+    </div>
+</div>
+

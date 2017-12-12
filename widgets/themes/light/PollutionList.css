@@ -1,0 +1,56 @@
+.light .pollutionList{
+    width: 240px;
+    height: 320px;
+    border-style: groove;
+    border-width: thin;
+    border-color: grey;
+    border-radius: 5px;
+}
+.light .pollutionList .titleWrapper{
+    width: auto;
+    height: 24px;
+    background-color: lightskyblue;
+    position: relative;
+}
+.light .pollutionList .titleWrapper .icon {
+    background-image: url('../../assets/images/red-mouse-move.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    left: 10px;
+    top: 3px;
+}
+.light .pollutionList .titleWrapper .titleContent{
+    display: inline-block;
+    font-size: 14px;
+    position: absolute;
+    left: 32px;
+    top: 2px;
+}
+.light .pollutionList .titleWrapper .toggleIcon{
+    background-image: url('../../assets/images/red-mouse-move.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 5px;
+    top: 3px;
+}
+.light .pollutionList .pSearch .dijitButtonNode{
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.light .pollutionList .pContent{
+    border-style: groove;
+    border-width: thin;
+    border-color: grey;
+    height: 200px;
+    font-size:12px;
+    font-family: "Microsoft YaHei";
+    margin-top:8px;
+    margin-left:7px;
+    margin-right: 7px;
+}

@@ -1,0 +1,250 @@
+﻿@using BasicUPMS.Models.Core
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广阳区网格化环境管理平台</title>
+    <link href="~/Assets/newPortal/css/global.css" rel="stylesheet" />
+    <link href="~/Assets/newPortal/css/style.css" rel="stylesheet" />
+    <script src="~/Assets/Plugins/jquery/jquery-1.11.1.min.js"></script>
+    <link href="~/Assets/Plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/artDialog/css/ui-dialog.css" rel="stylesheet" />
+    <script src="~/Assets/Js/Core/Tools.js"></script>
+    <script src="~/Assets/Plugins/artDialog/dist/dialog-plus.js"></script>
+    <script type="text/javascript">
+        function GetSubstrS(str, str2) {
+            var result = "—";
+            if (str != "10000" && str2 != "") {
+                result = str2;
+            }
+            return result;
+        }
+
+        function getssHouer(str) {
+            var date = new Date(str.replace(/-/g, "/"));
+            return date.getHours();
+        }
+        function getrewardt(str) {
+            var date = new Date(str.replace(/-/g, "/"));
+            var mon = date.getMonth() + 1;
+            result = date.getFullYear() + "年" + mon + "月" + date.getDate() + "日";
+            return result;
+        }
+        function getTimeny() {
+            var d = new Date();
+            var month2 = d.getMonth();
+            var year2 = d.getFullYear();
+            if (month2 == 0) { //如果是1月份，则取上一年的12月份
+                year2 = parseInt(year2) - 1;
+                month2 = 12;
+            }
+            return year2 + "年" + month2 + "月";
+        }
+        function weathertips(str, rjz) {
+            var res = "";
+            var patt1 = new RegExp("雨|雪|冰雹");//注意保暖，携带雨具。
+            var patt2 = new RegExp("重度|中度");//请佩戴口罩
+
+            if (patt1.test(str) && patt2.test(rjz)) {
+                res += "注意保暖，携带雨具。注意防霾。";
+            }
+            else if (patt2.test(rjz)) {
+                res += "请佩戴口罩。";
+            }
+            else if (patt1.test(str)) {
+                res += "注意保暖，携带雨具。";
+            }
+            else {
+                res += "天气还是蛮舒适的。";
+            }
+
+            return res;
+        }
+        //处理温度异常
+        function validate(wendu) {
+            var wds = wendu.split('~');
+            var result = wds[0];
+            //如果后面有数字
+            if (wds[1].split('℃')[0] != "") {
+                result += "~" + wds[1].split('℃')[0] + "℃";
+            }
+            return result;
+        }
+
+        function showJJJDetails(obj) {
+            $(obj).siblings('div').show();
+        }
+        function hide() {
+            $(".TabSection").hide();
+        }
+    </script>
+</head>
+<body>
+    <div class="envir_pro_tit">
+        <div class="envir_pro_titCon">
+            <span class="floatL">
+                您好，欢迎来到 @ViewBag.portalName
+            </span>
+            <span class="floatR">
+                <a href="../Home/Logout">
+                    退出  |
+                </a>
+                @{
+                    if (SessionContext.Principal.RoleId == UPMSConfig.SystemRole)
+                    {
+                        <span>系统管理员不允许修改密码</span>
+                    }
+                    else
+                    {
+                        <a class="edit" style="color: blue;" href="javascript:showDataFormModalDialog('@Url.Action("UpdatePasswordForm")?Id=@ViewBag.Id','修改密码')">修改密码</a>
+                    }
+                }
+            </span>
+        </div>
+    </div>
+    <!--登录板块-->
+    <div class="header_con">
+        <div class="floatL header_conL">
+            <span class="title">@ViewBag.portalName<br /><span class="entitle">@ViewBag.portalenName</span></span>
+        </div>
+        <div class="floatR header_conR">
+            <ul>
+                <li class="header_conR_andr">
+                    <div class="header_conR_andrW">
+                        <img src="@ViewBag.Android" alt="安卓二维码">
+                    </div>
+                    <p>Android</p>
+                </li>
+                @*<li class="header_conR_IOS">
+                    <div class="header_conR_IOSW">
+                        <img src="@ViewBag.Ios" alt="IOS二维码">
+                    </div>
+                    <p>IOS</p>
+                </li>*@
+                <li class="header_conR_tips">
+                    <img src="~/Assets/newPortal/images/header_conR_tips.png" alt="扫一扫，有惊喜">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--logo区域-->
+    <div class="nav_wrap">
+        <div class="nav_con">
+            <span >
+                <a href="@Url.Action("Portal")">
+                    首页
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="/Index1.html">
+                    网格化管理
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="@Url.Action("Index")">
+                    业务管理
+                </a>
+            </span>
+            <em>|</em>
+            <span class="cur">
+                <a href="@Url.Action("InterfaceInfo")">
+                    接口信息
+                </a>
+            </span>
+        </div>
+    </div>
+    <script src="~/Assets/newPortal/ports.js"></script>
+    <!--中间两个表格区域-->
+    <div id="table-top">
+        <div class="table-top-1">
+            <span></span><h2>空气质量类</h2>
+        </div>
+        <div class="table-top-2">
+            <div class="left">
+                <span>廊坊市</span>
+            </div>
+            <div class="right">
+                <div><p>小时</p><span>http://139.129.96.169/api/xuncha/data/qxhour</span><a>修改</a><em>启用</em></div>
+                <div><p>天</p><span>http://139.129.96.169/api/xuncha/data/qxday</span><a>修改</a><em>启用</em></div>
+                <div><p>数据统计</p><span>http://139.129.96.169/api/xuncha/data/qxdmy</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-top-3">
+            <div class="left">
+                <span>京津翼</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>http://www.izhenqi.cn/api/palmapi/php</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-top-4">
+            <div class="left">
+                <span>天气</span>
+            </div>
+            <div class="right">
+                <div><p>实时</p><span>http://139.129.96.169/api/xuncha/data/realtime-forecast</span><a>修改</a><em>启用</em></div>
+                <div><p>五天</p><span>http://139.129.96.169/api/xuncha/data/forecast</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-top-2">
+            <div class="left">
+                <span>监测点</span>
+            </div>
+            <div class="right">
+                <div><p>国控点</p><span>http://www.izhenqi.cn/api/getdata_langfangpoint.php?type=0</span><a>修改</a><em>启用</em></div>
+                <div><p>微控点</p><span>http://60.10.151.97:8090/api/selfpointtapi.new.php</span><a>修改</a><em>启用</em></div>
+                <div><p>室外点</p><span>http://60.10.151.97:8090/api/selfpointtapi.new.php</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+    </div>
+    <div id="table-bottom">
+        <div class="table-bottom-1">
+            <span></span><h2>业务数据类</h2>
+        </div>
+        <div class="table-bottom-2">
+            <div class="left">
+                <span>巡查轨迹数据：</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>鹰眼轨迹，用户名15081682069</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-bottom-2">
+            <div class="left">
+                <span>轨迹数据接口：</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>http://lbsyun.baidu.com/apiconsole/auth?type=business,gpsService</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-bottom-2">
+            <div class="left">
+                <span>即时消息数据：</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>极光推送，用户名：td@zccninfo.com  key:50db9d1a3fa9ab3d426d27aaMaster</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+    </div>
+
+    <!--底部声明不用改-->
+    <div class="footer">
+        <p class="marT30">
+            技术支撑单位
+        </p>
+        <p>
+            河北志晟信息技术股份有限公司
+        </p>
+    </div>
+</body>
+</html>
+<script>
+    sessionStorage.setItem("dat", '@Html.Raw(ViewBag.SessionStorage)');
+
+</script>

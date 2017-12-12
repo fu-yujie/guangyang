@@ -1,0 +1,14 @@
+﻿<form action="@(ViewBag.EditAction ?? "/"+System.Data.Entity.Core.Objects.ObjectContext.GetObjectType(Model.GetType()).Name + "/" + ViewBag.OperateType.ToString() + "/" + @Model.Id)" data-ajax="true" data-ajax-method="POST" data-ajax-success="@(ViewBag.SubmitCallback ?? "showSubmitResult")" data-ajax-failure="showErrorMsg" id="editForm">
+    <div class="page">
+        @RenderSection("DIV", false)
+        <table class="table tb-type2 nobdb">
+            <tbody>
+            @Html.AntiForgeryToken()
+            @RenderSection("Form", false)
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</form>
+@RenderSection("Script",false)
+@RenderBody()

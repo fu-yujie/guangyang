@@ -1,0 +1,23 @@
+.light .companyPollution {
+    /*width: 100%;*/
+    /*height: auto;
+    margin-top: 36px;
+    padding-left: 15px;
+    position: absolute;
+    z-index: 50;*/
+}
+.light .companyPollution .companyPollutionContent .companyPollutionIcon {
+    background-image: url("../../assets/images/companyPollution.png");
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.light .companyPollution .companyPollutionContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}

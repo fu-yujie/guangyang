@@ -1,0 +1,59 @@
+.dataTemplate{
+	 background:white;
+    position: absolute;
+    right: 0px;
+    z-index: 50;
+    border:1px solid #91c0e8;
+	width:400px;
+	opacity:0.9
+}
+.dataTemplateTitle{
+    height:34px;
+    background-color:#8a8a8a;
+    line-height:34px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+	overflow: hidden;
+	display:block;
+}
+.dataTemplateTitleText{
+	margin-left:12px;
+	float:left;
+}
+.deleteIcon{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    background: url("../../assets/images/delete.png") 8px no-repeat;
+	float:right;
+}
+.TabIcon{
+	 width: 30px;
+    height: 30px;
+    margin-right: 3px;
+    background: url("../../assets/images/Tab1.png") 8px no-repeat;
+	float:right;
+}
+.ListIcon{
+	 width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    background: url("../../assets/images/List.png") 8px no-repeat;
+	float:right;
+}
+.dataTemplateContent{
+	height: 100%;
+    font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+    padding-bottom: 15px;
+}
+.tableTitle{
+    line-height: 38px;
+    background: lightblue;
+	cursor:pointer;
+	font-size:12px;
+	overflow:hidden;
+}

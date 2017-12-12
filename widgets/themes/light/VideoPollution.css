@@ -1,0 +1,16 @@
+
+.light .videoPollution .videoPollutionContent .videoPollutionIcon{
+    background-image: url("../../assets/images/camera.png");
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.videoPollution .videoPollutionContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}

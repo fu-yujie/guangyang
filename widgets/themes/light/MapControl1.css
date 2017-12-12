@@ -1,0 +1,362 @@
+em,b{
+    font-style:normal;
+    font-weight:normal;
+}
+*{margin:0;padding:0;}
+ul,li{list-style:none;}
+
+.light .mapControl{
+    height:100%;
+    width: 100%;
+}
+.light .mapControl .header{
+	 height:80px;
+    background:#0899ff;
+    font-size:12px;
+    color:white;
+}
+.light .mapControl .header .headline{
+	 overflow:hidden;
+    margin:0 auto;
+    background:url(../../assets/images/logo.png) 25px 15px no-repeat;
+}
+.light .mapControl .header .headline .headTitle{
+	margin: 0 100px;
+	float:left;
+}
+.light .mapControl .header .headline .headTitle p{
+	margin-top: 15px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.light .mapControl .header .headline .headTitle span{
+	font-size: 28px;
+    font-weight: bolder;
+    /*letter-spacing: -5px;*/
+}
+.light .mapControl .header .headline .functionPart{
+	float:right;
+	overflow:hidden;
+}
+.light .mapControl .header .headline .optionFunctionPart{
+	float:right;
+	position: relative;
+    height: 80px;
+    width: 20px;
+}
+.light .mapControl .header .headline .optionFunctionPart:hover{
+    height:220px;
+}
+.monitoringPointT,.pollutionSourcesT,.realTimeT,.caseT,.patrolT,.conductorT{
+	  padding: 5px 15px;
+	  cursor: pointer;
+	  overflow:hidden;
+	  float:left;
+}
+.monitoringPointT em,.pollutionSourcesT em,.realTimeT em,.caseT em,.patrolT em,.conductorT em{
+	 display:block;
+	 text-align:center;
+}
+.monitoringPointT span{
+	display: block;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+	background: url(../../assets/images/jiance.png) 4px 3px no-repeat;
+}
+.pollutionSourcesT span{
+	display: block;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+	background: url(../../assets/images/wupai.png) 4px 3px no-repeat;
+}
+.realTimeT span{
+	display: block;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+	background: url(../../assets/images/jiankong.png) 4px 3px no-repeat;
+}
+.caseT span{
+	display: block;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+	background: url(../../assets/images/anjian.png) 4px 3px no-repeat;
+}
+.patrolT span{
+	display: block;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+	background: url(../../assets/images/xuncha.png) 4px 3px no-repeat;
+}
+.conductorT span{
+	display: block;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+	background: url(../../assets/images/zhihui.png) 4px 3px no-repeat;
+}
+.functionPart div:hover{
+	background-color:#2d88c7;
+}
+.light .mapControl .map{
+    height:100%;
+    width: 100%;
+    background-color: #cde8ff;
+}
+.light .mapControl .map .functionPane{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 1001;
+}
+.light .mapControl .map .functionPane .iconMouseOver{
+    cursor: pointer;
+}
+.light .mapControl .map .scalebar{
+    position:absolute;
+    left:38%;
+    bottom:35px;
+    z-index: 1000;
+}
+.light .mapControl .map .scalebar .esriScalebarLabel{
+    color: #000000;
+}
+.light .mapControl .map .coordinate {
+    position: absolute;
+    left: 50%;
+    bottom:20px;
+    z-index: 1000;
+}
+.light .mapControl .map .HomeButton .home{
+    padding:1px;
+    background-color: rgba(102, 102, 102, 0.6);
+	background-image:url(../../assets/images/homeg0.png)
+}
+.light .mapControl .map .navZoomInBtn:hover,
+.light .mapControl .map .navZoomOutBtn:hover,
+.light .mapControl .map .navPanBtn:hover,
+.light .mapControl .map .HomeButton .home:hover{
+    padding: 2px;
+    background-color: rgba(102, 102, 102, 0.9);
+}
+.light .mapControl .map .floatPane .dijitContentPane {
+    padding: 0;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+.light .mapControl .map .floatPane .dojoxFloatingPaneTitle{
+    background-color: #259ae0;
+    color: #ffffff;
+    font-weight: bold;
+}
+.light .mapControl .map .legend{
+    position: absolute;
+    right: 80px;
+    bottom: 55px;
+    z-index: 1000;
+}
+.light .dijitTooltipContainer{
+    padding: 0;
+}
+.light .mapControl .arcgisSearch {
+    position: absolute;
+    left: 70px;
+    top:20px;
+    z-index: 50
+}
+.light .mapControl .map .navZoomInBtn{
+    display: none;
+    padding: 1px;
+    position: absolute;
+    left:20px;
+    top:130px;
+    height:30px;
+    width:30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(102, 102, 102, 0.6);
+    overflow: hidden;
+    z-index: 50;
+}
+.light .mapControl .map .navZoomOutBtn{
+    display: none;
+    padding: 1px;
+    position: absolute;
+    left:20px;
+    top:170px;
+    height:30px;
+    width:30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(102, 102, 102, 0.6);
+    overflow: hidden;
+    z-index: 50;
+}
+.light .mapControl .map .navPanBtn{
+    display: block;
+    padding: 1px;
+    position: absolute;
+    left:20px;
+    top:130px;
+    height:30px;
+    width:30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(102, 102, 102, 0.6);
+    overflow: hidden;
+    z-index: 50;
+}
+.map{
+    position:relative;
+}
+.currentDepart{
+    float:left;
+    color:white;
+    height:15px;
+    line-height:15px;
+    font-size:14px;
+    width:100px;
+    margin-left:-100px;
+    border-left:3px solid white;
+    padding-left:7px;
+    margin-top:16px;
+    font-weight:bold;
+}
+.currentDepartAll{
+    float:left;
+    width:350px;
+    overflow:hidden;
+    padding-top:4px;
+}
+.evreyDepart{
+    float:left;
+    border-radius:15px;
+    height:24px;
+    margin:6px 5px;
+    line-height:24px;
+    padding-left:27px;
+    padding-right:10px;
+    background:#0088e7;
+    font-size:13px;
+    cursor:pointer;
+}
+.hbDepart{
+    background:white url(../../assets/images/hb1.png)5px 4px no-repeat;
+    color:#f1ab00;
+}
+.zhzfDepart{
+    background:#0088e7 url(../../assets/images/zhzf.png)5px 4px no-repeat;
+}
+.ggsyglDepart{
+    background:#0088e7 url(../../assets/images/ggsygl.png)5px 4px no-repeat;
+}
+.ghDepart{
+    background:#0088e7 url(../../assets/images/gh.png)5px 4px no-repeat;
+}
+.shfzDepart{
+    background:#0088e7 url(../../assets/images/shfz.png)5px 4px no-repeat;
+}
+.scjdglDepart{
+    background:#0088e7 url(../../assets/images/scjdgl.png)5px 4px no-repeat;
+}
+
+.option{
+    background:white url(../../assets/images/option.png) 6px 58px no-repeat;
+    float:right;
+    height:61px;
+    color:black;
+    width:20px;
+    text-align:center;
+    line-height:18px;
+    padding-top:19px;
+    border: 1px solid #c4c4c4;
+    border-bottom:none;
+    position:relative;
+    z-index:61;
+    cursor:pointer;
+    
+}
+.goHome{
+    background:white url(../../assets/images/goHome.png) 16px 14px no-repeat;
+    border-bottom: 1px solid #c4c4c4;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    width:70px;
+    color:black;
+    padding-left:30px;
+    display:block;
+    text-decoration:none;
+}
+.goHome:hover{
+    background-color:#c4c4c4;
+}
+.userInfo{
+    background:white url(../../assets/images/userInfo.png) 16px 14px no-repeat;
+    border-bottom: 1px solid #c4c4c4;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    width:100px;
+     width:70px;
+    color:black;
+    padding-left:30px;
+    display:block;
+     text-decoration:none;
+}
+.userInfo:hover{
+    background-color:#e4e4e4;
+}
+.quit{
+    background:white url(../../assets/images/quit.png) 16px 14px no-repeat;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    width:100px;
+     width:70px;
+    color:black;
+    padding-left:30px;
+    display:block;
+     text-decoration:none;
+}
+.quit:hover{
+    background-color:#e4e4e4;
+}
+.optionList{
+    position:relative;
+    top:0px;
+    right:0px;
+    z-index:60;
+    border: 1px solid #e4e4e4;
+    cursor:pointer;
+    height:122px;
+    display:block;
+    margin-top:80px;
+    margin-left: -80px;
+}
+
+#fr_top div:hover{
+    background-color:#0386e3;
+}
+/*.light .mapControl .map .identifyBtn {*/
+    /*position: absolute;*/
+    /*background-position:center center;*/
+    /*background-repeat:no-repeat;*/
+    /*background-color:gray;*/
+    /*border-radius:5px;*/
+    /*padding:0.5px;*/
+    /*margin:0;*/
+    /*left: 20px;*/
+    /*top:128px;*/
+    /*width:32px;*/
+    /*height:32px;*/
+    /*z-index: 100;*/
+    /*overflow:hidden*/
+/*}*/

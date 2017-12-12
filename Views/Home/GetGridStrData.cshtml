@@ -1,0 +1,16 @@
+﻿
+@model IPagedList<BasicUPMS.Areas.Performance.Models.GridStarViewModel>
+
+
+@foreach (var item in Model)
+{
+    <tr class="hover">
+        <td>@item.GridName</td>
+        <td>@item.GridMemberName</td>
+        <td>@item.Bonus</td>
+        <td>@item.Deeds</td>
+        <td>@item.CreatedTime</td>
+    </tr>
+}
+
+

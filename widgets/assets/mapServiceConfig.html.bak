@@ -1,0 +1,487 @@
+﻿[
+  {
+    "id": "baseMap",
+    "description": "底图",
+     "url":"http://192.168.30.242:6080/arcgis/rest/services/LfhbBaseMapgy/MapServer",
+    "type": "ArcGISDynamicMapServiceLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 7
+  },
+{
+    "id": "ShadowGraph",
+    "description": "影像图",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/LfhbBaseMapImage/MapServer",
+    "type": "ArcGISDynamicMapServiceLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 8
+  },
+  {
+    "id": "firstGrid",
+    "description": "一级网格",
+    "url":"http://192.168.30.242:6080/arcgis/rest/services/LfhbBaseMapWGgy/MapServer/0",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 21
+  },
+{
+    "id": "secondGrid",
+    "description": "二级网格",
+    "url":"http://192.168.30.242:6080/arcgis/rest/services/LfhbBaseMapWGgy2/MapServer/0",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 22
+  },
+ {
+    "id": "thirdGrid",
+    "description": "三级网格",
+    "url":"http://192.168.30.242:6080/arcgis/rest/services/LfhbBaseMapWGgy3/MapServer/0",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 23
+  },
+{
+    "id": "roadPollution",
+    "description": "道路污染源",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/RealRoad/MapServer/0",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 40
+  },
+ {
+    "id": "roadPollutionBase",
+    "description": "道路污染源底图",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/RealRoadMap/MapServer",
+    "type": "ArcGISDynamicMapServiceLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 40
+  },
+{
+    "id": "print",
+    "description": "打印",
+    "url":"http://192.168.30.242:6080/arcgis/rest/services/ExportWebMap/GPServer/导出%20Web%20地图",
+    "type": "GP",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 3
+  },
+ {
+    "id": "barbecueAnalyze",
+    "description": "餐饮分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/Business/MapServer/1",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 101
+  },
+ {
+    "id": "siteAnalyze",
+    "description": "工地分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/Business/MapServer/2",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 102
+  },
+ {
+    "id": "boilerAnalyze",
+    "description": "锅炉分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/Business/MapServer/3",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 103
+  },
+  {
+    "id": "companyAnalyze",
+    "description": "企业分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/Business/MapServer/0",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 108
+  },
+ {
+    "id": "sewageAnalyze",
+    "description": "污水分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/6",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 104
+  },
+ {
+    "id": "farmAnalyze",
+    "description": "养殖场分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/10",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 105
+  },
+{
+    "id": "coalAnalyze",
+    "description": "煤碳分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/2",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 106
+  },
+{
+    "id": "exposedLandAnalyze",
+    "description": "料土堆分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/11",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 107
+  },
+{
+    "id": "company1Analyze",
+    "description": "涉水企业分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/4",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 108
+  },
+{
+    "id": "company2Analyze",
+    "description": "涉气企业分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/3",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 109
+  },
+{
+    "id": "company3Analyze",
+    "description": "金属企业分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/1",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 110
+  },
+{
+    "id": "company4Analyze",
+    "description": "危废企业分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/5",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 111
+  },
+{
+    "id": "carAnalyze",
+    "description": "渣土车分析",
+    "url": "http://192.168.30.242:6080/arcgis/rest/services/BUSINESS/MapServer/8",
+    "type": "FeatureLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 112
+  },
+{
+"id": "searchResult",
+"description": "查询结果",
+"type": "GraphicsLayer",
+"maxScale": 0,
+"minScale": 0,
+"level": 13
+},
+  {
+    "id": "gController",
+    "description": "国控点",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 14
+  },
+  {
+    "id": "caseInfo",
+    "description": "案件",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 15
+  },
+  {
+    "id": "videoPollution",
+    "description": "视频监控点",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 16
+  },
+  {
+    "id": "barbecuePollution",
+    "description": "烧烤",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 17
+  },
+  {
+    "id": "exposedLandPollution",
+    "description": "裸露工地",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 18
+  },
+  {
+    "id": "coalPollution",
+    "description": "煤经销点",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 19
+  },
+  {
+    "id": "carPollution",
+    "description": "大车",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 20
+  },
+{
+    "id": "roadPollution",
+    "description": "道路",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 36
+  },
+{
+    "id": "farmPollution",
+    "description": "养殖场",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 30
+  },
+{
+    "id": "companyPollution",
+    "description": "污染企业",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 244
+  },
+  {
+    "id": "sitePollution",
+    "description": "工地",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 21
+  },
+{
+    "id": "patrolChildren",
+    "description": "监督人",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 31
+  },
+{
+  "id": "boilerPollution",
+  "description": "锅炉",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 22
+},
+{
+  "id": "sewagePollution",
+  "description": "污水排放",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 31
+},
+{
+  "id": "wController",
+  "description": "微监控点",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 23
+},
+{
+  "id": "sController",
+  "description": "微监控点",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 28
+},
+{
+  "id": "DirtyAnalyze",
+  "description": "污染分析",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+    "id": "ConductorTool",
+    "description": "指挥调度工具",
+    "type": "GraphicsLayer",
+    "maxScale": 0,
+    "minScale": 0,
+    "level": 50
+},
+{
+  "id": "gControllerTextSymbol",
+  "description": "国控点名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "wControllerTextSymbol",
+  "description": "微控点名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "sControllerTextSymbol",
+  "description": "室控点名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "barbecueTextSymbol",
+  "description": "餐饮名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "coalTextSymbol",
+  "description": "煤经销点名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "sewageTextSymbol",
+  "description": "污水名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "boilerTextSymbol",
+  "description": "锅炉名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "siteTextSymbol",
+  "description": "工地名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "farmTextSymbol",
+  "description": "养殖场名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "realTextSymbol",
+  "description": "视频名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "roadTextSymbol",
+  "description": "道路名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "exposedLandTextSymbol",
+  "description": "料土堆名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "companyTextSymbol",
+  "description": "企业名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "carTextSymbol",
+  "description": "大车名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 35
+},
+{
+  "id": "patrolLine",
+  "description": "路线",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 41
+},
+{
+  "id": "patrolMove",
+  "description": "移动点",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 42
+},
+{
+  "id": "searchPart",
+  "description": "地名搜索",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 43
+},
+{
+  "id": "searchPartTextSymbol",
+  "description": "地名搜索名称",
+  "type": "GraphicsLayer",
+  "maxScale": 0,
+  "minScale": 0,
+  "level": 44
+}
+]

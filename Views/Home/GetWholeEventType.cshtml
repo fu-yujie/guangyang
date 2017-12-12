@@ -1,0 +1,197 @@
+﻿@using BasicUPMS.Models.Core
+@{ 
+    Layout = null;
+    List<EventTypeCountViewModel> EventTypeCound = ViewBag.EventTypeCount;//案件类型占比报表
+
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        广阳区网格化环境管理平台
+    </title>
+    <link href="~/Assets/newPortal/css/global.css" rel="stylesheet" />
+    <link href="~/Assets/newPortal/css/style.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/artDialog/css/ui-dialog.css" rel="stylesheet" />
+    <script src="~/Assets/Plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="~/Assets/Js/Core/Tools.js"></script>
+    <script src="~/Assets/Plugins/artDialog/dist/dialog-plus.js"></script>
+    <style>
+       .paiming_list td{
+            text-align:center;
+        }
+       #body {
+            position:relative;
+            min-height:100%;
+        }
+       .footer{
+            position:absolute;
+            bottom:0;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="envir_pro_tit">
+        <div class="envir_pro_titCon">
+            <span class="floatL">
+                您好，欢迎来到 @ViewBag.portalName
+            </span>
+            <span class="floatR">
+                <a href="../Home/Logout">
+                    退出  |
+                </a>
+                @{
+                    if (SessionContext.Principal.RoleId == UPMSConfig.SystemRole)
+                    {
+                        <span>系统管理员不允许修改密码</span>
+                    }
+                    else
+                    {
+                        <a class="edit" style="color: blue;" href="javascript:showDataFormModalDialog('@Url.Action("UpdatePasswordForm")?Id=@ViewBag.Id','修改密码')">修改密码</a>
+                    }
+                }
+            </span>
+        </div>
+    </div>
+    <!--登录板块-->
+    <div class="header_con">
+        <div class="floatL header_conL">
+            <span class="title">@ViewBag.portalName<br /><span class="entitle">@ViewBag.portalenName</span></span>
+        </div>
+        <div class="floatR header_conR">
+            <ul>
+                <li class="header_conR_andr">
+                    <div class="header_conR_andrW">
+                        <img src="@ViewBag.Android" alt="安卓二维码">
+                    </div>
+                    <p>Android</p>
+                </li>
+                @*<li class="header_conR_IOS">
+                    <div class="header_conR_IOSW">
+                        <img src="@ViewBag.Ios" alt="IOS二维码">
+                    </div>
+                    <p>IOS</p>
+                </li>*@
+                <li class="header_conR_tips">
+                    <img src="~/Assets/newPortal/images/header_conR_tips.png" alt="扫一扫，有惊喜">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--logo区域-->
+    <div class="nav_wrap">
+        <div class="nav_con">
+            <span class="cur">
+                <a href="@Url.Action("Portal")">
+                    首页
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="/Index1.html">
+                    网格化管理
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="@Url.Action("Index")">
+                    业务管理
+                </a>
+            </span>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    function GetSubstrS(str, str2) {
+        var result = "—";
+        if (str != "10000" && str2 != "") {
+            result = str2;
+        }
+        return result;
+    }
+    function getTimeny() {
+        var d = new Date();
+        var month2 = d.getMonth();
+        var year2 = d.getFullYear();
+        if (month2 == 0) { //如果是1月份，则取上一年的12月份
+            year2 = parseInt(year2) - 1;
+            month2 = 12;
+        }
+        return year2 + "年" + month2 + "月";
+    }
+    </script>
+    <!--分页的案件类型-->
+    @*@Html.Partial("_PageItem", (object)Model)*@
+    <div style="padding-bottom:100px; overflow:hidden;">
+        <div class="paiming">
+            <div class="paiming_list">
+                <div class="con" style="width:1100px;">
+                    <h1>
+                        <script type="text/javascript">
+                            document.write(getTimeny());
+                        </script> 广阳区案件类型占比报表
+                    </h1>
+                </div>
+                <table style="width:1100px;">
+                    <thead>
+                        <tr>
+                            <td width="40">
+                                序号
+                            </td>
+                            <td width="120">
+                                案件类型
+                            </td>
+                            <td width="80">
+                                案件数量
+                            </td>
+                            <td width="100">
+                                占比
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int etCount = EventTypeCound == null ? 0 : EventTypeCound.Count;
+                            if (etCount > 0)
+                            {
+                                for (int i = 0; i < etCount; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="num7">@(i + 1)</div>
+                                        </td>
+                                        <td>@EventTypeCound[i].Name</td>
+                                        <td>@EventTypeCound[i].EventCount</td>
+                                        <td>@EventTypeCound[i].EventCzl %</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr><td align="center"><span>暂无数据。。。</span></td></tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--底部声明不用改-->
+        <div class="footer">
+            <p class="marT30">
+                技术支撑单位
+            </p>
+            <p>
+                河北志晟信息技术股份有限公司
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    sessionStorage.setItem("dat", '@Html.Raw(ViewBag.SessionStorage)');
+
+</script>
+
+

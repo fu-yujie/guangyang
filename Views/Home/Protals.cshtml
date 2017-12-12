@@ -1,0 +1,1209 @@
+﻿@using BasicUPMS.Models.Core
+
+@{
+    Layout = null;
+    List<NoticeMess> NoticeMess = ViewBag.NoticeList;//通知公告
+    List<AQIHourPaiMingViewModel> AQIHour = ViewBag.AQIHour;//空气质量小时排名
+    List<AQIHourPaiMingViewModel> AQIDay = ViewBag.AQIDay;//空气质量日排名
+    List<AQIJJJViewModel> AQIJJJ = ViewBag.AQIJJJ;//京津冀
+    List<AQIJJJWViewModel> AQIQG = ViewBag.AQIQG;//全国主要城市空气质量
+    List<AQForecastViewModel> AQForecase = ViewBag.AQForecast;//空气质量预报
+    List<MainMonitoringPoint> MainPoint = ViewBag.MainMonitoringPointPaiMing;//重点监测点排名
+    List<SecondGridProcessingViewModel> SecondGridProcessing = ViewBag.SecondGridProcessingPaiMing;//二级网格处理案件数排名
+    List<EventTypeCountViewModel> EventTypeCound = ViewBag.EventTypeCount;//案件类型占比报表
+    List<GridMemberRewardViewModel> GridMemberReward = ViewBag.GridMemberReward;//明星网格员
+    List<AttendanceRateOfInspectorViewModel> AttendanceRateOfInspector = ViewBag.AttendanceRateOfInspector;//巡查员签到
+    List<AQICompositeViewModel> AQITodayComposity = ViewBag.AQITodayComposity;//今日aqi
+    List<AQICompositeViewModel> AQIYesterdayComposity = ViewBag.AQIYesterdayComposity;//昨日aqi
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广阳区网格化环境管理平台</title>
+    <link href="~/Assets/newPortal/css/global.css" rel="stylesheet" />
+    <link href="~/Assets/newPortal/css/style.css" rel="stylesheet" />
+    <script src="~/Assets/Plugins/jquery/jquery-1.11.1.min.js"></script>
+    <link href="~/Assets/Plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/artDialog/css/ui-dialog.css" rel="stylesheet" />
+    <script src="~/Assets/Js/Core/Tools.js"></script>
+    <script src="~/Assets/Plugins/artDialog/dist/dialog-plus.js"></script>
+    <script type="text/javascript">
+        function GetSubstrS(str, str2) {
+            var result = "—";
+            if (str != "10000" && str2 != "") {
+                result = str2;
+            }
+            return result;
+        }
+
+        function getssHouer(str) {
+            var date = new Date(str.replace(/-/g, "/"));
+            return date.getHours();
+        }
+        function getrewardt(str) {
+            var date = new Date(str.replace(/-/g, "/"));
+            var mon = date.getMonth() + 1;
+            result = date.getFullYear() + "年" + mon + "月" + date.getDate() + "日";
+            return result;
+        }
+        function getTimeny() {
+            var d = new Date();
+            var month2 = d.getMonth();
+            var year2 = d.getFullYear();
+            if (month2 == 0) { //如果是1月份，则取上一年的12月份
+                year2 = parseInt(year2) - 1;
+                month2 = 12;
+            }
+            return year2 + "年" + month2 + "月";
+        }
+        function weathertips(str, rjz) {
+            var res = "";
+            var patt1 = new RegExp("雨|雪|冰雹");//注意保暖，携带雨具。
+            var patt2 = new RegExp("重度|中度");//请佩戴口罩
+
+            if (patt1.test(str) && patt2.test(rjz)) {
+                res += "注意保暖，携带雨具。注意防霾。";
+            }
+            else if (patt2.test(rjz)) {
+                res += "请佩戴口罩。";
+            }
+            else if (patt1.test(str)) {
+                res += "注意保暖，携带雨具。";
+            }
+            else {
+                res += "天气还是蛮舒适的。";
+            }
+
+            return res;
+        }
+        //处理温度异常
+        function validate(wendu) {
+            if (wendu=="") {
+                return "<span style='font-size:25px;'>数据更新中...</span>"
+            }
+            var wds = wendu.split('~');
+            var result = wds[0];
+            //如果后面有数字
+            if (wds[1].split('℃')[0] != "") {
+                result += "~" + wds[1].split('℃')[0] + "℃";
+            }
+            return result;
+        }
+
+        function showJJJDetails(obj) {
+            $(obj).siblings('div').show();
+        }
+        function hide() {
+            $(".TabSection").hide();
+        }
+        //计算综合指数
+        //pm25,pm10,so2,co,no2,o3  calcComopitory
+        function calcComopitory(pm25,pm10,so2,co,no2,o3) {
+            var pm25s=parseFloat(pm25);
+            var pm10s=parseFloat(pm10);
+            var so2s=parseFloat(so2);
+            var cos=parseFloat(co);
+            var no2s=parseFloat(no2);
+            var o3s=parseFloat(o3);
+            // 综合指数算法：pm2_5/35 + pm10/70 + so2/60 + no2/40 + co/4 + o3/160
+            return  (pm25s/35+ pm10s/70 + so2s/60 + no2s/40 + cos/4 + o3s/160).toFixed(3);
+        }
+    </script>
+    <style>
+        .notice {
+            background: white;
+            width: 64px;
+            height: 28px;
+            line-height: 28px;
+            margin-top: 4px;
+            border-top: 1px solid #0088eb;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .lore {
+            margin-left: 8px;
+            background: #d0d0d0;
+            width: 80px;
+            height: 28px;
+            line-height: 28px;
+            margin-top: 4px;
+            text-align: center;
+            color: #666666;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="envir_pro_tit">
+        <div class="envir_pro_titCon">
+            <span class="floatL">
+                您好，欢迎来到 @ViewBag.portalName
+            </span>
+            <span class="floatR">
+                <a href="../Home/Logout">
+                    退出  |
+                </a>
+                @{
+                    if (SessionContext.Principal.RoleId == UPMSConfig.SystemRole)
+                    {
+                        <span>系统管理员不允许修改密码</span>
+                    }
+                    else
+                    {
+                        <a class="edit" style="color: blue;" href="javascript:showDataFormModalDialog('@Url.Action("UpdatePasswordForm")?Id=@ViewBag.Id','修改密码')">修改密码</a>
+                    }
+                }
+            </span>
+        </div>
+    </div>
+    <!--登录板块-->
+    <div class="header_con">
+        <div class="floatL header_conL">
+            <span class="title">@ViewBag.portalName<br /><span class="entitle">@ViewBag.portalenName</span></span>
+        </div>
+        <div class="floatR header_conR">
+            <ul>
+                <li class="header_conR_andr">
+                    <div class="header_conR_andrW">
+                        <img src="@ViewBag.Android" alt="安卓二维码">
+                    </div>
+                    <p>Android</p>
+                </li>
+                <li class="header_conR_IOS">
+                        <div class="header_conR_IOSW">
+                            <img src="@ViewBag.Ios" alt="IOS二维码">
+                        </div>
+                        <p>IOS</p>
+                    </li>
+                <li class="header_conR_tips">
+                    <img src="~/Assets/newPortal/images/header_conR_tips.png" alt="扫一扫，有惊喜">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--logo区域-->
+    <div class="nav_wrap">
+        <div class="nav_con">
+            <span class="cur">
+                <a href="javascript:;">
+                    首页
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="/Index1.html">
+                    网格化管理
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="@Url.Action("Index")">
+                    业务管理
+                </a>
+            </span>
+
+        </div>
+    </div>
+
+    <!--菜单导航-->
+    <div class="banner_con overH">
+        <div class="floatL banner_ConL marT10">
+            <img src="~/Assets/newPortal/images/banner.png" alt="banner" class="banner_img">
+            <div class="weather_con">
+                <div class="weather_con_date">
+                    <dl class="floatL">
+                        <dt class="floatL pollu_level_icon_wrap">
+                            <img src="~/Assets/newPortal/images/pollu_level_icon.png" alt="污染程度icon" class="pollu_level_icon">
+                        </dt>
+                        <dd class="floatL">
+                            <span id="aqiRjz">
+                                @ViewBag.AQI
+                            </span>
+                            <em id="aqiRjzJb">
+                                @ViewBag.QAlName
+                            </em>
+                        </dd>
+                    </dl>
+                    <p class="floatR">
+                        <span id="publishTime">
+                            @*@AQForecase[0].publishTime.ToShortDateString()*@
+                        </span><br />
+                        <em>
+                            @* 更新*@
+                        </em>
+                    </p>
+                </div>
+                <div class="weather_con_temp">
+                    <span class="floatL" id="qxWenDu">
+                        <script>
+                            document.write(validate("@AQForecase[0].qxWenDu"));
+                        </script>
+                    </span>
+                    <div class="floatL weather_con_tempR">
+                        <img src="~/Assets/newPortal/images/weather_icon.png" alt="天气icon" class="weather_icon">
+                        <p id="qxTianQI">
+                            @AQForecase[0].qxTianQI
+                        </p>
+                    </div>
+                </div>
+                <div class="humidity">
+                    <ul>
+                        <li class="marL34">
+                            <img src="~/Assets/newPortal/images/humidity_icon.png" alt="湿度icon" class="floatL">
+                            <span class="floatL">
+                                主要污染物
+                                <i id="sywrw">
+                                    @AQForecase[0].sywrw
+                                </i>
+                            </span>
+                        </li>
+                        <li>
+                            <img src="~/Assets/newPortal/images/wind_icon.png" alt="风力icon" class="floatL">
+                            <span class="floatL">
+                                <i id="qxFengQing">
+                                    @AQForecase[0].qxFengQing
+                                </i>
+
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="weather_tips overH">
+                    <div class="floatL weather_tips_L">
+                        <span>
+                            天气提示
+                        </span>
+                        <em id="tqts">
+                            <script type="text/javascript">
+                                document.write(weathertips("@AQForecase[0].qxTianQI", "@AQForecase[0].aqiRjzJb"))
+                            </script>
+                        </em>
+                    </div>
+                    <div class="floatR weather_tips_R" id="cursorDiv">
+                        <i>
+                            日期：
+                        </i>
+                        <ul>
+                            @{
+                                //获取未来5天日期
+                                int now = DateTime.Now.Date.Day;
+                                List<int> time = new List<int>();
+                                for (int i = 0; i < AQForecase.Count; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        time.Add(DateTime.Now.Day);
+                                    }
+                                    else
+                                    {
+                                        time.Add(DateTime.Now.AddDays(i).Day);
+                                    }
+                                }
+
+                                for (int i = 0; i < AQForecase.Count; i++)
+                                {
+
+                                    if (i == 0)
+                                    {
+                                        <li class="cur" onclick="weather(@i,this)">@now</li>
+                                    }
+                                    else
+                                    {
+                                        <li onclick="weather(@i,this)">@time[i]</li>
+                                    }
+
+                                }
+                            }
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--左侧大banner-->
+        <div class="floatR banner_ConR marT10">
+            <div class="pollut_detail">
+                <div class="overH  pollut_detail_T">
+                    <div class="floatL pollut_detail_TL">
+                        @ViewBag.AQI
+                    </div>
+                    <div class="floatR pollut_detail_TR">
+                        <div class="overH">
+                            @{
+                                if (ViewBag.AQIStatus == "huang")
+                                {
+                                    <span class="p_01 floatL @ViewBag.AQIStatus">@ViewBag.QAlName</span>
+                                }
+                                else
+                                {
+                                    <span class="p_01 floatL @ViewBag.AQIStatus">@ViewBag.QAlName</span>
+                                }
+                            }
+                            <p class="floatL pollut_detail_TRR">
+                                <span>首要污染物：@ViewBag.sywrw</span><br />
+                                <span>
+                                    @*<script type="text/javascript"> document.write(getssHouer('@DateTime.Now'))</script>*@ @ViewBag.MonitorTime 时更新
+                                </span>
+                            </p>
+                        </div>
+                        <p>
+                            广阳区空气质量排名：@ViewBag.kqpm
+                        </p>
+                        <p>
+                            广阳区处理中案件数：@ViewBag.Eventclzaj
+                        </p>
+
+                    </div>
+                </div>
+                <table class="table_PM">
+                    <tr>
+                        @{
+                            <th class="@ViewBag.PM25Status">PM2.5</th>
+                            <th class="@ViewBag.PM10Status">PM10</th>
+                                <th class="@ViewBag.SO2Status">SO2</th>
+                                <th class="@ViewBag.COStatus">CO</th>
+                                <th class="@ViewBag.NO2Status">NO2</th>
+                                <th class="@ViewBag.O3Status">O3</th>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="first">@ViewBag.PM25</td>
+                        <td>@ViewBag.PM10 </td>
+                        <td>@ViewBag.SO2</td>
+                        <td>@ViewBag.CO</td>
+                        <td>@ViewBag.NO2</td>
+                        <td>@ViewBag.O3</td>
+                    </tr>
+                </table>
+                <table class="table2_PM">
+                    <tr>
+                        <td class="color_03">优</td>
+                        <td class="color_04">良</td>
+                        <td class="color_01">轻度</td>
+                        <td class="color_02">中度</td>
+                        <td class="color_05">重度</td>
+                        <td class="color_06">严重</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="notice_list">
+                <h3>
+                    <span class="floatL notice" style="">
+                        通知公告
+                    </span>
+                    <span class="floatL lore" style="">
+                        应急知识库
+                    </span>
+                    <a href="@Url.Action("NoticeMess")?page=1" class="floatR" target="_blank">
+                        更多 &gt;
+                    </a>
+                </h3>
+                <ul class="noticeDetail">
+                    @{
+                        if (NoticeMess.Count > 0)
+                        {
+                            for (int i = 0; i < NoticeMess.Count; i++)
+                            {
+                                <li>
+                                    <a href="@Url.Action("GetNoticeById")?ID=@NoticeMess[i].Id" target="_blank" title="@NoticeMess[i].Title">
+                                        <span>
+                                            @NoticeMess[i].Title
+                                        </span>
+                                        <em>
+                                            @NoticeMess[i].ReleaseDate.ToShortDateString()
+                                        </em>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#">
+                                    <span>
+                                        暂无通知。。。
+                                    </span>
+                                    <em>
+
+                                    </em>
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <!--油烟扬尘在线监控接入-->
+            <a href="http://114.215.69.198/yangchen/" style="display:inline-block;margin-top:5px;">
+                <img src="~/Assets/Images/portal/yangchen(3).png" />
+            </a>
+            <a href="http://120.197.59.4:8089/realbowlf/login" style="display:inline-block;margin-top:3px;"><img src="~/Assets/Images/portal/youyan(3).png" /></a>
+        </div>
+        <!--右侧通知公告-->
+    </div>
+
+    <!--banner区域-->
+    <div class="city_rank">
+        <p class="floatL">
+            京津冀<br />
+            空气质量
+        </p>
+        <ul class="floatR city_rank_name">
+            @{
+                for (int i = 0; i < AQIJJJ.Count; i++)
+                {
+                    <li style="position:relative;">
+                        <span>
+                            @AQIJJJ[i].CityName
+                        </span>
+                        <em style="background-color:@(AQIJJJ[i].colour) " onmouseover="showJJJDetails(this)" onmouseout="hide()">
+                            <script type="text/javascript">
+                                document.write(GetSubstrS('@AQIJJJ[i].AQI', '@AQIJJJ[i].AQI'))
+                            </script>
+                        </em>
+
+                        <div class='TabSection'>
+                            <i class="TabSection_bg_top"></i>
+                            <p class="TabSection_p">
+                                <lable>AQI：</lable>
+                                <span>@AQIJJJ[i].AQI</span>
+                                <span style="display:inline-block; padding:0 5px;height:20px;line-height:20px;margin-left:5px;text-align:center;background-color:@AQIJJJ[i].colour;color:#fff;">@AQIJJJ[i].quality</span>
+                            </p>
+                            <p class="TabSection_p">
+                                @*<lable>天气：</lable>*@
+                                <span>@AQIJJJ[i].temp ℃ &nbsp;&nbsp;@AQIJJJ[i].weather</span>
+                            </p>
+                            <p class="TabSection_p">
+                                <span>@AQIJJJ[i].winddirection </span><span>@AQIJJJ[i].windspeed 级&nbsp;&nbsp;</span><span>湿度 @AQIJJJ[i].humi %</span>
+                            </p>
+                            <i class="TabSection_bg_bottom"></i>
+                        </div>
+                    </li>
+                }
+
+            }
+
+
+        </ul>
+    </div>
+
+    <!--城市排名-->
+    <div class="AQI_rank_con">
+        <h4>
+            <em></em>
+            <span>
+                空气质量AQI排名
+            </span>
+        </h4>
+        <ul class="AQI_rank_con_column">
+            <li>
+                <h5>
+                    廊坊市各区县小时排名&nbsp;&nbsp;@ViewBag.AQIHour[0].MonitoringTime.ToString("yyyy-MM-dd HH:00:00")
+                </h5>
+                <table class="AQI_rank_con_tab1">
+                    <tr>
+                        <th width="44">
+                            排名
+                        </th>
+                        <th width="64">
+                            县（市区）
+                        </th>
+                        <th width="44">
+                            AQI
+                        </th>
+                        <th width="54">
+                            级别
+                        </th>
+                        <th width="70">
+                            首要污染物
+                        </th>
+                    </tr>
+
+                    @{
+                        int ahCount = AQIHour == null ? 0 : AQIHour.Count;
+                        if (ahCount > 0)
+                        {
+                            for (int i = 0; i < ahCount; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Assets/Images/portal/@(i + 1).png" />
+                                    </td>
+                                    <td>
+                                        @AQIHour[i].GridName
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIHour[i].AQI', '@AQIHour[i].AQI'))
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIHour[i].AQI', '@AQIHour[i].quality'))
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIHour[i].AQI', '@AQIHour[i].sywrw'))
+                                        </script>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td align="center" colspan="5"><span>暂无数据...</span></td></tr>
+                        }
+                    }
+
+                </table>
+            </li>
+            <li>
+                <h5>
+                    @*廊坊市各区县空气质量日均排名&nbsp;&nbsp;@(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd"))*@
+                    廊坊市各区县空气质量日均排名&nbsp;&nbsp;@ViewBag.DayMonitoringTim.ToString("yyyy-MM-dd")
+                </h5>
+                <table class="AQI_rank_con_tab1">
+                    <tr>
+                        <th width="44">
+                            排名
+                        </th>
+                        <th width="64">
+                            县（市区）
+                        </th>
+                        <th width="44">
+                            AQI
+                        </th>
+                        <th width="54">
+                            级别
+                        </th>
+                        <th width="70">
+                            首要污染物
+                        </th>
+                    </tr>
+                    @{
+                        int adCount = AQIDay == null ? 0 : AQIDay.Count;
+                        if (adCount > 0)
+                        {
+                            for (int i = 0; i < adCount; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Assets/Images/portal/@(i + 1).png" />
+                                    </td>
+                                    <td>@AQIDay[i].GridName </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIDay[i].AQI', '@AQIDay[i].AQI'))
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIDay[i].AQI', '@AQIDay[i].quality'))
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIDay[i].AQI', '@AQIDay[i].sywrw'))
+                                        </script>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td align="center" colspan="5"><span>暂无数据...</span></td></tr>
+                        }
+                    }
+                </table>
+            </li>
+            <li class="maeR0">
+                <h5>
+                    全国74城市小时空气质量表&nbsp;&nbsp;@(AQIQG.Count > 0 ? AQIQG[0].MonitoringTime : "")
+                </h5>
+                <table class="AQI_rank_con_tab1">
+                    <tr>
+                        <th width="44">
+                            排名
+                        </th>
+                        <th width="64">
+                            县（市区）
+                        </th>
+                        <th width="44">
+                            AQI
+                        </th>
+                        <th width="54">
+                            级别
+                        </th>
+                        <th width="70">
+                            首要污染物
+                        </th>
+                    </tr>
+                    @{
+                        int jjjCount = AQIQG == null ? 0 : AQIQG.Count;
+                        if (jjjCount > 0)
+                        {
+                            for (int i = 0; i < jjjCount; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @*<img src="~/Assets/Images/portal/@(i + 1).png" />*@
+                                        @AQIQG[i].rownum
+                                    </td>
+                                    <td>@AQIQG[i].CityName </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIQG[i].AQI', '@AQIQG[i].AQI'))
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIQG[i].AQI', '@AQIQG[i].quality'))
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(GetSubstrS('@AQIQG[i].AQI', '@AQIQG[i].sywrw'))
+                                        </script>
+                                    </td>
+                                </tr>
+                            }
+                            <tr class="more_link">
+                                <td colspan="5">
+                                    <a href="@Url.Action("GetWholeCityWeather")" target="_blank">
+                                        点击更多
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr><td colspan="5"><span>暂无数据...</span></td></tr>
+                        }
+                    }
+
+                </table>
+            </li>
+        </ul>
+    </div>
+
+    <!--   开发区空气重点监测点、案件类型占比、明星网格员公告栏-->
+    <div class="AQI_rank_con">
+        <h4>
+            <em></em>
+            <span>
+                广阳区空气重点监测点、案件类型占比、明星网格员公告栏
+            </span>
+        </h4>
+        <ul class="AQI_rank_con_column">
+            <li>
+                <h5>
+                    重点监测点排名&nbsp;&nbsp;@*@(MainPoint.Count > 0 ? MainPoint[MainPoint.Count - 1].MonitoringTime : DateTime.Now)*@
+                </h5>
+                <table class="AQI_rank_con_tab1">
+                    <tr>
+                        <th width="44">
+                            排名
+                        </th>
+                        <th width="64">
+                            名称
+                        </th>
+                        <th width="44">
+                            AQI
+                        </th>
+                        <th width="54">
+                            级别
+                        </th>
+                    </tr>
+                    @{
+                        int mmCount = MainPoint == null ? 0 : MainPoint.Count;
+                        if (mmCount > 0)
+                        {
+                            for (int i = 0; i < mmCount; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Assets/Images/portal/@(i + 1).png" />
+                                    </td>
+                                    <td>@MainPoint[i].Nname</td>
+                                    <td>@MainPoint[i].AQI</td>
+                                    <td>@MainPoint[i].Name</td>
+                                </tr>
+                            }
+                            <tr class="more_link">
+                                <td colspan="4">
+                                    <a href="@Url.Action("GetWholeMainPoint")" target="_blank">
+                                        点击更多
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr><td align="center" colspan="4"><span>暂无数据...</span></td></tr>
+                        }
+                    }
+                </table>
+            </li>
+            <li>
+                <h5>
+                    <script type="text/javascript">
+                        document.write(getTimeny());
+                    </script> 广阳区案件类型占比报表
+                </h5>
+                <table class="AQI_rank_con_tab1">
+                    <tr>
+                        <th width="44">
+                            序号
+                        </th>
+                        <th width="64">
+                            案件类型
+                        </th>
+                        <th width="44">
+                            案件数量
+                        </th>
+                        <th width="54">
+                            占比
+                        </th>
+                    </tr>
+                    @{
+                        int etCount = EventTypeCound == null ? 0 : EventTypeCound.Count;
+                        if (etCount > 0)
+                        {
+                            for (int i = 0; i < etCount; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Assets/Images/portal/@(i + 1).png" />
+                                    </td>
+                                    <td>@EventTypeCound[i].Name</td>
+                                    <td>@EventTypeCound[i].EventCount</td>
+                                    <td>@EventTypeCound[i].EventCzl %</td>
+                                </tr>
+                            }
+                            <tr class="more_link">
+                                <td colspan="4">
+                                    <a href="@Url.Action("GetWholeEventType")" target="_blank">
+                                        点击更多
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr><td align="center" colspan="4"><span>暂无数据...</span></td></tr>
+                        }
+                    }
+                </table>
+            </li>
+            <li class="maeR0">
+                <h5>
+                    明星网格员公告栏
+                </h5>
+                <table class="AQI_rank_con_tab1">
+                    <tr>
+                        <th width="44">
+                            序号
+                        </th>
+                        <th width="64">
+                            姓名
+                        </th>
+                        <th width="44">
+                            所属网格
+                        </th>
+
+                        <th width="70">
+                            表彰日期
+                        </th>
+                    </tr>
+                    @{
+                        int gmCount = GridMemberReward == null ? 0 : GridMemberReward.Count;
+                        if (gmCount > 0)
+                        {
+                            for (int i = 0; i < gmCount; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Assets/Images/portal/@(i + 1).png" />
+                                    </td>
+                                    <td>@GridMemberReward[i].staffName</td>
+                                    <td>@GridMemberReward[i].GridName</td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            document.write(getrewardt('@GridMemberReward[i].SYS_Created'));
+                                        </script>
+                                    </td>
+                                </tr>
+                            }
+                            <tr class="more_link">
+                                <td colspan="4">
+                                    <a href="@Url.Action("GetGridMemberRewardList")" target="_blank">
+                                        点击更多
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr><td align="center" colspan="4"><span>暂无数据...</span></td></tr>
+                        }
+                    }
+
+                </table>
+            </li>
+        </ul>
+    </div>
+
+    <!--二级网格处理案件数排名 \上个月网格巡查签到率排名-->
+    <div class="AQI_rank_con AQI_rank_con_spe overH">
+        <ul class="AQI_rank_con_column">
+            <li class="AQI_rank_con_large">
+                <h4>
+                    <em></em>
+                    <span>
+                        二级网格处理案件数排名（
+                        <script>
+                            document.write(getTimeny());
+                        </script>）
+                    </span>
+                </h4>
+                <table class="AQI_rank_con_tab1 marT10 ">
+                    <tr>
+                        <th width="44">
+                            排名
+                        </th>
+                        <th width="64">
+                            网格名称
+                        </th>
+                        <th width="44">
+                            已处理案件数
+                        </th>
+                    </tr>
+                    @{
+                        int sgCount = SecondGridProcessing == null ? 0 : SecondGridProcessing.Count;
+                        if (sgCount > 0)
+                        {
+                            for (int i = 0; i < sgCount; i++)
+                            {
+                                <tr>
+                                    <td align="center">
+                                        @{
+                                            if (i < 3)
+                                            {
+                                                <img src="~/Assets/newPortal/images/@(i+1).png" alt="排名@(i+1)">
+                                            }
+                                            else
+                                            {
+                                                <div class="num7">@(i + 1)</div>
+                                            }
+                                        }
+
+                                    </td>
+                                    <td align="center">@SecondGridProcessing[i].GridName</td>
+                                    <td align="center">@SecondGridProcessing[i].EventCount</td>
+                                </tr>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr><td align="center" colspan="3"><span>暂无数据...</span></td></tr>
+                                            }
+                    }
+                </table>
+            </li>
+            <li class="maeR0 AQI_rank_con_large">
+                <h4>
+                    <em></em>
+                    <span>
+                        上个月网格巡查签到率排名
+                    </span>
+                </h4>
+                <table class="AQI_rank_con_tab1 marT10">
+                    <tr>
+                        <th width="44">
+                            序号
+                        </th>
+                        <th width="64">
+                            网格名称
+                        </th>
+                        <th width="44">
+                            签到率排名
+                        </th>
+                    </tr>
+                    @{
+                        int arCount = AttendanceRateOfInspector == null ? 0 : AttendanceRateOfInspector.Count;
+                        if (arCount > 0)
+                        {
+                            AttendanceRateOfInspector = AttendanceRateOfInspector.OrderByDescending(a => a.QDL).ToList();
+                            for (int i = 0; i < arCount; i++)
+                            {
+                                <tr>
+                                    <td align="center">
+                                        @{
+                                            if (i < 3)
+                                            {
+                                                <img src="~/Assets/newPortal/images/@(i+1).png" alt="排名@(i+1)">
+                                            }
+                                            else
+                                            {
+                                                <div class="num7">@(i + 1)</div>
+                                            }
+                                        }
+                                    </td>
+                                    <td>@AttendanceRateOfInspector[i].GridName</td>
+                                    <td>@AttendanceRateOfInspector[i].QDL</td>
+                                </tr>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr><td align="center" colspan="3"><span>暂无数据...</span></td></tr>
+                                            }
+                    }
+                </table>
+            </li>
+        </ul>
+    </div>
+    <!--2016-11-17新增页面布局-->
+    <div id="information">
+        <span></span>
+        <h2>廊坊市各县区省控点、综合指数、昨日综合指数、昨日AQI数据</h2>
+    </div>
+    <div id="record">
+        <div class="top">
+            <span>今日空气数据</span><span>昨日空气数据</span>
+        </div>
+        <!--今日AQI-->
+        <div class="bottom">
+            <p class="p1"><span class="num">序</span><span class="point">监测点</span><span>AQI</span><span>质量等级</span><span>综合指数</span><span>PM2.5</span><span>PM10</span><span>CO</span><span>NO2</span><span>O3</span><span>SO2</span><span>首要污染物</span></p>
+            @{
+                if (AQITodayComposity.Count > 0)
+                {
+                    for (int i = 0; i < AQITodayComposity.Count; i++)
+                    {
+                        <p>
+                            <span class="num">@(i + 1)</span><span class="point">
+                                @AQITodayComposity[i].Name
+                                @{
+                                    if (AQITodayComposity[i].Type == "01")
+                                    {
+                                        <label>*</label>
+                                    }
+                                }
+                            </span><span>@AQITodayComposity[i].AQI</span><span class="wuran">
+                                @{
+                                    <a style="background-color: @(AQITodayComposity[i].color) ">@AQITodayComposity[i].quality</a>
+                                }
+                            </span><span>
+                                <script>
+                                    //pm25,pm10,so2,co,no2,o3  calcComopitory
+                                    document.write(calcComopitory(@AQITodayComposity[i].PM25nd,@AQITodayComposity[i].PM10nd,@AQITodayComposity[i].SO2nd,@AQITodayComposity[i].COnd,@AQITodayComposity[i].NO2nd,@AQITodayComposity[i].O3nd));
+                                </script>
+                            </span><span>@AQITodayComposity[i].PM25nd</span><span>@AQITodayComposity[i].PM10nd</span><span>@AQITodayComposity[i].COnd</span><span>@AQITodayComposity[i].NO2nd</span><span>@AQITodayComposity[i].O3nd</span>@*<span>0</span>*@<span>@AQITodayComposity[i].SO2nd</span><span class="first-pm">@AQITodayComposity[i].sywrw</span>
+                        </p>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>暂无数据...</p>
+                                    }
+            }
+        </div>
+
+        <!--昨日AQI-->
+        <div class="bottom">
+            <p class="p1"><span class="num">序</span><span class="point">监测点</span><span>AQI</span><span>质量等级</span><span>综合指数</span><span>PM2.5</span><span>PM10</span><span>CO</span><span>NO2</span><span>O3</span><span>SO2</span><span>首要污染物</span></p>
+            @{
+                if (AQIYesterdayComposity.Count > 0)
+                {
+                    for (int i = 0; i < AQIYesterdayComposity.Count; i++)
+                    {
+                        <p>
+                            <span class="num">@(i + 1)</span><span class="point">
+                                @AQIYesterdayComposity[i].Name
+                                @{
+                                    if (AQIYesterdayComposity[i].Type == "01")
+                                    {
+                                        <label>*</label>
+                                    }
+                                }
+                            </span><span>@AQIYesterdayComposity[i].AQI</span><span class="wuran">
+                                @{
+                                    <a style="background-color: @(AQIYesterdayComposity[i].color) ">@AQIYesterdayComposity[i].quality</a>
+                                }
+                            </span><span>
+                                <script>
+                                    //pm25,pm10,so2,co,no2,o3  calcComopitory
+                                    document.write(calcComopitory(@AQIYesterdayComposity[i].PM25nd,@AQIYesterdayComposity[i].PM10nd,@AQIYesterdayComposity[i].SO2nd,@AQIYesterdayComposity[i].COnd,@AQIYesterdayComposity[i].NO2nd,@AQIYesterdayComposity[i].O3nd));
+                                </script>
+                            </span><span>@AQIYesterdayComposity[i].PM25nd</span><span>@AQIYesterdayComposity[i].PM10nd</span><span>@AQIYesterdayComposity[i].COnd</span><span>@AQIYesterdayComposity[i].NO2nd</span><span>@AQIYesterdayComposity[i].O3nd</span>@*<span>0</span>*@<span>@AQIYesterdayComposity[i].SO2nd</span><span class="first-pm">@AQIYesterdayComposity[i].sywrw</span>
+                        </p>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <p>暂无数据...</p>
+                                    }
+            }
+        </div>
+
+
+        <p>注：打*的为省控站点</p>
+    </div>
+    <!--底部声明不用改-->
+    <div class="footer">
+        <p class="marT30">
+            技术支撑单位
+        </p>
+        <p>
+            河北志晟信息技术股份有限公司
+        </p>
+    </div>
+</body>
+</html>
+<script>
+    sessionStorage.setItem("dat", '@Html.Raw(ViewBag.SessionStorage)');
+
+</script>
+<script>
+
+    function weather(num, obj) {
+        //alert(num);
+        $(obj).siblings().removeClass('cur');
+        $(obj).addClass('cur');
+        copy(num);
+    }
+    function copy(num) {
+
+        @for (int i = 0; i < AQForecase.Count; i++)
+        {
+            <text>
+        if (num == parseInt('@i'))
+        {
+            //为0时，与右侧数值同步
+            if (num==0) {
+                 $("#aqiRjz").html("@ViewBag.AQI");
+            } else {
+                 $("#aqiRjz").html("@AQForecase[i].aqiRjz");
+            }
+
+            $("#aqiRjzJb").html("@AQForecase[i].aqiRjzJb");
+            $("#qxWenDu").html(validate("@AQForecase[i].qxWenDu"));
+            $("#qxTianQI").html("@AQForecase[i].qxTianQI");
+            $("#qxFengQing").html("@AQForecase[i].qxFengQing");
+            $("#sywrw").html("@AQForecase[i].sywrw");
+            $("#tqts").html(weathertips("@AQForecase[i].qxTianQI", "@AQForecase[i].aqiRjzJb"));
+        }
+       </text>
+
+        }
+    }
+    //tab切换
+    function tableChange() {
+        $('#record .bottom').hide();
+        $('#record .bottom').eq(0).show();
+        $('#record .top').find('span').on('click', function () {
+            var i = $(this).index();
+            $('.bottom').hide();
+            $('.bottom').eq(i).show();
+
+            //文字点击变色
+            $('#record span').eq(0).css({
+                'color': '#666',
+                'background-color':'#d0d0d0'
+            });
+            $('#record span').eq(1).css({
+                'color': '#666',
+                'background-color':'#d0d0d0'
+            });
+            //$('#record span').eq(2).css({
+            //    'color': '#666',
+            //    'background-color':'#d0d0d0'
+            //});
+            //$('#record span').eq(3).css({
+            //    'color': '#666',
+            //    'background':'#d0d0d0'
+            //});
+            $(this).css({
+                'color':'white',
+                "background-color": "#f1ab00"
+            });
+        });
+    }
+    tableChange();
+    //2016-12-07应急知识库功能添加
+    $('.notice_list h3').find('span').on('click',function(){
+        $('.notice_list h3').find('span').css({
+            'background' : '#d0d0d0',
+            'border' : 'none'
+        });
+        $(this).css({
+            'background' : 'white',
+            'color' : '#666666',
+            'borderTop' : '1px solid #0088eb'
+        });
+    });
+    $('.notice_list h3').find('span').eq(0).on('click',function(){
+        $('.floatR').attr('href','/Home/NoticeMess?page=1');
+        noticeDetail('/Home/GetNotices','N');
+    });
+    $('.notice_list h3').find('span').eq(1).on('click',function(){
+        $('.floatR').attr('href','/Home/EmergencyLib?page=1');
+        noticeDetail('/Home/GetEmerLib','E');
+    })
+    //通知公告数据
+    function noticeDetail(url,ty){
+        $(".noticeDetail").children().remove();
+        $.post(url,{},function(data){
+            //alert(data);
+            var dt = JSON.parse(data);
+            initNoticeAndEmer(dt,ty);
+        });
+    }
+    //异步加载内容
+    //data--后台返回数据
+    //ty--类型，N--Notice,E--Emergency
+    function initNoticeAndEmer(data,ty) {
+        if (data.length<=0) {
+            var li="<li>暂无内容...</li>";
+            $(".noticeDetail").append(li);
+            return ;
+        }
+        if (ty=='E') {
+            for (var i = 0; i < data.length; i++) {
+                var li="<li><a href='@Url.Action("GetEmerLibById")?ID="+data[i].ID+"' target='_blank' title='"+data[i].Title+"'><span>"+data[i].Title+"</span><em>"+data[i].ReleaseDate+"</em></a></li>";
+                $(".noticeDetail").append(li);
+            }
+        }else {
+            for (var i = 0; i < data.length; i++) {
+                var li="<li><a href='@Url.Action("GetNoticeById")?ID="+data[i].ID+"' target='_blank' title='"+data[i].Title+"'><span>"+data[i].Title+"</span><em>"+data[i].ReleaseDate+"</em></a></li>";
+                $(".noticeDetail").append(li);
+            }
+        }
+
+
+    }
+    //2016-12-30AQI数据展现修改
+    $('#record .bottom').find('.first-pm').hover(function(){
+        var text = $(this).text();
+        if(text.length > 9){
+            $(this).parent().css('position','relative');
+            $(this).parent().append($('<div class="second-pm">' + text + '</div>'));
+            $('.second-pm').css({
+                'position':'absolute',
+                'top':'0px',
+                'right':'-120px',
+                'width':'120px',
+                'height':'50px',
+                'background':'#f5f5f5',
+                'lineHeight':'50px',
+                'textAlign':'center'
+            })
+        }
+    },function(){
+        $('.second-pm').remove();
+    })
+</script>

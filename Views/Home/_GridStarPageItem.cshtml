@@ -1,0 +1,116 @@
+﻿
+@model IPagedList<BasicUPMS.Areas.Performance.Models.GridStarViewModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPageLayout.cshtml";
+}
+<style>
+    /*pager*/
+.cpage {
+    line-height: 26px;
+    padding-top: 8px;
+}
+
+.pagination {
+    padding: 2px;
+    float: right;
+    position:center;
+}
+
+    .pagination ul {
+        margin: 0;
+        padding: 0;
+    }
+
+        .pagination ul li {
+            line-height: 20px;
+            display: inline;
+            list-style-type: none;
+            float: left;
+            padding: 0px;
+        }
+
+    .pagination li span {
+        font-size: 13px;
+        cursor: pointer;
+        list-style-type: none;
+        display: inline;
+        float: left;
+        color: #666;
+        padding: 3px 9px;
+        margin: 0 3px 0 0;
+        border: 1px solid #eee;
+    }
+
+    .pagination li a span, .pagination li a:visited span {
+        color: #0D93BF;
+        text-decoration: none;
+        cursor: pointer;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px; /*Firefox\Chrome\Safari\IE9\元素圆角效果*/
+    }
+
+    .pagination li a:hover span, .pagination li a:active span {
+        color: #000;
+        background-color: #FFF;
+        cursor: pointer;
+        -khtml-opacity: .9;
+        -moz-opacity: 0.9;
+        -moz-box-shadow: 0 0 3px rgba(204, 204, 204, 0.5);
+        -webkit-box-shadow: 0 0 3px rgba(204, 204, 204, 0.5);
+        box-shadow: 0 0 3px rgba(204, 204, 204, 0.5);
+    }
+
+    .pagination li span.currentpage {
+        color: #FFF;
+        font-weight: bold;
+        background-color: #33B5E5;
+    }
+
+
+.pagination li .goli {
+    margin: 0 6px;
+    border: none;
+    padding: 0;
+}
+
+.pagination input#gopage {
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 5px;
+}
+</style>
+@section Head
+{
+    <th>网格名称</th>
+<th>网格员名称</th>
+<th>奖金</th>
+<th>事迹</th>
+<th>创建日期</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.GridName</td>
+            <td>@item.GridMemberName</td>
+            <td>@item.Bonus</td>
+            <td>@item.Deeds</td>
+            <td>@item.CreatedTime</td>
+        </tr>
+    }
+}
+<script src="~/Assets/Js/Core/PureJsPagination.js"></script>
+<script src="~/Assets/Js/Core/PureJsPaginationInitializer.js"></script>
+<script>
+    $(function () {
+        p_listContainerId = "DialogContainer";
+        p_pagerUrl = "@Url.Action("GetGridMemberRewardList")";
+    });
+
+</script>
+

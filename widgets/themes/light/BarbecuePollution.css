@@ -1,0 +1,16 @@
+
+.light .barbecuePollution .barbecuePollutionContent .barbecuePollutionIcon{
+    background-image: url("../../assets/images/barbecue.png");
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.barbecuePollutionContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}

@@ -1,0 +1,64 @@
+#RealTimeTable0{
+    width:390px;
+    margin:15px auto;
+    cursor:pointer;
+}
+#RealTimeTable0 td,#RealTimeTable0 th{
+    text-align:center;
+    font-size:12px;
+    
+}
+#RealTimeTable0 thead{
+    font-size:14px;
+	background:#eeeeee;
+}
+#RealTimeTable0 thead tr{
+	height:30px;
+    font-size:14px;
+	background:#eeeeee;
+}
+
+#RealTimeTable0 .a0{
+    width:50px;
+	height:35px;
+    padding-left: 10px;
+}
+#RealTimeTable0 .a1{
+    width:340px;
+	height:35px;
+    text-align: left;
+}
+#RealTimeTable0 .a2{
+    width:80px;
+	height:35px;
+}
+#RealTimeTable0 .a3{
+    width:150px;
+	height:35px;
+}
+.RealTimeTableTitle{
+	background:white;
+	text-align:center;
+	font-size:14px;
+	float:left;
+	padding:0 3px;
+}
+.menuRealTimeContent{
+	font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+}
+.ctrlRealTime{
+	overflow: hidden;
+    height: 50px;
+	line-height:50px;
+    margin: 0px 0 0 15px;
+    padding: 0;
+}
+.videoPollution {
+	float:left;
+}
+.allVideo{
+	margin-left:50px;
+}

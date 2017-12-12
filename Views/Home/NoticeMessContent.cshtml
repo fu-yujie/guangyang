@@ -1,0 +1,164 @@
+﻿@using BasicUPMS.Models.Core
+@model NoticeMess
+@{
+    Layout = null;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        广阳区网格化环境管理平台
+    </title>
+    <link href="~/Assets/newPortal/css/global.css" rel="stylesheet" />
+    <link href="~/Assets/newPortal/css/style.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/artDialog/css/ui-dialog.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/laypage/skin/laypage.css" rel="stylesheet" />
+    <script src="~/Assets/Plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="~/Assets/Plugins/laypage/laypage.js"></script>
+    <script src="~/Assets/Js/Core/Tools.js"></script>
+    <script src="~/Assets/Plugins/artDialog/dist/dialog-plus.js"></script>
+    <style>
+        /*.footer {
+            position:fixed;
+            left:0;
+            bottom:0;
+        }*/
+        .notice {
+            min-height: 545px;
+        }
+    </style>
+</head>
+<body>
+    <div class="envir_pro_tit">
+        <div class="envir_pro_titCon">
+            <span class="floatL">
+                您好，欢迎来到 @ViewBag.portalName
+            </span>
+            <span class="floatR">
+                <a href="../Home/Logout">
+                    退出  |
+                </a>
+                @{
+                    if (SessionContext.Principal.RoleId == UPMSConfig.SystemRole)
+                    {
+                        <span>系统管理员不允许修改密码</span>
+                    }
+                    else
+                    {
+                        <a class="edit" style="color: blue;" href="javascript:showDataFormModalDialog('@Url.Action("UpdatePasswordForm")?Id=@ViewBag.Id','修改密码')">修改密码</a>
+                    }
+                }
+            </span>
+        </div>
+    </div>
+    <!--登录板块-->
+    <div class="header_con">
+        <div class="floatL header_conL">
+            <span class="title">@ViewBag.portalName<br /><span class="entitle">@ViewBag.portalenName</span></span>
+        </div>
+        <div class="floatR header_conR">
+            <ul>
+                <li class="header_conR_andr">
+                    <div class="header_conR_andrW">
+                        <img src="@ViewBag.Android" alt="安卓二维码">
+                    </div>
+                    <p>Android</p>
+                </li>
+                @*<li class="header_conR_IOS">
+                    <div class="header_conR_IOSW">
+                        <img src="@ViewBag.Ios" alt="IOS二维码">
+                    </div>
+                    <p>IOS</p>
+                </li>*@
+                <li class="header_conR_tips">
+                    <img src="~/Assets/newPortal/images/header_conR_tips.png" alt="扫一扫，有惊喜">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--logo区域-->
+    <div class="nav_wrap">
+        <div class="nav_con">
+            <span class="cur">
+                <a href="@Url.Action("Portal")">
+                    首页
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="/Index1.html">
+                    网格化管理
+                </a>
+            </span>
+            <em>|</em>
+            <span>
+                <a href="@Url.Action("Index")">
+                    业务管理
+                </a>
+            </span>
+        </div>
+    </div>
+    <div style="margin: 0px auto">
+        <div class="clear"></div>
+        <div class="notice" style="display: block;margin-top:15px;">
+            <div class="con">
+                <h1>
+                    @Model.Title
+                </h1>
+                <div class="blank20">
+                    <span id="lblSubTitle" class="ep-time-soure"> @Model.ReleaseDate</span>
+                </div>
+                <div class="line" style="border:solid 1px;margin-top:17px;">
+                </div>
+                <div class="blank20">
+                </div>
+                <div id="myEditor">
+                    
+                </div>
+                                @{
+                                    if (Model.AttachmentName == null)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <span> 附件：</span> <a class="attach" href="@Model.AttachmentFile">@Model.AttachmentName</a>
+                                    }
+                }
+              
+            </div>
+    </div>
+        </div>
+
+    <br />
+    <!--底部声明不用改-->
+    <div class="footer" style="bottom:0;">
+        <p class="marT30">
+            技术支撑单位
+        </p>
+        <p>
+            河北志晟信息技术股份有限公司
+        </p>
+    </div>
+</body>
+</html>
+<link href="~/Assets/Plugins/umeditor/themes/default/css/umeditor.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="~/Assets/Plugins/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script>
+    $(function () {
+        var ue = $('#myEditor');
+        ue.append( htmldecode('@(new HtmlString(Model.Content))'));
+    });
+   
+    function htmldecode(s) {
+        var div = document.createElement('div');
+        div.innerHTML = s;
+        return div.innerText || div.textContent;
+    }
+</script>
+<script>
+    sessionStorage.setItem("dat", '@Html.Raw(ViewBag.SessionStorage)');
+
+</script>

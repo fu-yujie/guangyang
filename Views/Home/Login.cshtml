@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>广阳区网格化环境管理平台</title>
+    <meta charset="utf-8" />
+    <link href="~/Assets/Css/login/Index.css" rel="stylesheet" />
+</head>
+<body>
+    <img src="~/Assets/Images/login/loginText.png" alt="Alternate Text" class="loginText" />
+    <div id="sideWeather">
+        <ul id="pageTittle"></ul>
+        <div id="contentTab">
+        </div>
+    </div>
+    <div class="content">
+        <div class="cleft">
+           @* <ul>
+        <li><b>环保局</b></li>
+        <li><b>综合执法局</b></li>
+        <li><b>公共事业管理局</b></li>
+        <li><b>规划局</b></li>
+        <li><b>社会发展局</b></li>
+        <li><b>市场监督管理局</b></li>
+    </ul>*@
+    </div>
+        <div class="cright">
+            <p class="tittl">网格化管理系统</p>
+            <form method="post">
+                @Html.AntiForgeryToken()
+                <div class="crcontent">
+                    <ul>
+                        <li>
+                            <em>用户名：</em>
+                            <input type="text" name="name" value="" id="admin"/>
+                        </li>
+                        <li>
+                            <em>密&nbsp&nbsp&nbsp码：</em>
+                            <input type="password" name="password" value="" id="password"/>
+                        </li>
+                        <li class="department">
+                            <em>选择部门：</em>
+                            <select id="dapartchoose" name="orgName">
+                                <option value="环保局">环保局</option>
+                                @*<option value="综合执法局">综合执法局</option>
+                                <option value="公共事业管理局">公共事业管理局</option>
+                                <option value="规划局">规划局</option>
+                                <option value="社会发展局">社会发展局</option>
+                                <option value="市场监督管理局">市场监督管理局</option>
+                                <option value="耀华道办事处">耀华道办事处</option>
+                                <option value="云鹏道办事处">云鹏道办事处</option>*@
+                                <option value="超级管理员">超级管理员</option>
+                            </select>
+                        </li>
+                    </ul>
+                    <button type="submit" class="login" style="border: none"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="widgets/Index.js"></script>
+</body>
+</html>

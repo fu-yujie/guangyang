@@ -1,0 +1,89 @@
+#MonitoringPointTable0, #MonitoringPointTable1, #MonitoringPointTable2, #MonitoringPointTable3, #MonitoringPointTable4 {
+    width: 390px;
+    margin: 15px auto;
+    cursor: pointer;
+}
+
+    #MonitoringPointTable0 td, #MonitoringPointTable0 th, #MonitoringPointTable1 td, #MonitoringPointTable1 th, #MonitoringPointTable2 td, #MonitoringPointTable2 th, #MonitoringPointTable3 td, #MonitoringPointTable3 th, #MonitoringPointTable4 td, #MonitoringPointTable4 th {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    #MonitoringPointTable0 thead, #MonitoringPointTable1 thead, #MonitoringPointTable2 thead, #MonitoringPointTable3 thead, #MonitoringPointTable4 thead {
+        font-size: 14px;
+        background: #eeeeee;
+    }
+
+        #MonitoringPointTable0 thead tr, #MonitoringPointTable1 thead tr, #MonitoringPointTable2 thead tr, #MonitoringPointTable3 thead tr, #MonitoringPointTable4 thead tr {
+            height: 30px;
+            font-size: 14px;
+            background: #eeeeee;
+        }
+
+    #MonitoringPointTable0 .a0, #MonitoringPointTable1 .a0, #MonitoringPointTable2 .a0, #MonitoringPointTable4 .a0 {
+        width: 140px;
+        height: 35px;
+    }
+
+    #MonitoringPointTable3 .a0 {
+        width: 270px;
+    }
+
+    #MonitoringPointTable0 .a1, #MonitoringPointTable1 .a1, #MonitoringPointTable2 .a1, #MonitoringPointTable3 .a1, #MonitoringPointTable4 .a1 {
+        width: 70px;
+        height: 35px;
+    }
+
+    #MonitoringPointTable0 .a2, #MonitoringPointTable1 .a2, #MonitoringPointTable2 .a2, #MonitoringPointTable3 .a2, #MonitoringPointTable4 .a2 {
+        width: 50px;
+        height: 35px;
+    }
+
+    #MonitoringPointTable3 .a2 {
+        width: 80px;
+    }
+    #MonitoringPointTable4 .a2 {
+        width: 200px;
+    }
+
+    #MonitoringPointTable0 .a3, #MonitoringPointTable1 .a3, #MonitoringPointTable2 .a3, #MonitoringPointTable3 .a3, #MonitoringPointTable3 .a3 {
+        width: 130px;
+        height: 35px;
+    }
+
+.MonitoringPointTableTitle {
+    background: white;
+    text-align: center;
+    font-size: 14px;
+    float: left;
+    padding: 0 3px;
+}
+
+.menuMonitoringPointContent {
+    font-family: "Microsoft YaHei";
+    font-size: 13px;
+    color: #454545;
+    background-color: #ffffff;
+}
+
+.ctrlMonitoringPoint, .ctr2MonitoringPoint {
+    overflow: hidden;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px 0 0 15px;
+    padding: 0;
+}
+
+.gController, .yangchen {
+    float: left;
+}
+
+.wController, .youyan {
+    float: left;
+    margin-left: 25px;
+}
+
+.sController {
+    float: left;
+    margin-left: 25px;
+}

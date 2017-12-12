@@ -1,0 +1,23 @@
+.light .coalPollution {
+    height: 100%;
+    /*width: 100%;*/
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.light .coalPollution .coalPollutionContent .coalPollutionIcon{
+    background-image: url("../../assets/images/coal.png");
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.light .coalPollution .coalPollutionContent .label{
+    cursor: pointer;
+    vertical-align: middle;
+}

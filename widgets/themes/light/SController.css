@@ -1,0 +1,11 @@
+.light .sController .sControllerContent .sControllerIcon{
+    background-image: url("../../assets/images/SController_green.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
