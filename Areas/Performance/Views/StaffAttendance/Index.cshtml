@@ -1,0 +1,33 @@
+﻿
+@model IPagedList<BasicUPMS.Areas.Performance.Models.StaffModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "网格员签到查询";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>签到时间</label>
+        </th>
+        <td>
+            <input type="text" name="StartTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <th>
+            <label>至</label>
+        </th>
+        <td>
+            <input type="text" name="EndTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <th>签到状态</th>
+        <td class="vatop">
+            @Html.DropDownList("StatusCode", (List<SelectListItem>)ViewBag.Status)
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        @*<td><a href="javascript:showDataFormModalDialog('BasicDataArea/Event/FormForAdd','添加XXX')">添加XXX</a> </td>*@
+    </tr>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+

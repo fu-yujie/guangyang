@@ -1,0 +1,66 @@
+﻿@model IPagedList<NoticeMess>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "通告管理";
+}
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><span>@ViewBag.Title</span></div>
+    </div>
+    <div class="fixed-empty"></div>
+
+    <form action="@(ViewBag.SearchAction ?? "Index")" data-ajax="true" data-ajax-mode="replace" data-ajax-success="renderPager" data-ajax-update="#listContainer" id="searchForm">
+        <table class="tb-type1 noborder search">
+            <tbody>
+
+            <tr>
+                <th>标题名称</th>
+                <td>
+                    <input type="text" name="Title" class="txt" />
+                </td>
+                <th>
+                    <label>下发时间</label>
+                </th>
+                <td colspan="3">
+                    <input type="text" name="RecordingTimeStart" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"/>-
+                    <input type="text" name="RecordingTimeEnd" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"/>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="submit" class="btn-search tooltip" value="查询" />
+                </td>
+                <td><a href="javascript:showDataFormModalDialogWithCallback('/BasicDataArea/NoticeMess/FormForAdd','添加通告',buttonClick)">添加通告</a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <div id="listContainer">
+        @Html.Partial("_Items", (object)Model)
+    </div>
+</div>
+@section Scripts
+{
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+    <script src="~/Assets/Js/Core/PureJsPagination.js"></script>
+    <script src="~/Assets/Js/Core/PureJsPaginationInitializer.js"></script>
+    <script>
+        function buttonClick() {
+            $.ajax({
+                url: '/BasicDataArea/NoticeMess/AddEntity',
+                type: 'POST',
+                dataType: 'json',
+                data: { 'Title': $("input[name='Title']", window.parent.document).val(), 'Content': parent.htmlEncode(parent.UM.getEditor('myEditor').getContent()), 'tempAttachmentFile': $("input[name='tempAttachmentFile']", window.parent.document).val(), 'tempAttachmentName': $("input[name='tempAttachmentName']", window.parent.document).val() },
+                success: function(e) {
+                    showSubmitResult(e);
+                },
+                error: function(e) {
+                    showSubmitResult(e);
+                }
+            });
+            return false;
+        }
+    </script>
+}
+
+

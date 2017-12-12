@@ -1,0 +1,32 @@
+﻿@model IPagedList<LiaoTuDui>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>污染源编码</th>
+    <th>污染源名称</th>
+    <th>防风抑尘措施</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.MainCode</td>
+            <td>@item.PollutionSourceName</td>
+            <td>@item.CuoShi</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/LiaoTuDui/FormForUpdate?Id=@item.Id','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/LiaoTuDui/Remove','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+

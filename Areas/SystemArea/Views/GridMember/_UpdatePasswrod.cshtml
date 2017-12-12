@@ -1,0 +1,39 @@
+﻿@model BasicUPMS.Areas.SystemArea.Models.UpdatePasswordModel
+<form action="@( "/GridMember/" + ViewBag.OperateType.ToString() + "/" + @Model.Id)" data-ajax="true" data-ajax-method="POST" data-ajax-success="@(ViewBag.SubmitCallback ?? "showSubmitResult")" data-ajax-failure="showErrorMsg" id="editForm">
+    <div class="page">
+        <table class="table tb-type2 nobdb">
+            <tbody>
+                @Html.AntiForgeryToken()
+                <tr class="noborder">
+                    <td><em>用户名:</em></td>
+                    <td class="vatop rowform">
+                        <label name="LoginName">@Model.UserName</label>
+                    </td>
+                    <td class='fontcolor'>*</td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>旧密码:</em></td>
+                    <td class="vatop rowform">
+                        <input type="password" class="txt" name="OldPassword" value="@Model.OldPassword">
+                    </td>
+                    <td class='fontcolor'>*</td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>新密码:</em></td>
+                    <td class="vatop rowform">
+                        <input type="password" class="txt" name="NewPassword" value="@Model.NewPassword">
+                    </td>
+                    <td class='fontcolor'>*</td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>确认密码:</em></td>
+                    <td class="vatop rowform">
+                        <input type="password" class="txt" name="ConfirmPassword" value="@Model.ConfirmPassword">
+                    </td>
+                    <td class='fontcolor'>*</td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</form>

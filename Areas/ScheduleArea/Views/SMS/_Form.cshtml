@@ -1,0 +1,67 @@
+﻿@using BasicUPMS.Areas.ScheduleArea.Models
+@model SMSViewModel
+<form id="editForm">
+    <div class="page">
+        <table class="table tb-type2 nobdb">
+            <tbody>
+                @Html.AntiForgeryToken()
+                <tr class="noborder">
+                    <td><em>下发人:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="Sender" value="@Model.Sender">
+                    </td>
+                    <td><em>下发时间:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="SendTime" value="@Model.SendTime">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>下发状态:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="StateCode" value="@Model.StateName">
+                    </td>
+                    <td><em>最后修改用户:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="LastUpdateBy" value="@Model.LastUpdateBy">
+                    </td>
+                </tr>
+            <tr class="noborder">
+                <td><em>所属组织:</em></td>
+                <td class="vatop rowform">
+                    <input type="text" class="txt" readonly="readonly" name="ORG" value="@Model.ORG">
+                </td>
+                <td><em>联系方式:</em></td>
+                <td class="vatop rowform">
+                    <input type="text" class="txt" readonly="readonly" name="Accper" value="@Model.Accper">
+                </td>
+            </tr>
+                <tr class="noborder">
+                    <td><em>创建用户:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="CreatedBy" value="@Model.CreatedBy">
+                    </td>
+                    <td><em>创建日期:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="CreatedTime" value="@Model.CreatedTime">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>备注:</em></td>
+                    <td class="vatop" colspan="3">
+                        <input style="width:400px;margin-right:10px;" type="text" class="txt" readonly="readonly" name="Remarks" value="@Model.Remarks">
+                    </td>
+                </tr>
+                @*<tr class="noborder">
+                    <td><em>附件:</em></td>
+                    <td class="vatop" colspan="3">
+                        <a href="/SMS/DownloadFile">图片11111</a>
+                    </td>
+                </tr>*@
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</form>
+
+
+

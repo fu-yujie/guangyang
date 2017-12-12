@@ -1,0 +1,34 @@
+﻿@model IPagedList<Grid>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "网格管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>网格编码</label>
+        </th>
+        <td>
+            <input type="text" name="GridCode" class="txt" />
+        </td>
+        <th>
+            <label>网格名称</label>
+        </th>
+        <td>
+            <input type="text" name="GridName" class="txt" />
+        </td>
+        <th>级别</th>
+        <td class="vatop">
+            @Html.DropDownList("Level", (List<SelectListItem>)ViewBag.LevelList)
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/Grid/FormForAdd','添加网格')">添加网格</a> </td>
+    </tr>
+}
+
+
+
+

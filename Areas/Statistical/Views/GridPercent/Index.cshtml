@@ -1,0 +1,54 @@
+﻿@model IPagedList<string>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "网格案件类型占比";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>网格级别</th>
+        <td class="vatop">
+            @Html.DropDownList("GridLevel", (List<SelectListItem>)ViewBag.level)
+        </td>
+        <th>
+            <label>案件提交时间</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingStartTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"/>
+        </td>
+        <th>
+            <label>至</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingEndTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"/>
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询"  onmousedown="setContidion()" />
+            <a _href="~/GridPercent/ExcelOutputs" onclick="excelOutput(this)" style="cursor:pointer;">Excel导出</a>
+        </td>
+    </tr>
+}
+@section Description{
+    <div style="font-size: 14px">
+        <p>案件数量:指定时间内（默认为系统初始化时期到今天）该网格下对应所有案件总数（一级网格案件总数为二级网格案件数量+三级网格案件数量；二级网格同理）</p>
+        <p>各类别百分比:该类别在指定时间内（默认为系统初始化时期到今天）产生的案件数量（网格下所有案件总和）/案件总数</p>
+    </div>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    //
+    var GridLevel = "0";
+    var RecordingStartTime = "";
+    var RecordingEndTime = "";
+    //
+    function setContidion() {
+         GridLevel = $("#GridLevel").val()
+         RecordingStartTime = $("input[name='RecordingStartTime']").val();
+         RecordingEndTime = $("input[name='RecordingEndTime']").val();
+    }
+    function excelOutput(obj) {
+        var filename = "";
+         var href = $(obj).attr('_href');
+         window.location.href = href + "?GridLevel=" + GridLevel + "&RecordingStartTime=" + RecordingStartTime + "&RecordingEndTime=" + RecordingEndTime + "&filename=" + filename;
+    }
+</script>

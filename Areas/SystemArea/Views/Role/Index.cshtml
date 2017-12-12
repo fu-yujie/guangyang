@@ -1,0 +1,18 @@
+﻿@model IPagedList<Role>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "角色管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th><label>状态</label></th>
+        <td>
+            @Html.DropDownList("Status", @Html.SelectListItems( EnabledStatus.None , true))
+        </td>
+        <th><label>名称</label></th>
+        <td><input type="text" name="Name" class="txt" /></td>
+        <td><input type="submit" class="btn-search" value="查询" /></td>
+        <td><a id="roleAdd" href="javascript:showDataFormModalDialog('/SystemArea/Role/FormForAdd','添加角色')">添加角色</a> </td>
+    </tr>
+}

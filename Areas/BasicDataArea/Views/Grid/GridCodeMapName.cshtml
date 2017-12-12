@@ -1,0 +1,47 @@
+﻿@using BasicUPMS.Areas.BasicDataArea.Models
+@model IPagedList<GridCodeAndName>
+@{
+    Layout = "~/Views/Shared/_ItemsPageLayout.cshtml";
+}
+
+@section Head
+{
+    <th class="noborder">编号</th>
+    <th class="noborder">网格名称</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover" style="cursor:pointer" ondblclick="DbClick(this)">
+            <td class="Code">@item.GridCode</td>
+            <td class="Name">@item.GridName</td>
+        </tr>
+    }
+}
+
+
+@section Scripts
+{
+<script src="~/Assets/Js/Core/PureJsPagination.js"></script>
+<script src="~/Assets/Js/Core/PureJsPaginationInitializer.js"></script>
+    <script>
+        p_listContainerId = "DialogContainer";
+        p_pagerUrl = "/BasicDataArea/Grid/GridCodePartial";
+        function DbClick(Element) {
+            $("input[name='GridCode']").val($(Element).find('.Code').html());
+            $("input[name='GridName']").val($(Element).find('.Name').html());
+            dialog({ id: 'CloseDialog' }).close().remove();
+            if ($("#PartialUser").html() != null && $("#PartialUser").html() != undefined) {
+                DropCallBack();
+            }
+            p_pagerUrl = $("#searchForm").attr("action");
+            if (p_pagerUrl == null || p_pagerUrl == "" || p_pagerUrl == undefined) {
+                p_pagerUrl = "Index";
+            }
+            p_listContainerId = "listContainer";
+        }
+</script>
+}

@@ -1,0 +1,51 @@
+﻿@model TaskList
+<form id="editForm">
+    <div class="page">
+        <table class="table tb-type2 nobdb">
+            <tbody>
+                @Html.AntiForgeryToken()
+                <tr class="noborder">
+                    <td><em>下发时间:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" readonly="readonly" class="txt" name="Sender" value="@Model.LssuedTime">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>下发人:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" readonly="readonly" class="txt" name="StateCode" value="@Model.User.Name">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>接收人:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" readonly="readonly" class="txt" name="Accper" value="@Model.GridMember.Name">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>回复时间:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" readonly="readonly" class="txt" name="CreatedBy" value="@Model.ResponseTime">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>内容:</em></td>
+                    <td class="vatop" colspan="3">
+                        <input style="width:400px;margin-right:10px;" readonly="readonly" type="text" class="txt" name="Remarks" value="@Model.Content">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>回复结果:</em></td>
+                    <td class="vatop" colspan="3">
+                        <input style="width:400px;margin-right:10px;" readonly="readonly" type="text" class="txt" name="Remarks" value="@Model.ReplyResults">
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</form>
+
+
+
+

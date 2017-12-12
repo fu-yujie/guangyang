@@ -1,0 +1,35 @@
+﻿@model IPagedList<BasicUPMS.Areas.Statistical.Models.Pollution>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "大气污染月统计";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>统计时间</label>
+        </th>
+        <td>
+            <input type="text" name="PollutionDate" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM' })" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" onmousedown="setContidion()"/>
+            <a _href="~/PollutionMonth/ExcelOutputs" onclick="excelOutput(this)" style="cursor:pointer;">Excel导出</a>
+            
+        </td>
+    </tr>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    //
+    var PollutionDate = "";
+    //
+    function setContidion() {
+        PollutionDate = $("input[name='PollutionDate']").val();
+    }
+    function excelOutput(obj) {
+        var filename = "";
+      var href = $(obj).attr('_href');
+     window.location.href = href + "?PollutionDate=" + PollutionDate+"&filename=" + filename;
+    }
+</script>

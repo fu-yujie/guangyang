@@ -1,0 +1,90 @@
+﻿@model Organization
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+    ViewBag.EditAction = "/SystemArea/Organization/" + ViewBag.OperateType.ToString() + "/" + Model.Id + "?ParentOrganization=" + Model.ParentOrganization + "&OrganizationLevel=" + Model.OrganizationLevel;
+    ViewBag.SubmitCallback = "refreshTree";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="OrganizationCode" readonly="readonly" value="@Model.OrganizationCode">
+        </td>
+        <td style="color:red;">*</td>
+        <td><em>网格编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" readonly="readonly" name="GridCode" onclick="showDataFormModalDialogWithId('/BasicDataArea/Grid/GridCodePartial','选择网格','','','CloseDialog')" value="@Model.GridCode" />
+            
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="OrganizationName" value="@Model.OrganizationName">
+        </td>
+        <td style="color:red;">*</td>
+        <td><em>电话:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Telephone" value="@Model.Telephone">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>传真:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Fax" value="@Model.Fax">
+        </td>
+        <td></td>
+        <td><em>网址:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Website" value="@Model.Website">
+        </td>
+        <td></td>
+
+    </tr>
+    <tr>
+        <td><em>是否有效: </em></td>
+        <td class="vatop rowform">
+            <label>@Html.CheckBox("IsEnable", Model.IsEnable)</label>
+        </td>
+        <td></td>
+        <td><em>邮编: </em></td>
+        <td class="vatop rowform"><input type="text" class="txt" value="@Model.ZipCode" name="ZipCode"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>联系人:</em></td>
+        <td class="vatop rowform"><input type="text" class="txt" value="@Model.Contacts" name="Contacts"></td>
+        <td></td>
+        <td><em>地址:</em></td>
+        <td class="vatop rowform"><input type="text" class="txt" value="@Model.Address" name="Address"></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td><em>深度:</em></td>
+        <td class="vatop rowform" name="OrganizationLevel">
+            @Model.OrganizationLevel
+        </td>
+        <td></td>
+        <input type="hidden" name="Classification" value="@Model.Classification">
+    </tr>
+
+    <tr>
+        <td><em>说明: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Remarks">@Model.Remarks</textarea></td>
+    </tr>
+
+
+
+
+}
+<script type="text/javascript">
+    //刷新树
+    function refreshTree(e) {
+        showSubmitResult(e, null, null, function () { window.frames['workspace'].loadTree(e.Data); });
+    }
+</script>
+

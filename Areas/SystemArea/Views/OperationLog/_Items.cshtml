@@ -1,0 +1,30 @@
+﻿@model IPagedList<OperationLog>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>ID</th>
+    <th>登录名</th>
+    <th>控制器名称</th>
+    <th>调用方法</th>
+    <th>访问IP</th>
+    <th>访问时间</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Id</td>
+            <td>@item.UserName</td>
+            <td>@item.ControllerName</td>
+            <td>@item.ActionName</td>
+            <td>@item.Ip</td>
+            <td>@item.UpdateTime.ToString("yyyy-MM-dd HH:mm")</td>
+        </tr>
+    }
+}

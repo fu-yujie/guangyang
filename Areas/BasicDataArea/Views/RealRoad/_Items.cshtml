@@ -1,0 +1,33 @@
+﻿@model IPagedList<RealRoad>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>污染源编码</th>
+    <th>污染源名称</th>
+    <th>联系人</th>
+<th>联系电话</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.MainCode</td>
+            <td>@item.PollutionSourceName</td>
+            <td>@item.Contract</td>
+            <td>@item.ContractInformation</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialogWithId('/BasicDataArea/RealRoad/FormForUpdate?Id=@item.Id&t=@(DateTime.Now.Millisecond)','查看')">查看</a>
+            </td>
+        </tr>
+    }
+}
+
+
+

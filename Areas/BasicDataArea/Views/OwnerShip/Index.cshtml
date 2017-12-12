@@ -1,0 +1,11 @@
+﻿@model IPagedList<OwnerShip>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "污染源性质管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/OwnerShip/FormForAdd','添加污染源性质')">添加污染源性质</a> </td>
+    </tr>
+}

@@ -1,0 +1,32 @@
+﻿@model IPagedList<LiaoTuDui>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "料土堆";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>污染源名称</th>
+        <td>
+            <input type="text" name="Name" class="txt" />
+        </td>
+        <th>防风抑尘措施</th>
+        <td>
+            <input type="text" name="Other" class="txt"/>
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/LiaoTuDui/FormForAdd','添加料土堆')">添加料土堆</a>|
+            <a _href="~/LiaoTuDui/ExcelOutputs" onclick="excelOutput(this)" style="cursor: pointer;">Excel导出</a>
+        </td>
+    </tr>
+}
+<script type="text/javascript">
+    //
+    function excelOutput(obj) {
+         var href = $(obj).attr('_href');
+         window.location.href = href;
+    }
+</script>

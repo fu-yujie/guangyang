@@ -1,0 +1,73 @@
+﻿
+@model BasicData.Version
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>版本号:</em></td>
+        <td class="vatop rowform">
+            <input type="hidden" name="Classfication" value=@Model.Classfication />
+            <input type="text" class="txt" name="VersionNum" value="@Model.VersionNum">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>说明:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Remark" value="@Model.Remark">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+    <td><em>说明:</em></td>
+    <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="VersionInfo">@Model.VersionInfo</textarea></td>
+    <td></td>
+</tr>
+
+    <tr>
+        <td><em>文件地址: </em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="APKUrl" onblur="GetQrCode()" value="@Model.APKUrl">
+            <input type="hidden" name="PicUrl" id="QrCode" value=@Model.PicUrl/>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>二维码: </em></td>
+        <td id="QrCodeTd" style="width: 200px;height: 200px">
+            @if (!string.IsNullOrWhiteSpace(Model.PicUrl))
+            {
+                <img src="@ViewBag.QrUrl" />
+            }
+        </td>
+        <td></td>
+    </tr>
+
+
+
+}
+@section Script
+{
+    <script type="text/javascript">
+        function GetQrCode() {
+            var FileUrl = $('input[name="APKUrl"]').val();
+            if (FileUrl == undefined || FileUrl == "" || FileUrl == null) {
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "/SystemArea/Version/GetIOSQrCode",
+                data: { FileUrl: FileUrl },
+                dataType: "JSON",
+                success: function (data) {
+                    $("#QrCodeTd").html('<image src="' + data.Url + '">');
+                    $("#QrCode").val(data.FileUrl);
+                }
+            })
+        }
+    </script>
+}
+
+

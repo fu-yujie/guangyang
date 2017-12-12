@@ -1,0 +1,54 @@
+﻿@model IPagedList<Grid>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+    string level = "";
+}
+
+@section Head
+{
+    <th>网格编号</th>
+    <th>网格名称</th>
+    <th>主管领导</th>
+    <th>联系方式</th>
+    @*<th>年减排量</th>*@
+    <th>级别</th>
+    @*<th>全国排名</th>
+    <th>主要污染物</th>
+    <th>管辖范围</th>
+    <th>责任主体</th>*@
+    <th>所属辖区</th>
+    <th>所在乡镇/街办处/园区</th>
+    @*<th>网格颜色</th>
+    <th>状态</th>
+    <th>备注</th>*@
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.GridCode</td>
+            <td>@item.GridName</td>
+            <td>@item.Leadership</td>
+            <td>@item.ContactInformation</td>
+            @*<td>@item.Annualemission</td>*@
+            <td>@{level = item.Level == 0 ? "" : item.Level.ToString();}@level</td>
+            @*<td>@item.Ranking</td>
+            <td>@item.MainPollutants</td>
+            <td>@item.Jurisdiction</td>
+            <td>@item.Subject</td>*@
+            <td>@item.ZoneQ</td>
+            <td>@item.ZoneJ</td>
+            @*<td>@item.GridColor</td>
+            <td>@item.StatusCode</td>
+            <td>@item.Remarks</td>*@
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/Grid/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/Grid/RemoveVarChar','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}

@@ -1,0 +1,33 @@
+﻿@model IPagedList<BasicUPMS.Areas.Performance.Models.GridStarViewModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>网格名称</th>
+    <th>网格员名称</th>
+    <th>奖金</th>
+    <th>事迹</th>
+    <th>创建日期</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.GridName</td>
+            <td>@item.GridMemberName</td>
+            <td>@item.Bonus</td>
+            <td>@item.Deeds</td>
+            <td>@item.CreatedTime</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/Performance/GriderStar/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/Performance/GriderStar/RemoveVarChar','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}

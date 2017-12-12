@@ -1,0 +1,186 @@
+﻿@model Camera
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>监控点编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" @ViewBag.Attr class="txt" name="CamIndexCode" value="@Model.CamIndexCode">
+        </td>
+        <td></td>
+        <td><em>监控点名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="CamName" value="@Model.CamName">
+        </td>
+        <td></td>
+        <td><em>摄像头资源编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ResourseId" value="@Model.ResourseId">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>摄像头资源名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Name" value="@Model.Name">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>手机号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="contactsPhone" value="@Model.contactsPhone">
+        </td>
+        <td></td>
+        <td><em>联系人:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="contacts" value="@Model.contacts">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>设备编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="DevIndexCode" value="@Model.DevIndexCode">
+        </td>
+        <td></td>
+        <td><em>控制逻辑号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ControlID" value="@Model.ControlID">
+        </td>
+        <td></td>
+        <td><em>控制DVR编码:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="DVRID" value="@Model.DVRID">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>DVR通道号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="DVRCH" value="@Model.DVRCH">
+        </td>
+        <td></td>
+        <td><em>端口号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Port" value="@Model.Port">
+        </td>
+        <td></td>
+        <td><em>安装日期:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt Wdate" name="Setupday" value="@Model.Setupday" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>视频类型:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="CamType" value="@Model.CamType">
+        </td>
+        <td></td>
+        <td><em>类型:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="type" value="@Model.type">
+        </td>
+        <td></td>
+        <td><em>ip地址:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ip" value="@Model.ip">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>主码流:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="StreamType" value="@Model.StreamType">
+        </td>
+        <td></td>
+        <td><em>用户名:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="UserName" value="@Model.UserName">
+        </td>
+        <td></td>
+        <td><em>密码:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="PassWord" value="@Model.PassWord">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>用户级别:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="UserLevel" value="@Model.UserLevel">
+        </td>
+        <td></td>
+        <td><em>厂商类型海康大华:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="DevType" value="@Model.DevType">
+        </td>
+        <td></td>
+        <td><em>监控点序号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ChannelNo" value="@Model.ChannelNo">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>设备网域ID:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="SubStream" value="@Model.SubStream">
+        </td>
+        <td></td>
+        <td><em>安装方式:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="InstallType" value="@Model.InstallType">
+        </td>
+        <td></td>
+        <td><em>机型标清网络半球:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="VideoDevType" value="@Model.VideoDevType">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>网格名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" readonly="readonly" name="GridName" value="@Model.GridName" onclick="showDataFormModalDialogWithId('/BasicDataArea/Grid/GridCodePartial','选择网格','','','CloseDialog')" />
+            <input type="hidden" name="GridCode" value="@Model.GridCode" />
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>经度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="lon" value="@Model.lon">
+        </td>
+        <td></td>
+        <td><em>纬度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="lat" value="@Model.lat">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>链接:</em></td>
+        <td class="vatop" colspan="3">
+            <input style="width:400px;margin-right:10px;" type="text" class="txt" name="WebLink" value="@Model.WebLink">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>安装地点:</em></td>
+        <td class="vatop" colspan="3">
+            <input style="width:400px;margin-right:10px;" type="text" class="txt" name="Adder" value="@Model.Adder">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>说明: </em></td>
+        <td colspan="3" class="vatop rowform"><textarea rows="3" class="tarea" name="REMARK">@Model.REMARK</textarea></td>
+    </tr>
+
+}
+
+
+@section Script
+{
+    <script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+}

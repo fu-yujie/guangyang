@@ -1,0 +1,23 @@
+﻿@using BasicUPMS.Areas.Statistical.Models
+@model IPagedList<Pollution>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "大气污染实时统计";
+}
+@section SearchCondition
+{
+    <tr>
+        <td>
+            <a _href="~/PollutionRealTime/ExcelOutputs" onclick="excelOutput(this)" style="cursor:pointer;">Excel导出</a>
+        </td>
+    </tr>
+}
+<script type="text/javascript">
+    //
+    function excelOutput(obj) {
+        //alert('a');
+        var filename = "";
+       var href = $(obj).attr('_href');
+       window.location.href = href;
+    }
+</script>

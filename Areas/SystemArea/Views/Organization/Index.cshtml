@@ -1,0 +1,208 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "组织管理";
+}
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><span>组织管理</span></div>
+    </div>
+    <div class="fixed-empty"></div>
+    <table class="tb-type1 noborder search">
+        <tbody>
+            <tr>
+                <td>
+                    <div id="conditionDiv">
+                        <input id="openAll" class="btn-search" type="button" value="展开全部" />
+                        <input id="closeAll" class="btn-search" type="button" value="折叠全部" />
+                        <input id="btnInsertRoot" class="btn-search" type="button" value="添加根级" onclick="showDataFormModalDialog('/SystemArea/Organization/FormForAdd?ParentOrganization=0&OrganizationLevel=1&Classification=1','添加部门') " />
+                        <input type="text" id="txtSearch" placeholder="请输入关键字">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table tb-type2">
+        <tbody id="listContainer">
+            <tr>
+                <td style="border:none;">
+                    <div class="conditionList"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+@section Styles{
+    <link href="~/Assets/Plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+        /*加强一下disabled的样式*/
+        .jstree-default .jstree-disabled {
+            font-style: italic;
+            color: #A2B5CD;
+            text-decoration: line-through;
+        }
+
+        .fa {
+            font-size: 14px;
+        }
+    </style>
+}
+
+@section Scripts{
+
+    <script src="~/Assets/Plugins/jstree/dist/jstree.min.js"></script>
+    <script src="~/Assets/Plugins/jstree/dist/jstreegrid.js"></script>
+    <script type="text/javascript">
+        function loadTree(currentNodeId) {
+
+            $.getJSON("GetTreeData?currentNodeId=" + currentNodeId + "&r=" + Math.random(), function(data) {
+
+                //清空
+                $("div[class^='jstree-grid-wrapper']").remove();
+                $(".conditionList").html("<div id=\"container\"></div>")
+                $("#container").on('ready.jstree', function() {
+                    //$(".jstree-icon").each(function(){
+                    //    $(this).css("color",'#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6));
+                    //})
+
+                }).on('open_node.jstree', function(node, status) {
+                    var nodes=status.node.children.slice(0);
+                    nodes.push(status.node.id);
+                    //$.each(nodes,function(index,value){
+                    //    $("li[id="+value+"] a .jstree-icon").each(function(){
+                    //        $(this).css("color",'#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6));
+                    //    })
+                    //})
+                }).jstree(
+                {
+                    'core': {
+                        'data': data
+                    },
+                    "plugins": ["search", "grid"],
+                    'grid': {
+                        columns: [
+                            {
+                                header: "组织名称",
+                                width: 40,
+                                margin: 0
+                            },
+                            {
+                                width: 20,
+                                margin: 0,
+                                header: "资源类型",
+                                value: function(node) {
+                                    var typeHtml = "";
+                                    var organization = @((int) Classifications.Organization);
+                                    var post = @((int) Classifications.Post);
+                                    var user = @((int) Classifications.User);
+
+                                    if ((node.permission_type & organization) == organization) {
+                                        typeHtml += '<i class="orange fa fa-list-ul" title="组织"></i>&nbsp;&nbsp;&nbsp;';
+                                    }
+                                    if ((node.permission_type & post) == post) {
+                                        typeHtml += '<i class="fa fa-hand-o-up" title="岗位"></i>&nbsp;&nbsp;&nbsp;';
+                                    }
+                                    if ((node.permission_type & user) == user) {
+                                        typeHtml += '<i class="blue fa fa-eye" title="用户"></i>&nbsp;&nbsp;&nbsp;';
+                                    }
+                                    return typeHtml;
+                                }
+                            },
+                            {
+                                width: 20,
+                                margin: 0,
+                                header: "操作",
+                                value: function(node) {
+                                    var buttonsHtml = "";
+                                    var organization = @((int) Classifications.Organization);
+                                    var post = @((int) Classifications.Post);
+                                    var user = @((int) Classifications.User);
+
+                                    if (node.permission_type <= post) {
+                                        buttonsHtml += "<a href=javascript:showDataFormModalDialog('/SystemArea/Organization/FormForUpdate?id={0}&Classification={1}&t={2}','编辑菜单/功能') title=\"编辑\"><i class=\"orange fa fa-edit\"/></a>".format(node.id, node.permission_type,new Date().getMilliseconds().toString());
+                                        //buttonsHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                                        //buttonsHtml += "<a href=javascript:showDataFormModalDialog('SystemArea/Organization/FormForAdd?ParentOrganization={0}&Classification={1}','添加用户') title=\"添加用户\"><i class=\"blue fa fa-plus\"/></a>".format(node.id,user);
+
+                                    }
+                                    if ((node.permission_type & organization) == organization) {
+
+                                        buttonsHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                                        buttonsHtml += "<a href=javascript:showDataFormModalDialog('/SystemArea/Organization/FormForAdd?ParentOrganization={0}&OrganizationLevel={1}&Classification={2}','添加岗位') title=\"添加岗位\"><i class=\"blue fa fa-plus\"/></a>".format(node.id, node.depth+1,post);
+                                        buttonsHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                                        buttonsHtml += "<a href=javascript:showDataFormModalDialog('/SystemArea/Organization/FormForAdd?ParentOrganization={0}&OrganizationLevel={1}&Classification={2}','添加部门') title=\"添加部门\"><i class=\"blue fa fa-plus\"/></a>".format(node.id, node.depth+1,organization);
+
+                                    }
+                                    //没有子节点才允许删除
+                                    if (node.is_parent == 0) {
+                                        buttonsHtml += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                                        buttonsHtml += "<a href=javascript:removeNode({0},{1},{2}) title=\"删除\"><i class=\"red fa fa-times\"/></a>".format(node.id,node.permission_type,node.parent);
+                                    }
+                                    return buttonsHtml;
+                                }
+                            }
+                        ]
+                    },
+                });
+
+
+                //搜索
+                var to = false;
+                $('#txtSearch').keyup(function(e) {
+                    if (to) {
+                        clearTimeout(to);
+                    }
+                    to = setTimeout(function() {
+                        $('#container').jstree(true).search($(e.target).val());
+                    }, 250);
+                });
+
+                $("#openAll").click(function() {
+                    $('#container').jstree().open_all();
+
+                })
+                $("#closeAll").click(function() {
+
+                    $('#container').jstree().close_all();
+                })
+
+            })
+        }
+
+        //初始化
+        $(function() {
+            //模拟C#的string.format
+            String.prototype.format = function(args) {
+                var result = this;
+                if (arguments.length > 0) {
+                    if (arguments.length == 1 && typeof (args) == "object") {
+                        for (var key in args) {
+                            if (args[key] != undefined) {
+                                var reg = new RegExp("({" + key + "})", "g");
+                                result = result.replace(reg, args[key]);
+                            }
+                        }
+                    } else {
+                        for (var i = 0; i < arguments.length; i++) {
+                            if (arguments[i] != undefined) {
+                                var reg = new RegExp("({)" + i + "(})", "g");
+                                result = result.replace(reg, arguments[i]);
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
+            loadTree(0);
+        })
+
+
+        function removeNode(id, classification, pid) {
+            confirmDelete("/SystemArea/Organization/RemoveOrg", "id=" + id + "&classification=" + classification+"&ParentId="+pid, function(d) {
+                showSuccessMsg(d.Message);
+                loadTree(pid);
+            })
+        }
+    </script>
+}

@@ -1,0 +1,38 @@
+﻿@using BasicUPMS.Areas.Statistical.Models
+@model IPagedList<TreatmentPercentViewModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>网格名称</th>
+    <th>案件数量</th>
+    <th>未处理</th>
+    <th>已处理</th>
+    <th>结案率</th>
+    <th>遗留数</th>
+    <th>遗留处理量</th>
+    <th>遗留处理率</th>
+}
+
+@section Items
+{
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.GridName</td>
+            <td>@item.CaseCountNum</td>
+            <td>@item.UntreatedNum</td>
+            <td>@item.CompletedNum</td>
+            <td>@item.CompletedPercent</td>
+            <td>@item.RemainingNum</td>
+            <td>@item.RemainingCompleted</td>
+            <td>@item.RemainingCompletedPercent</td>
+        </tr>
+    }
+}
+
+
+
+

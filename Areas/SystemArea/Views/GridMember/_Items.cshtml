@@ -1,0 +1,41 @@
+﻿@model IPagedList<GridMember>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>登录名</th>
+    <th>姓名</th>
+    <th>组织</th>
+    <th>岗位</th>
+    <th>登录APP</th>
+    <th>处理案件</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.LoginName</td>
+            <td>@item.Name</td>
+            <td>@item.Org.OrganizationName</td>
+            <td>@item.Post.OrganizationName</td>
+            <td>@(item.LoginApp?"允许":"禁止")</td>
+            <td>@(item.IsHandling ? "允许" : "禁止")</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/SystemArea/GridMember/FormForUpdateVarchar?id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a> |
+                <a class="edit" href="javascript:confirmAfterDoAjax('确定要重置密码吗?','/SystemArea/GridMember/ResetPassword','id=@item.Id',showSubmitResult)">重置密码</a> |
+                <a class="edit" href="javascript:showDataFormModalDialog('/SystemArea/GridMember/UpdatePasswordForm?id=@item.Id','修改密码')">修改密码</a> |
+                <a class="edit" href="javascript:confirmDelete('/SystemArea/GridMember/RemoveVarchar','id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+
+

@@ -1,0 +1,49 @@
+﻿@model IPagedList<BasicUPMS.Areas.BasicDataArea.Models.PollutionSourceViewModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>编号</th>
+    <th>污染源名称</th>
+    <th>污染源地址</th>
+    <th>联系人</th>
+    <th>联系方式</th>
+    <th>污染源性质</th>
+    <th>控制级别</th>
+    <th>行业名称</th>
+    <th>经度</th>
+    <th>纬度</th>
+    <th>所属网格</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Code</td>
+            <td>@item.Name</td>
+            <td>@item.Address</td>
+            <td>@item.Contacts</td>
+            <td>@item.ContactInformation</td>
+            <td>@item.OwnerShipName</td>
+            <td>@item.ControlLevelName</td>
+            <td>@item.PollutionSourceType</td>
+            <td>@item.Longitude</td>
+            <td>@item.Latitude</td>
+            <td>@item.GridName</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialogWithCallback('/BasicDataArea/PollutionSource/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑',buttonClick)">编辑</a> |
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/PollutionSource/RemoveVarChar','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+
+

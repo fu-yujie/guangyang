@@ -1,0 +1,48 @@
+﻿@model IPagedList<Boil>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>污染源编码</th>
+    <th>污染源名称</th>
+    @*<th>锅炉个数</th>*@
+    <th>污染源地址</th>
+    @*<th>联系人</th>
+<th>联系方式</th>*@
+    <th>锅炉规模</th>
+    <th>投入时间</th>
+    <th>锅炉用途</th>
+    <th>燃煤使用量</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.MainCode</td>
+            <td>@item.PollutionSourceName</td>
+            @*<td>@item.Count</td>*@
+            <td>@item.Address</td>
+            @*<td>@item.Contacts</td>
+            <td>@item.ContractInfomation</td>*@
+            <td>@item.GuiMo</td>
+            <td>@item.TouRuDate</td>
+            <td>@item.YongTu</td>
+            <td>@item.RanMeiCount</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/Boil/FormForUpdate?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/Boil/Remove','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+
+
+

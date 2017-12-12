@@ -1,0 +1,33 @@
+﻿@model IPagedList<Role>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>ID</th>
+    <th>名称</th>
+    <th>状态</th>
+    @*<th>序号</th>*@
+    <th>创建时间</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@Html.EnumDescription(item.Status)</td>
+            @*<td>@item.Sort</td>*@
+            <td class="align-center">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</td>
+            <td class="w150 align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/SystemArea/Role/FormForUpdate?id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑角色')">编辑</a> |
+                <a class="edit" href="javascript:confirmDelete('/SystemArea/Role/RemoveRole','id=@item.Id',showSubmitResult)">删除</a> |
+                <a href="PermissionSetting?roleId=@item.Id">赋权</a>
+            </td>
+        </tr>
+    }
+}

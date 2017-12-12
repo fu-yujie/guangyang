@@ -1,0 +1,80 @@
+﻿@model MonitoringPoint
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt"  name="Code" value="@Model.Code">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>监测名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Name" value="@Model.Name">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>监测点类型:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownList("Type", (List<SelectListItem>)ViewBag.Monitoring)
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>监测地址:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Address" value="@Model.Address">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>联系人:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Contacts" value="@Model.Contacts">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>联系方式:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ContactInformation" value="@Model.ContactInformation">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>网格名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" readonly="readonly" name="GridName" onclick="showDataFormModalDialogWithId('/BasicDataArea/Grid/GridCodePartial','选择网格','','','CloseDialog')" value="@Model.GridName" />
+            <input type="hidden" name="GridCode" value="@Model.GridCode" />
+        </td>
+        <td> </td>
+        <td><em>经度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Longitude" value="@Model.Longitude">
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td><em>纬度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Latitude" value="@Model.Latitude">
+        </td>
+        <td></td>
+        <td><em>状态: </em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="StatusCode" value="@Model.StatusCode">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>第三方标识: </em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Other" value="@Model.Other">
+        </td>
+        <td> </td>
+    </tr>
+    <tr id="testbeizhu">
+        <td><em>说明: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Remarks">@Model.Remarks</textarea></td>
+    </tr>
+
+}

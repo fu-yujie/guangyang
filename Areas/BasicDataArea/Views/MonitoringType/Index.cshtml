@@ -1,0 +1,22 @@
+﻿@model IPagedList<MonitoringType>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "监测点类型管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>监测点类型</label>
+        </th>
+        <td>
+            @Html.DropDownList("Code",(List<SelectListItem>)ViewBag.Monitoring)
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/MonitoringType/FormForAdd','添加监测点类型')">添加监测点类型</a> </td>
+    </tr>
+}
+
+

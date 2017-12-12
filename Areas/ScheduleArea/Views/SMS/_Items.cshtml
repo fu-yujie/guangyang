@@ -1,0 +1,33 @@
+﻿@using BasicUPMS.Areas.ScheduleArea.Models
+@model IPagedList<SMSViewModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>内容</th>
+    <th>下发时间</th>
+    <th>发送人</th>
+    <th>接收人联系方式</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Content</td>
+            <td>@item.SendTime</td>
+            <td>@item.Sender</td>
+            <td>@item.Accper</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialogWithId('/ScheduleArea/SMS/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','查看')">查看</a>
+            </td>
+        </tr>
+    }
+}
+
+

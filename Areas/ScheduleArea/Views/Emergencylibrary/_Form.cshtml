@@ -1,0 +1,130 @@
+﻿@model Emergencylibrary
+<form action="@(ViewBag.EditAction ?? "/"+System.Data.Entity.Core.Objects.ObjectContext.GetObjectType(Model.GetType()).Name + "/UpdateEntity/" + @Model.Id)" data-ajax="true" data-ajax-method="POST" data-ajax-success="@(ViewBag.SubmitCallback ?? "showSubmitResult")" data-ajax-failure="showErrorMsg" id="editForm">
+    <div class="page">
+        <table class="table tb-type2 nobdb">
+            <tbody>
+                @Html.AntiForgeryToken()
+                <tr class="noborder">
+                    <td><em>标题:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" name="Title" value="@Model.Title">
+                    </td>
+                    <td class='fontcolor'>*</td>
+                </tr>
+                <tr>
+                    <td><em>内容:</em></td>
+                    <td>
+                        <div style="clear:both;"></div>
+                        <div type="text/plain" id="myEditor" name="Content" style="width:663px;height:240px;  z-index: 999; overflow-y: auto; min-height: 300px;">
+
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><em>附件:</em></td>
+                    <td>
+                        @if (Model.Attachment != null)
+                        {
+                            foreach (var Item in Model.Attachment)
+                            {
+                                <p id="@Item.ID"><a href="/ScheduleArea/Emergencylibrary/DownFile?Id=@Item.ID">@Item.SourceName</a> &nbsp;&nbsp;<a style="cursor: pointer;color: green" onclick="deleAttach('@Item.ID','@Item.SourceName')">删除</a></p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @*//删除附件--未完成
+                            if (Model.AttachmentName!=null)
+                                {
+                                    <input type="button" value="删除" onclick="deleAttach(@Model.AttachmentFile)"/>
+                                }*@
+                    </td>
+                </tr>
+                <tr>
+                    <td><em>选择文件: </em></td>
+                    <td>
+                        <input type="hidden" name="tempAttachmentFile" id="tempAttachmentFile" value="" />
+                        <input type="hidden" name="tempAttachmentName" id="tempAttachmentName" value="" />
+                        <div id="test"></div>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</form>
+<link href="~/Assets/Plugins/umeditor/themes/default/css/umeditor.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="~/Assets/Plugins/Carouselfigure/pintuer.css" />
+<link href="~/Assets/Plugins/diyUpload/css/webuploader.css" rel="stylesheet" />
+<link href="~/Assets/Plugins/diyUpload/css/diyUpload.css" rel="stylesheet" />
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/umeditor/umeditor.configIMG.js"></script>
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="~/Assets/Plugins/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script src="~/Assets/Plugins/diyUpload/js/webuploader.html5only.min.js"></script>
+<script src="~/Assets/Plugins/diyUpload/js/diyUpload.js"></script>
+<script type="text/javascript" src="~/Assets/Plugins/Carouselfigure/pintuer.js"></script>
+<script>
+    var ue = UM.getEditor('myEditor');
+    ue.setContent(parent.htmldecode('@(new HtmlString(Model.Content))'));
+
+    $('#test').diyUpload({
+        url: "/handler/FileUp.ashx",
+        success: function (data) {
+            console.info(data);
+            var url = eval('(' + data._raw + ')').url;
+            var name = eval('(' + data._raw + ')').originalName;
+            $("#tempAttachmentFile").val(url);
+            $("#tempAttachmentName").val(name);
+            $("#test").attr("style", "display:none");
+        },
+        error: function (err) {
+            console.info(err);
+        },
+        buttonText: '选择文件',
+        chunked: false,
+        // 分片大小
+        chunkSize: 30000 * 1024,
+        //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+        fileNumLimit: 1,
+        fileSizeLimit: 30000 * 1024,
+        fileSingleSizeLimit: 30000 * 1024,
+        accept: { extensions: "txt,doc,docx,xlsx,xls,pdf" }
+    });
+
+    function clear() {
+        $("#tempAttachmentFile").val('');
+        $("#tempAttachmentName").val('');
+        $("#test").attr("style", "display:block");
+    }
+
+    function deleAttach(ID, Name) {
+        if (confirm("是否要删除" + Name + ",删除操作无法撤回。")) {
+            $.ajax({
+                url: '/ScheduleArea/Emergencylibrary/deleAttach',
+                type: 'POST',
+                dataType: 'json',
+                data: { 'Id': ID },
+                success: function (e) {
+                    if (e.IsSuccess) {
+                        $("#" + ID).remove();
+                        showMsg("操作成功");
+                    } else {
+                        showMsg(e.Message);
+                    }
+                },
+                error: function (e) {
+                    showMsg(e.message);
+                }
+            });
+        }
+
+        return false;
+    }
+    $(function () {
+        $("#myEditor").attr("style", "height:300px;");
+    });
+</script>
+
+
+

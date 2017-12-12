@@ -1,0 +1,36 @@
+﻿@model IPagedList<Boil>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "锅炉";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>污染源名称</th>
+        <td>
+            <input type="text" name="Name" class="txt"/>
+        </td>
+        <th>污染源地址</th>
+        <td>
+            <input type="text" name="Other" class="txt"/>
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/Boil/FormForAdd','添加锅炉')">添加锅炉</a> |
+            <a _href="~/Boil/ExcelOutputs" onclick="excelOutput(this)" style="cursor: pointer;">Excel导出</a></td>
+    </tr>
+}
+<script type="text/javascript">
+    //
+    function excelOutput(obj) {
+        //alert('a');
+        var GridLevel = $("#GridLevel").val()
+        var RecordingStartTime = $("input[name='RecordingStartTime']").val();
+        var RecordingEndTime = $("input[name='RecordingEndTime']").val();
+        var filename = "";
+         var href = $(obj).attr('_href');
+         window.location.href = href + "?GridLevel=" + GridLevel + "&RecordingStartTime=" + RecordingStartTime + "&RecordingEndTime=" + RecordingEndTime + "&filename=" + filename;
+    }
+</script>

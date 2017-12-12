@@ -1,0 +1,33 @@
+﻿@model IPagedList<Residue>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "渣土车";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>污染源名称</th>
+        <td>
+            <input type="text" name="Name" class="txt"/>
+        </td>
+        <th>所属单位</th>
+        <td>
+            <input type="text" name="Other" class="txt"/>
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td>
+            <a href="javascript:showDataFormModalDialog('/BasicDataArea/Residue/FormForAdd','添加渣土车')">添加渣土车</a> |
+            <a _href="~/Residue/ExcelOutputs" onclick="excelOutput(this)" style="cursor: pointer;">Excel导出</a>
+        </td>
+    </tr>
+}
+<script type="text/javascript">
+    //
+    function excelOutput(obj) {
+         var href = $(obj).attr('_href');
+         window.location.href = href;
+    }
+</script>

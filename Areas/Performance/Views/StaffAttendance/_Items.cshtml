@@ -1,0 +1,28 @@
+﻿@model IPagedList<BasicUPMS.Areas.Performance.Models.StaffModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>网格员名称</th>
+    <th>联系方式</th>
+    <th>签到时间</th>
+    <th>签到状态</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.UserName</td>
+            <td>@item.ContactInformation</td>
+            <td>@item.ReportingTime</td>
+            <td>@item.StatusName</td>
+        </tr>
+    }
+}
+
+

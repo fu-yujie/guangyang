@@ -1,0 +1,55 @@
+﻿
+@model BasicData.Domain.Soot.SootPoint
+    @{
+        Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+    }
+    @section Form
+{
+        <tr class="noborder">
+            <td><em>编号:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="CropId" value="@Model.CropId">
+            </td>
+            <td class='fontcolor'>*</td>
+            <td><em>名称:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="CropName" value="@Model.CropName">
+            </td>
+            <td class='fontcolor'>*</td>
+        </tr>
+        <tr>
+            <td><em>负责人:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="Person" value="@Model.Person">
+            </td>
+            <td class='fontcolor'>*</td>
+            <td><em>联系电话:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="Phone" value="@Model.Phone">
+            </td>
+            <td class='fontcolor'>*</td>
+        </tr>
+        <tr>
+            <td><em>经度:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="Longitude" value="@Model.Longitude">
+            </td>
+            <td class='fontcolor'>*</td>
+            <td><em>纬度:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="Latitude" value="@Model.Latitude">
+            </td>
+            <td class='fontcolor'>*</td>
+        </tr>
+        <tr id="testbeizhu">
+            <td><em>区域: </em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="AreaName" value="@Model.AreaName">
+            </td>
+            <td class='fontcolor'></td>
+            <td><em>监测地址:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="Address" value="@Model.Address">
+            </td>
+        </tr>
+    }

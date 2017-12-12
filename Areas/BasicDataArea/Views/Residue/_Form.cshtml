@@ -1,0 +1,34 @@
+﻿@model Residue
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>污染源编码:</em></td>
+        <td class="vatop rowform">
+            <input type="text"  class="txt" name="MainCode" value="@Model.MainCode">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>所属单位:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Company" value="@Model.Company">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>改造完成时间:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" name="CompleteDate" value="@Model.CompleteDate">
+        </td>
+        <td></td>
+    </tr>
+}
+@section Script
+{
+    <script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+}
+
+

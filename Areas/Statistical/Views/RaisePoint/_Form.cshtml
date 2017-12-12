@@ -1,0 +1,54 @@
+﻿@model BasicData.Domain.Raise.RaisePoint
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Code" value="@Model.Code">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="RaisePointName" value="@Model.RaisePointName">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>负责人:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Person" value="@Model.Person">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>联系电话:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Phone" value="@Model.Phone">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>经度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Longitude" value="@Model.Longitude">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>纬度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Latitude" value="@Model.Latitude">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr id="testbeizhu">
+        <td><em>设备MN: </em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="EquipmentMn" value="@Model.EquipmentMn">
+        </td>
+        <td class='fontcolor'></td>
+        <td><em>监测地址:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Address" value="@Model.Address">
+        </td>
+    </tr>
+}

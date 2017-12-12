@@ -1,0 +1,33 @@
+﻿@model IPagedList<NoticeMess>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>标题</th>
+    <th>下发日期</th>
+    <th>下发人</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Title</td>
+            <td>@item.ReleaseDate</td>
+            <td>@(item.User==null?"未知用户":item.User.Name)</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/NoticeMess/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/NoticeMess/RemoveVarChar','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+
+

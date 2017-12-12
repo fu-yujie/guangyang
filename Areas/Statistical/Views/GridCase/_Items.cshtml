@@ -1,0 +1,23 @@
+﻿@using BasicUPMS.Areas.Statistical.Models
+@model IPagedList<GridCaseModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>网格名称</th>
+    <th>案件数量</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.GridName</td>
+            <td>@item.CountNum</td>
+        </tr>
+    }
+}

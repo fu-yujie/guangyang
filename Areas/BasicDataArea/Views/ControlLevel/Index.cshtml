@@ -1,0 +1,12 @@
+﻿
+@model IPagedList<ControlLevel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "控制级别管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/ControlLevel/FormForAdd','添加控制级别')">添加控制级别</a> </td>
+    </tr>
+}

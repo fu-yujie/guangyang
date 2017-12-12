@@ -1,0 +1,87 @@
+﻿@model User
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>登录名:</em></td>
+        <td class="vatop rowform">
+            <input type="text" @ViewBag.Attr class="txt" name="Name" value="@Model.Name">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>真实姓名:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="RealName" value="@Model.RealName">
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td><em>角色:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownList("RoleId", (List<SelectListItem>)ViewBag.Roles)
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>组织:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownList("OrgId", (List<SelectListItem>)ViewBag.Orgs)
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>手机:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Phone" value="@Model.Phone">
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td><em>邮箱:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Email" value="@Model.Email">
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td><em>状态: </em></td>
+        <td class="vatop rowform">
+            <ul>
+                @foreach (var item in Html.SelectListItems(Model.Status, false))
+                {
+                    <li>
+                        <label><input type="radio" name="Status" @(item.Selected ? "checked=checked" : "") value="@item.Value">@item.Text</label>
+                    </li>
+                }
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>是否可登录: </em></td>
+        <td class="vatop rowform">
+            <ul>
+                @foreach (var item in Html.SelectListItems(Model.EnableLogin, true))
+                {
+                    <li>
+                        <label><input type="radio" name="EnableLogin" @(item.Selected ? "checked=checked" : "") value="@item.Value">@item.Text</label>
+                    </li>
+                }
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+
+    <tr id="testbeizhu">
+        <td><em>说明: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Comment">@Model.Comment</textarea></td>
+    </tr>
+
+}
+@section Script
+{
+    
+}

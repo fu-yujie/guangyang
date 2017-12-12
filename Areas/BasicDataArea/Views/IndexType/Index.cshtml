@@ -1,0 +1,34 @@
+﻿@model IPagedList<IndexType>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "监测指标类型管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>编号</label>
+        </th>
+        <td>
+            <input type="text" name="Code" class="txt" />
+        </td>
+        <th>
+            <label>监测指标</label>
+        </th>
+        <td>
+            <input type="text" name="Name" class="txt" />
+        </td>
+        <th>环境类型</th>
+        <td class="vatop">
+            @Html.DropDownList("HJType", (List<SelectListItem>)ViewBag.DropDownHJ)
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/IndexType/FormForAdd','添加监测类型指标')">添加监测类型指标</a> </td>
+    </tr>
+}
+
+
+
+

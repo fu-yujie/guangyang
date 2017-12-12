@@ -1,0 +1,36 @@
+﻿@model IPagedList<SheShuiCompany>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>污染源编码</th>
+    <th>污染源名称</th>
+    <th>废水治理设施数</th>
+    <th>工业废水排放量 </th>
+    <th>排入城市污水处理厂的量 </th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.MainCode</td>
+            <td>@item.PollutionSourceName</td>
+            <td>@item.ZhiLiCount</td>
+            <td>@item.PaiFangLiang</td>
+            <td>@item.ChiShiChuLi</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/SheShuiCompany/FormForUpdate?Id=@item.Id','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/SheShuiCompany/Remove','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+

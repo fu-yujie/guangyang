@@ -1,0 +1,41 @@
+﻿@model IPagedList<Status>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>编号</th>
+    <th>状态名称</th>
+    <th>类别</th>
+    <th>备注</th>
+    <th>图标</th>
+    <th>颜色</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Code</td>
+            <td>@item.Name</td>
+            <td>@item.StatusType</td>
+            <td>@item.Remarks</td>
+            <td>@item.Icon</td>
+            <td>@item.Color</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/Status/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/Status/RemoveVarChar','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,191 @@
+﻿
+@model PollutionSource
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Code" value="@Model.Code">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>污染源名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Name" value="@Model.Name">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>污染源性质:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownListFor(t => t.Ownership, (List<SelectListItem>)ViewBag.OwnerShipList)
+        </td>
+        <td></td>
+        <td><em>污染源类别:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownListFor(t => t.BusinessType, (List<SelectListItem>)ViewBag.PollutionSourceTypes)
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>所属辖区:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ZoneCodeQ" value="@Model.ZoneCodeQ">
+        </td>
+        <td></td>
+        <td><em>所在乡镇/街办处/园区:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ZoneCodeJ" value="@Model.ZoneCodeJ">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>所属网格:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" readonly="readonly" name="GridName" onclick="showDataFormModalDialogWithId('/BasicDataArea/Grid/GridCodePartial', '选择网格', '', '', 'CloseDialog')" value="@Model.GridName" />
+            <input type="hidden" name="GridCode" value="@Model.GridCode" />
+        </td>
+        <td></td>
+        <td><em>状态:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="StatusCode" value="@Model.StatusCode">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>联系人:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Contacts" value="@Model.Contacts">
+        </td>
+        <td></td>
+        <td><em>联系方式:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ContactInformation" value="@Model.ContactInformation">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>经度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Longitude" value="@Model.Longitude">
+        </td>
+        <td></td>
+        <td><em>纬度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Latitude" value="@Model.Latitude">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>主要污染物:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Pollutants" value="@Model.Pollutants">
+        </td>
+        <td></td>
+        <td><em>污染源地址:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Address" value="@Model.Address">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>控制级别:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownList("ControlLevel", (List<SelectListItem>)ViewBag.ControlLevelList)
+        </td>
+        <td></td>
+        <td><em>说明: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea class="tarea" name="Remarks">@Model.Remarks</textarea></td>
+    </tr>
+    <tr>
+        <td><em>选择图片: </em></td>
+        <td>
+            <div id="test"> </div>
+        </td>
+        <td></td>
+        <td><em>污染源图片: </em></td>
+        <td>
+            <input type="hidden" name="temPicUrl" id="temPicUrl" />
+            <input type="hidden" name="PicUrl" id="PicUrl" value="@Model.PicUrl" />
+            <div class="banner" style="width: 260px">
+                <ul class="carousel">
+                    @if (ViewBag.PicUrls != null)
+                    {
+                        foreach (var item in ViewBag.PicUrls)
+                        {
+                            if (!string.IsNullOrWhiteSpace(item))
+                            {
+                                <li class="item" style="width: 200px">
+                                    <img src="@item" />
+                                    <div class='pic1' style='position: absolute; left: 230px; top: 10px;' onclick='deletePic("@Model.Id","@item")'><img src='~/Assets/Plugins/diyUpload/images/x_alt.png' style='width: 20px; height: 20px;' /></div>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </td>
+    </tr>
+
+
+
+}
+@section Script
+{
+    <link rel="stylesheet" href="~/Assets/Plugins/Carouselfigure/pintuer.css" />
+    <link href="~/Assets/Plugins/diyUpload/css/webuploader.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/diyUpload/css/diyUpload.css" rel="stylesheet" />
+    <script src="~/Assets/Plugins/diyUpload/js/webuploader.html5only.min.js"></script>
+    <script src="~/Assets/Plugins/diyUpload/js/diyUpload.js"></script>
+    <script type="text/javascript" src="~/Assets/Plugins/Carouselfigure/pintuer.js"></script>
+    <script type="text/javascript">
+        $('#test').diyUpload({
+            url: "/handler/imageUp.ashx",
+            success: function (data) {
+                console.info(data);
+                var url = eval('(' + data._raw + ')').url;
+                $("div.diyFileName:contains('" + data.originalName + "')").attr("data-url", url);
+            },
+            error: function (err) {
+                console.info(err);
+            },
+            buttonText: '选择文件',
+            chunked: false,
+            // 分片大小
+            chunkSize: 512 * 1024,
+            //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+            fileNumLimit: 50,
+            fileSizeLimit: 500000 * 1024,
+            fileSingleSizeLimit: 50000 * 1024
+        });
+        function deletePic(Id, PicUrl) {
+            console.log("sss");
+            if (confirm("是否要删除该图片？")) {
+                $.ajax({
+                    url: '/BasicDataArea/PollutionSource/DeletePic',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'Id': Id, 'PicUrl': PicUrl },
+                    success: function (e) {
+                        if (e.IsSuccess) {
+                            $("img[src='" + PicUrl + "']").parent().remove();
+                            $(".pointer li").eq($(".pointer li").length - 1).remove();
+                            $(".carousel").css("width", $(".carousel").width() - 260);
+                            window.numself = $(".carousel .item").length;
+                            showMsg("操作成功");
+                        } else {
+                            showMsg(e.Message);
+                        }
+                    },
+                    error: function (e) {
+                        showMsg(e.Message);
+                    }
+                });
+            }
+
+        }
+
+    </script>
+}

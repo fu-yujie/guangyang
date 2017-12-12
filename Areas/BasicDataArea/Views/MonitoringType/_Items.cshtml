@@ -1,0 +1,29 @@
+﻿@model IPagedList<MonitoringType>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>编号</th>
+    <th>监测点名称</th>
+    <th>说明</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Code</td>
+            <td>@item.Name</td>
+            <td>@item.Remarks</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/MonitoringType/FormForUpdateVarchar?Id=@item.ID&t=@(DateTime.Now.Millisecond)','编辑监测点类型')">编辑</a> |
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/MonitoringType/RemoveVarChar','Id=@item.Code',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}

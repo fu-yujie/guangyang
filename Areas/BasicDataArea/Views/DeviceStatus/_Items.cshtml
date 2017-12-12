@@ -1,0 +1,42 @@
+﻿@using BasicUPMS.Areas.BasicDataArea.Models;
+@model IPagedList<DeviceStatus>
+    @{
+        Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+    }
+
+    @section Head
+{
+        <th>排序</th>
+        <th>类别</th>
+        <th>企业名称</th>
+        <th>联系人</th>
+        <th>联系电话</th>
+        <th>日期</th>
+        <th>开启时长</th>
+        @*<th class="align-center">操作</th>*@
+    }
+
+    @section Items
+{
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr class="hover">
+                <td>@(i + 1)</td>
+                <td>@Model[i].Name</td>
+                <td>@Model[i].c_source_name</td>
+                <td>@Model[i].Contact</td>
+                <td>@(Model[i].Phone)</td>
+                <td>@Model[i].date</td>
+                <td>@(Model[i].total)</td>
+                <td class="align-center">
+                    @*<a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/DeviceStatus/ShowChart?Time=@item.Time&TypeName=@item.TypeName&DeviceName=@item.DeviceName&t=@(DateTime.Now.Millisecond)','查看')">查看</a>*@
+
+                </td>
+            </tr>
+        }
+    }
+
+
+
+

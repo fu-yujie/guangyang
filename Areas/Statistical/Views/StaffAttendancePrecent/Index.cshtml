@@ -1,0 +1,51 @@
+﻿@model IPagedList<BasicUPMS.Areas.Statistical.Models.StaffAttendancePrecentViewModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "签到率统计";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>网格名称</label>
+        </th>
+        <td>
+            <input type="text" name="GridName" class="txt" />
+        </td>
+        <th>
+            <label>签到时间</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingStartTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <th>
+            <label>至</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingEndTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" onmousedown="setContidion()" />
+            <a _href="~/StaffAttendancePrecent/ExcelOutputs" onclick="excelOutput(this)" style="cursor: pointer;">Excel导出</a>
+        </td>
+    </tr>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    //
+    var RecordingStartTime = "";
+    var RecordingEndTime = "";
+    var GridName = "";
+    //
+    function setContidion() {
+        RecordingStartTime = $("input[name='RecordingStartTime']").val();
+        RecordingEndTime = $("input[name='RecordingEndTime']").val();
+        GridName = $("#input[name='GridName']").val();
+    }
+    function excelOutput(obj) {
+        var filename = "";
+       var href = $(obj).attr('_href');
+       window.location.href = href + "?RecordingStartTime=" + RecordingStartTime + "&RecordingEndTime=" + RecordingEndTime + "&GridName=" + GridName + "&filename=" + filename;
+    }
+</script>
+

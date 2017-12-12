@@ -1,0 +1,35 @@
+﻿@using BasicUPMS.Areas.BasicDataArea.Models
+@model IPagedList<DeviceStatus>
+    @{
+        Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+        ViewBag.Title = "治理设备状态";
+    }
+    <script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+    @section SearchCondition
+{
+        <tr>
+            <th>类别</th>
+            <td>
+                @Html.DropDownList("Name", (List<SelectListItem>)ViewBag.VideoType)
+            </td>
+            <th>选择时间</th>
+            <td>
+                <input type="text" name="date" id="date" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;
+                <input type="submit" class="btn-search tooltip" value="查询" />
+            </td>
+            <td><a _href="~/DeviceStatus/ExcelOutputs" onclick="excelOutput(this)" style="cursor: pointer;">Excel导出</a></td>
+
+        </tr>
+    }
+
+    <script type="text/javascript">
+        //
+        function excelOutput(obj) {
+            var href = $(obj).attr('_href');
+            window.location.href = href + "?Name=" + $("#Name").val() + "&date=" + $("#date").val();
+        }
+    </script>
+

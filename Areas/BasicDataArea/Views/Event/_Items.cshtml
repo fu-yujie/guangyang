@@ -1,0 +1,48 @@
+﻿@using BasicUPMS.Areas.BasicDataArea.Models
+@model IPagedList<EventViewModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+    bool role = ViewBag.role;
+}
+
+@section Head
+{
+    <th>污染类型</th>
+    <th>网格名称</th>
+    <th>案发时间</th>
+    <th>案件来源</th>
+    <th>提交人</th>
+    <th>描述</th>
+    <th>位置</th>
+    <th>案件状态</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.EventTypeName</td>
+            <td>@item.GridName</td>
+            <td>@item.RecordingTime</td>
+            <td>@item.EventSource</td>
+            <td>@item.Author</td>
+            <td>@item.Description</td>
+            <td>@item.Location</td>
+            <td>@item.Status</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialogWithId('/BasicDataArea/Event/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','查看')">查看</a>|
+                @{
+                    if (role)
+                    {
+                        <a class="edit" href="javascript:confirmDelete('/BasicDataArea/Event/RemoveVarChar','Id=@item.Id',showSubmitResult)">删除</a>
+                    }
+                }
+            </td>
+        </tr>
+    }
+}
+
+

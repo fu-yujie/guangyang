@@ -1,0 +1,164 @@
+﻿@model GridMember
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+    <style>
+        .user-img{
+            position: relative;
+            float: left;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: 370px;
+        }
+        .user-img img{
+            width: 100px;
+            height: 100px;
+        }
+        .icon-wapper{
+            position: absolute;
+            z-index: 10;
+        }
+        .icon{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            z-index: 9;
+        }
+    </style>
+}
+@section Div{
+    @if (!string.IsNullOrEmpty(Model.IconUrl))
+    {
+        <div class="user-img">
+            <img class="icon-wapper" src="~/Assets/Images/circle.png" />
+            <img src="@ViewBag.IconUrl" class="icon">
+        </div>
+    }
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>登录名:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="LoginName" value="@Model.LoginName">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>联系方式:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ContactInformation" value="@Model.ContactInformation">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>姓名:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Name" value="@Model.Name">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>性别:</em></td>
+        <td class="vatop rowform">
+            <ul>
+                @foreach (var item in Html.SelectListItems(Model.Sex, false))
+                {
+                    <li>
+                        <label><input type="radio" name="Sex" @(item.Selected ? "checked=checked" : "") value="@item.Value">@item.Text</label>
+                    </li>
+                }
+            </ul>
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>组织:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownList("OrgId", (List<SelectListItem>)ViewBag.Orgs)
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>岗位:</em></td>
+        <td class="vatop rowform" id="Post">
+            @Html.Partial("PartialPost")
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>出生日期:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt Wdate" name="Birthday" value="@Model.Birthday" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })">
+        </td>
+        <td></td>
+        <td><em>民族:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Nation" value="@Model.Nation">
+        </td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td><em>经度:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Longitude" value="@Model.Longitude">
+        </td>
+        <td></td>
+        <td><em>纬度: </em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Latitude" value="@Model.Latitude">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>邮箱地址:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Email" value="@Model.Email">
+        </td>
+        <td></td>
+        <td><em>家庭住址: </em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Address" value="@Model.Address">
+        </td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td><em>是否登录APP:</em></td>
+        <td class="vatop rowform">
+            <label>@Html.CheckBox("LoginApp", Model.LoginApp, new { @checked = true })</label>
+        </td>
+        <td></td>
+        <td><em>是否可以处理案件:</em></td>
+        <td class="vatop rowform">
+            <label>@Html.CheckBoxFor(t => t.IsHandling)</label>
+        </td>
+        <td></td>
+    </tr>
+    @*<tr>
+            <td><em>是否登录PC: </em></td>
+            <td class="vatop rowform">
+                <label>@Html.CheckBox("LoginPc", Model.LoginPc, true)</label>
+            </td>
+            <td></td>
+        </tr>*@
+}
+@section Script
+{
+    <script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+    <script>
+        $(document).ready(init);
+
+        function init() {
+            $("select[name='OrgId']").change(function () {
+                var selectedOrgId = $(this).val();
+                ShowPostWithSelectedOrg(selectedOrgId);
+            });
+        }
+
+        function ShowPostWithSelectedOrg(OrgId) {
+            $.ajax({
+                url: "/SystemArea/GridMember/PostViewResult",
+                data: { OrgId: OrgId },
+                success: function (data) {
+                    $("#Post").html(data);
+                }
+            });
+        }
+    </script>
+}

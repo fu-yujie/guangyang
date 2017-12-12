@@ -1,0 +1,61 @@
+﻿
+@model Status
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Code" value="@Model.Code">
+        </td>
+        <td>*</td>
+    </tr>
+    <tr>
+        <td><em>状态名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Name" value="@Model.Name">
+        </td>
+        <td>*</td>
+    </tr>
+    <tr>
+        <td><em>类别:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="StatusType" value="@Model.StatusType">
+        </td>
+        <td>*</td>
+    </tr>
+    <tr>
+        <td><em>图标:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Icon" value="@Model.Icon">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>颜色:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Color" value="@Model.Color">
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+    <tr>
+        <td><em>排序:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Sequence" value="@Model.Sequence">
+        </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td><em>备注:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Remarks" value="@Model.Remarks">
+        </td>
+        <td> </td>
+    </tr>
+
+}
+
+

@@ -1,0 +1,39 @@
+﻿@using BasicUPMS.Areas.Statistical.Models
+@model IPagedList<Pollution>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>网格名称</th>
+    <th>AQI</th>
+    <th>PM2.5</th>
+    <th>PM10</th>
+    <th>SO2</th>
+    <th>CO</th>
+    <th>NO2</th>
+    <th>03</th>
+    <th>监测时间</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.GridName</td>
+            <td>@item.AQI</td>
+            <td>@item.Pm25</td>
+            <td>@item.Pm10</td>
+            <td>@item.So2</td>
+            <td>@item.Co</td>
+            <td>@item.No2</td>
+            <td>@item.O3</td>
+            <td>@item.MonitoringTime</td>
+        </tr>
+    }
+}
+
+

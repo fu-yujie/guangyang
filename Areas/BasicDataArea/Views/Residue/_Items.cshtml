@@ -1,0 +1,34 @@
+﻿@model IPagedList<Residue>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>污染源编码</th>
+    <th>污染源名称</th>
+    <th>所属单位</th>
+    <th>改造完成时间</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.MainCode</td>
+            <td>@item.PollutionSourceName</td>
+            <td>@item.Company</td>
+            <td>@item.CompleteDate</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/Residue/FormForUpdate?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/Residue/Remove','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+

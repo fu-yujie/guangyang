@@ -1,0 +1,107 @@
+﻿@model PermissionResource
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+    ViewBag.EditAction = "/SystemArea/PermissionResource/" + ViewBag.OperateType.ToString() + "/" + Model.Id + "?ParentId=" + Model.ParentId + "&Depth=" + Model.Depth;
+    ViewBag.SubmitCallback = "refreshTree";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>资源名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Name" value="@Model.Name">
+        </td>
+        <td>*</td>
+    </tr>
+    @if (Model.Depth <= UPMSConfig.MenuDepth)
+    {
+        <tr>
+            <td><em>URL:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="LinkUrl" value="@Model.LinkUrl">
+            </td>
+            <td>相对地址</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td><em>页面地址/元素:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="LinkUrl" value="@Model.LinkUrl" style="width:170px; float:left ">-
+                <input type="text" class="txt" name="ElementSelector" style="width:80px; " value="@Model.ElementSelector">
+            </td>
+
+            <td>相对地址-jquery选择器</td>
+        </tr>
+    }
+    <tr>
+        <td><em>区域:</em></td>
+        <td class="vatop rowform">
+            <input type="text" name="Area" value="@Model.Area">
+        </td>
+        <td>大小写敏感</td>
+    </tr>
+    <tr>
+        <td><em>控制器/操作:</em></td>
+        <td class="vatop rowform">
+            <input type="text" name="ControllerName" value="@Model.ControllerName">/
+            <input type="text" name="ActionName" value="@Model.ActionName">
+        </td>
+        <td>大小写敏感，两项都为空或都非空</td>
+    </tr>
+
+    <tr>
+        <td><em>图标:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Icon" value="@Model.Icon">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>菜单图标:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="MenuIcon" value="@Model.MenuIcon">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>状态: </em></td>
+        <td class="vatop rowform">
+            <ul>
+                @foreach (var item in Html.SelectListItems(Model.Status, false))
+                {
+                    <li>
+                        <label><input type="radio" name="Status" @(item.Selected ? "checked=checked" : "") value="@item.Value">@item.Text</label>
+                    </li>
+                }
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>排序:</em></td>
+        <td class="vatop rowform"><input type="text" class="txt" value="@Model.Sort" name="Sort"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>备注: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Comment">@Model.Comment</textarea></td>
+    </tr>
+
+    <tr>
+        <td><em>深度:</em></td>
+        <td class="vatop rowform">
+            @Model.Depth
+        </td>
+        <td></td>
+    </tr>
+
+
+}
+<script type="text/javascript">
+    //刷新树
+    function refreshTree(e) {
+        showSubmitResult(e, null, null, function () { window.frames['workspace'].loadTree(e.Data); });
+    }
+</script>

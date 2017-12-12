@@ -1,0 +1,33 @@
+﻿@using BasicUPMS.Areas.ScheduleArea.Models
+@model IPagedList<SMSViewModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "短信管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>内容</label>
+        </th>
+        <td>
+            <input type="text" name="Content" class="txt" />
+        </td>
+        <th>
+            <label>下发时间</label>
+        </th>
+        <td>
+            <input type="text" name="StartTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <th>
+            <label>至</label>
+        </th>
+        <td>
+            <input type="text" name="EndTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+    </tr>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>

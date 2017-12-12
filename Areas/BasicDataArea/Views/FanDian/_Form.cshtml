@@ -1,0 +1,30 @@
+﻿@model FanDian
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>污染源编码:</em></td>
+        <td class="vatop rowform">
+            <input type="text"  class="txt" name="MainCode" value="@Model.MainCode">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>灶头个数:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Count" value="@Model.Count">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>净化器类型:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="jhType" value="@Model.jhType">
+        </td>
+        <td></td>
+    </tr>
+}
+
+

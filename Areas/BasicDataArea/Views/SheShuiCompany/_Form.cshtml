@@ -1,0 +1,37 @@
+﻿@model SheShuiCompany
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>污染源编码:</em></td>
+        <td class="vatop rowform">
+            <input type="text"  class="txt" name="MainCode" value="@Model.MainCode">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>废水治理设施数:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ZhiLiCount" value="@Model.ZhiLiCount">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>工业废水排放量 :</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="PaiFangLiang" value="@Model.PaiFangLiang">
+        </td>
+        <td></td>
+    </tr>
+<tr class="noborder">
+    <td><em>排入城市污水处理厂的量 :</em></td>
+    <td class="vatop rowform">
+        <input type="text" class="txt" name="ChiShiChuLi" value="@Model.ChiShiChuLi">
+    </td>
+    <td></td>
+</tr>
+}
+
+

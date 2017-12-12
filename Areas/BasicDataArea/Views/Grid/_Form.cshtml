@@ -1,0 +1,95 @@
+﻿@model Grid
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>网格编号:</em></td>
+        <td class="vatop rowform">
+        <input type="text" class="txt"   name="GridCode"  value ="@Model.GridCode">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>网格名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="GridName" value="@Model.GridName">
+        </td>
+        <td class='fontcolor'>*</td>
+    </>
+    <tr class="noborder">
+        <td><em>主管领导:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Leadership" value="@Model.Leadership">
+        </td>
+        <td></td>
+        <td><em>联系方式:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ContactInformation" value="@Model.ContactInformation">
+        </td>
+    </tr>
+    <tr class="noborder">
+        <td><em>年减排量:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Annualemission" value="@Model.Annualemission">
+        </td>
+        <td></td>
+        <td><em>级别:</em></td>
+        <td class="vatop rowform">
+            @Html.DropDownList("Level", (List<SelectListItem>)ViewBag.LevelList)
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>全国排名:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Ranking" value="@Model.Ranking">
+        </td>
+        <td></td>
+        <td><em>主要污染物:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="MainPollutants" value="@Model.MainPollutants">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>管辖范围:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Jurisdiction" value="@Model.Jurisdiction">
+        </td>
+        <td></td>
+        <td><em>责任主体:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Subject" value="@Model.Subject">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>所属辖区:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ZoneQ" value="@Model.ZoneQ">
+        </td>
+        <td></td>
+        <td><em>所在乡镇/街办处/园区:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="ZoneJ" value="@Model.ZoneJ">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>网格颜色:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="GridColor" value="@Model.GridColor">
+        </td>
+        <td></td>
+        <td><em>状态:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="StatusCode" value="@Model.StatusCode">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>说明: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Remarks">@Model.Remarks</textarea></td>
+    </tr>
+
+}

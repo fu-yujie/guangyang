@@ -1,0 +1,62 @@
+﻿@using BasicUPMS.Areas.Statistical.Models
+@model IPagedList<GridCaseModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "网格案件统计";
+    string data = "";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>网格名称</label>
+        </th>
+        <td>
+            <input type="text" name="GridName" class="txt" />
+        </td>
+        <th>
+            <label>案件提交时间</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingStartTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <th>
+            <label>至</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingEndTime" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <th><label>级别</label></th>
+        <td class="vatop">
+            @Html.DropDownList("GridLevel", (List<SelectListItem>)ViewBag.LevelList)
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" onmousedown="setContidion()" />
+            <a _href="~/GridCase/ExcelOutputs" onclick="excelOutput(this)" style="cursor:pointer;">Excel导出</a>
+
+        </td>
+    </tr>
+}
+@section Description{
+    <div style="font-size: 14px">
+        <p>案件数量:指定时间内（默认为系统初始化时期到今天）该网格下对应所有案件总数（一级网格案件总数为二级网格案件数量+三级网格案件数量；二级网格同理）</p>
+    </div>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    var GridName="";
+    var RecordingStartTime="";
+    var RecordingEndTime="";
+    var Level=0;
+    //
+    function setContidion() {
+         GridName = $("input[name='GridName']").val();
+         RecordingStartTime = $("input[name='RecordingStartTime']").val();
+         RecordingEndTime = $("input[name='RecordingEndTime']").val();
+         Level = $("#GridLevel").val();
+    }
+    function excelOutput(obj) {
+        var href = $(obj).attr('_href');
+        window.location.href = href + "?GridName=" + GridName + "&RecordingStartTime=" + RecordingStartTime + "&RecordingEndTime=" + RecordingEndTime + "&Level=" + Level;
+    }
+</script>

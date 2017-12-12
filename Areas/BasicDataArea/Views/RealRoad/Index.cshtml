@@ -1,0 +1,29 @@
+﻿@model IPagedList<RealRoad>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "重要街道";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>污染源名称</th>
+        <td>
+            <input type="text" name="Name" class="txt"/>
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        @*<td><a href="javascript:showDataFormModalDialog('/BasicDataArea/RealRoad/FormForAdd','添加重要街道')">添加重要街道</a> </td>*@
+        <td>
+            <a _href="~/RealRoad/ExcelOutputs" onclick="excelOutput(this)" style="cursor: pointer;">Excel导出</a>
+        </td>
+    </tr>
+}
+<script type="text/javascript">
+    //
+    function excelOutput(obj) {
+         var href = $(obj).attr('_href');
+         window.location.href = href;
+    }
+</script>

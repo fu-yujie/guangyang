@@ -1,0 +1,32 @@
+﻿@model IPagedList<User>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "用户管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>角色</label>
+        </th>
+        <td>
+            @Html.DropDownList("RoleId", (List<SelectListItem>)ViewBag.Roles)
+        </td>
+        <th>
+            <label>状态</label>
+        </th>
+        <td>
+            @Html.DropDownList("Status", Html.SelectListItems(EnabledStatus.None, true))
+        </td>
+        <th>
+            <label>登录名</label>
+        </th>
+        <td>
+            <input type="text" name="Name" class="txt" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/SystemArea/User/FormForAdd','添加用户')">添加用户</a> </td>
+    </tr>
+}

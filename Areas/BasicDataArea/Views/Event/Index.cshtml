@@ -1,0 +1,43 @@
+﻿@using BasicUPMS.Areas.BasicDataArea.Models
+@model IPagedList<EventViewModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "案件管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>案件来源</th>
+        <td class="">
+            @Html.DropDownList("EventSource", (List<SelectListItem>)ViewBag.CaseSouce)
+        </td>
+        <th>污染类型</th>
+        <td class="">
+            @Html.DropDownList("EventTypeCode", (List<SelectListItem>)ViewBag.EventSouce)
+        </td>
+        <th>案件状态</th>
+        <td class="">
+            @Html.DropDownList("EventStatusCode", (List<SelectListItem>)ViewBag.EventStatus)
+        </td>
+        <th>网格名称</th>
+        <td>
+            <input type="text" name="GridName" class="txt" />
+        </td>
+        @*<td><a href="javascript:showDataFormModalDialog('BasicDataArea/Event/FormForAdd','添加XXX')">添加XXX</a> </td>*@
+    </tr>
+    <tr>
+      
+        <th>
+            <label>案发时间</label>
+        </th>
+        <td colspan="3">
+            <input type="text" name="RecordingTimeStart" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"/>-
+            <input type="text" name="RecordingTimeEnd" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"/>
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+    </tr>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>

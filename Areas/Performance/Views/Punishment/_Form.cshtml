@@ -1,0 +1,57 @@
+﻿@model GridMemberRewards
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+    ViewBag.EditAction = "/Performance/Punishment/" + ViewBag.OperateType.ToString() + "/" + @Model.Id;
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>网格名称:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" readonly="readonly" name="GridName" onclick="showDataFormModalDialogWithId('/BasicDataArea/Grid/GridCodePartial','选择网格','','','CloseDialog')" value="@Model.GridName" />
+            <input type="hidden" name="GridCode" value="@Model.GridCode" />
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>网格员名称:</em></td>
+        <td class="vatop rowform" Id="PartialUser">
+            @Html.Partial("PartialUser")
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr>
+        <td><em>罚金:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Bonus" value="@Model.Bonus">
+        </td>
+        <td class='fontcolor'>*</td>
+
+    </tr>
+    <tr>
+        <td><em>事迹: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Deeds">@Model.Deeds</textarea></td>
+    </tr>
+    <tr>
+        <td><em>说明: </em></td>
+        <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Remarks">@Model.Remarks</textarea></td>
+    </tr>
+
+}
+
+@section Script
+{
+    <script>
+        function DropCallBack() {
+            $.ajax({
+                url: "/Performance/Punishment/UserViewResult",
+                data: { Code: $("input[name='GridCode']").val() },
+                success: function (data) {
+                    $("#PartialUser").html(data);
+                }
+            });
+        }
+    </script>
+}
+
+

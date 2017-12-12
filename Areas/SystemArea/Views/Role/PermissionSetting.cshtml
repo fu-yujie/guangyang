@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "权限配置";
+}
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><span>赋权</span></div>
+    </div>
+    <div class="fixed-empty"></div>
+    <div id="conditionDiv">
+        <input id="openAll" type="button" value="展开全部" />
+        <input id="closeAll" type="button" value="折叠全部" />
+
+        <input id="checkAll" type="button" value="全选" />
+        <input id="uncheckAll" type="button" value="取消选择" />
+        <input id="btnSave" type="button" value="保存" onclick="save()" />
+        <input type="text" id="txtSearch">
+    </div>
+</div>
+
+@section Styles{
+    <link href="~/Assets/Plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Assets/Plugins/jstree/dist/jstree.min.js"></script>
+
+    <script type="text/javascript">
+        function loadTree() {
+
+            $.getJSON("PermissionSetting?roleId=@ViewBag.RoleId&style=1&r=" + Math.random(), function (data) {
+
+                $("#conditionDiv").after("<div id=\"container\"></div>");
+                $("#container").on('ready.jstree', function () {
+                    //$(".jstree-icon").each(function () {
+                    //    $(this).css("color", '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6));
+                    //})
+                }).on('open_node.jstree', function (node, status) {
+                    var nodes = status.node.children.slice(0);
+                    nodes.push(status.node.id);
+                    // $.each(nodes,function(index,value){
+                    //   $("li[id="+value+"] a .jstree-icon").each(function(){
+                    //    $(this).css("color",'#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6));
+                    //   })
+                    //})
+                }).jstree(
+                   {
+                       'core': {
+                           'data': data
+                       },
+                       "plugins": ["search", "checkbox"],
+                   });
+                //搜索
+                var to = false;
+                $('#txtSearch').keyup(function (e) {
+                    if (to) { clearTimeout(to); }
+                    to = setTimeout(function () {
+                        $('#container').jstree(true).search($(e.target).val());
+                    }, 250);
+                });
+
+                $("#openAll").click(function () {
+                    $('#container').jstree().open_all();
+                });
+                $("#closeAll").click(function () {
+                    $('#container').jstree().close_all();
+                });
+                $("#checkAll").click(function () {
+                    $('#container').jstree().check_all();
+                });
+                $("#uncheckAll").click(function () {
+                    $('#container').jstree().uncheck_all();
+                });
+            });
+        }
+
+        //初始化
+        $(function () {
+            loadTree();
+        });
+
+        function save() {
+
+            //选中的节点
+            var checktedList = $('#container').jstree().get_checked();
+            //半选的节点
+            $('.jstree-undetermined').parents("li[id]").each(function () {
+                var id = $(this).attr("id");
+                checktedList.push(id);
+            });
+            $.ajax({
+                url: "PermissionSetting",
+                data: "roleId=@ViewBag.RoleId&resourceIds=" + checktedList,
+                type: "POST",
+                dataType: "json"
+            })
+                .done(showSubmitResult)
+                .fail(function () {
+                    ShowErrorMsg("网络繁忙，请稍后再试");
+                });
+        }
+    </script>
+}

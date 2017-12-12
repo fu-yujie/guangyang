@@ -1,0 +1,35 @@
+﻿@model IPagedList<IndexType>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>编号</th>
+    <th>监测指标</th>
+    <th>环境监测类型</th>
+    <th>说明</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.Code</td>
+            <td>@item.Name</td>
+            <td>@item.HJName</td>
+            <td>@item.Remarks</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/BasicDataArea/IndexType/FormForUpdateVarchar?Id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/BasicDataArea/IndexType/RemoveVarChar','Id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+
+

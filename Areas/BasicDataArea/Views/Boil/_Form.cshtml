@@ -1,0 +1,105 @@
+﻿@model Boil
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>污染源编号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="MainCode" value="@Model.MainCode">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>锅炉个数:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Count" readonly="readonly" value="1">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>锅炉型号:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Type" value="@Model.Type">
+        </td>
+        <td class='fontcolor'>*</td>
+        <td><em>规模:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="GuiMo" value="@Model.GuiMo">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>投入使用时间:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" name="TouRuDate" value="@Model.TouRuDate">
+        </td>
+        <td></td>
+        <td><em>锅炉用途:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="YongTu" value="@Model.YongTu">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>燃煤使用量:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="RanMeiCount" value="@Model.RanMeiCount">
+        </td>
+        <td></td>
+        <td><em>是否纳入环境统计:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="IsStatic" value="@Model.IsStatic">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>上年度SO2排放量:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="So2" value="@Model.So2">
+        </td>
+        <td></td>
+        <td><em>上年度NoX排放量:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="NoX" value="@Model.NoX">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>上年度烟粉尘排放量:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="YanFenChen" value="@Model.YanFenChen">
+        </td>
+        <td></td>
+        <td><em>淘汰方式:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="TaoTai" value="@Model.TaoTai">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>淘汰完成时间:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" name="TaoTaiDate" value="@Model.TaoTaiDate">
+        </td>
+        <td></td>
+        <td><em>是否属于中央燃煤锅炉综合整治资金支持范围:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="IsZhongYang" value="@Model.IsZhongYang">
+        </td>
+        <td></td>
+    </tr>
+    <tr class="noborder">
+        <td><em>是否已改造锅炉ID:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="IsGaiZao" value="@Model.IsGaiZao">
+        </td>
+        <td></td>
+    </tr>
+
+}
+
+
+@section Script
+{
+    <script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+}

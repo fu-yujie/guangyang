@@ -1,0 +1,36 @@
+﻿@model MonitoringType
+<form action="@(ViewBag.EditAction ??"/"+System.Data.Entity.Core.Objects.ObjectContext.GetObjectType(Model.GetType()).Name + "/" + ViewBag.OperateType.ToString() + "?Id=" + Model.ID)" data-ajax="true" data-ajax-method="POST" data-ajax-success="@(ViewBag.SubmitCallback ?? "showSubmitResult")" data-ajax-failure="showErrorMsg" id="editForm">
+    <div class="page">
+        <table class="table tb-type2 nobdb">
+            <tbody>
+                @Html.AntiForgeryToken()
+                <tr class="noborder">
+                    <td><em>编号:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" name="Code" value="@Model.Code">
+                    </td>
+                    <td class='fontcolor'>*</td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>监测点类型:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" name="Name" value="@Model.Name">
+                    </td>
+                    <td class='fontcolor'>*</td>
+                </tr>
+                @*<tr>
+                    <td><em>排序:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" name="Sequence" value="@Model.Sequence">
+                    </td>
+                    <td> </td>
+                </tr>*@
+                <tr id="description">
+                    <td><em>说明: </em></td>
+                    <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="Remarks">@Model.Remarks</textarea></td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</form>

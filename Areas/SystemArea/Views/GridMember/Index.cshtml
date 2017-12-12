@@ -1,0 +1,59 @@
+﻿@model IPagedList<GridMember>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "网格员管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>登录名</label>
+        </th>
+        <td>
+            <input type="text" name="LoginName" class="txt"/>
+        </td>
+        <th>
+            <label>组织</label>
+        </th>
+        <td>
+            @Html.DropDownList("OrgIndexId", (List<SelectListItem>)ViewBag.Orgs)
+        </td>
+        <th>
+            <label>岗位</label>
+        </th>
+        <td id="PostIndex">
+            @Html.Partial("PartialPost")
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/SystemArea/GridMember/FormForAdd','添加网格员')">添加网格员</a> </td>
+    </tr>
+}
+@section ScriptsPlug
+{
+    <script>
+        $(document).ready(init);
+
+        function init() {
+            $("select[name='OrgIndexId']").change(function () {
+                var selectedOrgId = $(this).val();
+                ShowPostWithSelectedOrg(selectedOrgId);
+            });
+        }
+
+        function ShowPostWithSelectedOrg(OrgId) {
+            $.ajax({
+                url: "PostViewResult",
+                data: { OrgId: OrgId },
+            success: function (data) {
+                $("#PostIndex").html(data);
+            }
+        });
+        }
+</script>
+}
+
+
+
+

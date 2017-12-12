@@ -1,0 +1,37 @@
+﻿@model SheWfCompany
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>污染源编码:</em></td>
+        <td class="vatop rowform">
+            <input type="text"  class="txt" name="MainCode" value="@Model.MainCode">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>危险废物产生量:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="WfChanSheng" value="@Model.WfChanSheng">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>危险废物处置量:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="WfChuZhi" value="@Model.WfChuZhi">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>危险废物类别:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="WfSubClass" value="@Model.WfSubClass">
+        </td>
+        <td class='fontcolor'></td>
+    </tr>
+}
+
+

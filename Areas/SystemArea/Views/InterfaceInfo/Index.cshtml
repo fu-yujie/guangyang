@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+    Layout = "~/Views/Shared/_JustLayout.cshtml";
+    ViewBag.Title = "接口信息";
+}
+<link href="~/Assets/newPortal/css/style.css" rel="stylesheet" />
+<script src="~/Assets/Plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="~/Assets/newPortal/ports.js"></script>
+    <!--中间两个表格区域-->
+    <div id="table-top">
+        <div class="table-top-1">
+            <span></span><span id="tablespan" style="background:none;">空气质量类</span>
+        </div>
+        <div class="table-top-2">
+            <div class="left">
+                <span>廊坊市</span>
+            </div>
+            <div class="right">
+                <div><p>小时</p><span>http://139.129.96.169/api/xuncha/data/qxhour</span><a>修改</a><em>启用</em></div>
+                <div><p>天</p><span>http://139.129.96.169/api/xuncha/data/qxday</span><a>修改</a><em>启用</em></div>
+                <div><p>数据统计</p><span>http://139.129.96.169/api/xuncha/data/qxdmy</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-top-3">
+            <div class="left">
+                <span>京津翼</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>http://www.izhenqi.cn/api/palmapi/php</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-top-4">
+            <div class="left">
+                <span>天气</span>
+            </div>
+            <div class="right">
+                <div><p>实时</p><span>http://139.129.96.169/api/xuncha/data/realtime-forecast</span><a>修改</a><em>启用</em></div>
+                <div><p>五天</p><span>http://139.129.96.169/api/xuncha/data/forecast</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-top-2">
+            <div class="left">
+                <span>监测点</span>
+            </div>
+            <div class="right">
+                <div><p>国控点</p><span>http://www.izhenqi.cn/api/getdata_langfangpoint.php?type=0</span><a>修改</a><em>启用</em></div>
+                <div><p>微控点</p><span>http://60.10.151.97:8090/api/selfpointtapi.new.php</span><a>修改</a><em>启用</em></div>
+                <div><p>室外点</p><span>http://60.10.151.97:8090/api/selfpointtapi.new.php</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+    </div>
+    <div id="table-bottom">
+        <div class="table-bottom-1">
+            <span></span><span id="tablespan" style="background:none;">业务数据类</span>
+        </div>
+        <div class="table-bottom-2">
+            <div class="left">
+                <span>巡查轨迹数据：</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>鹰眼轨迹，用户名15081682069</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-bottom-2">
+            <div class="left">
+                <span>轨迹数据接口：</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>http://lbsyun.baidu.com/apiconsole/auth?type=business,gpsService</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+        <div class="table-bottom-2">
+            <div class="left">
+                <span>即时消息数据：</span>
+            </div>
+            <div class="right">
+                <div><p></p><span>极光推送，用户名：td@zccninfo.com  key:50db9d1a3fa9ab3d426d27aaMaster</span><a>修改</a><em>启用</em></div>
+            </div>
+        </div>
+    </div>

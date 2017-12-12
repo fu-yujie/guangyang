@@ -1,0 +1,22 @@
+﻿@model IPagedList<BasicData.Version>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "APP版本管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <td><a href="javascript:showDataFormModalDialog('/SystemArea/Version/FormForAdd?Classfication=1','添加新版本')">添加Android版本</a> |  
+            <a href="javascript:showDataFormModalDialog('/SystemArea/Version/FormForAdd?Classfication=2','添加新版本')">添加IOS版本</a> </td>
+    </tr>
+}
+@section ScriptsPlug
+{
+    
+}
+
+
+
+
+
+

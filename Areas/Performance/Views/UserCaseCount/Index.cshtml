@@ -1,0 +1,34 @@
+﻿@using BasicUPMS.Areas.Statistical.Models
+@model IPagedList<GridCaseModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "网格员上报查询";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>网格员名称</label>
+        </th>
+        <td>
+            <input type="text" name="LoginName" class="txt" />
+        </td>
+        <th>
+            <label>案件提交时间</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingTimeStart" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <th>
+            <label>至</label>
+        </th>
+        <td>
+            <input type="text" name="RecordingTimeEnd" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+    </tr>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
+

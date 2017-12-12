@@ -1,0 +1,156 @@
+﻿
+@model BasicData.Version
+@{
+    Layout = "~/Views/Shared/_AjaxFormPartialLayout.cshtml";
+}
+@section Form
+{
+    <tr class="noborder">
+        <td><em>版本号:</em></td>
+        <td class="vatop rowform">
+            <input type="hidden" name="Classfication" value=@Model.Classfication />
+            <input type="text" class="txt" name="VersionNum" value="@Model.VersionNum">
+        </td>
+        <td class='fontcolor'>*</td>
+    </tr>
+    <tr class="noborder">
+        <td><em>说明:</em></td>
+        <td class="vatop rowform">
+            <input type="text" class="txt" name="Remark" value="@Model.Remark">
+        </td>
+        <td></td>
+    </tr>
+<tr class="noborder">
+    <td><em>说明:</em></td>
+    <td colspan="2" class="vatop rowform"><textarea rows="3" class="tarea" name="VersionInfo">@Model.VersionInfo</textarea></td>
+    <td></td>
+</tr>
+    <tr>
+        <td><em>附件:</em></td>
+        <td>@Model.APKName</td>
+        <td>
+            @{
+//删除附件--未完成
+                @*if (Model.AttachmentName!=null)
+                    {
+                        <input type="button" value="删除" onclick="deleAttach(@Model.AttachmentFile)"/>
+                    }*@
+            }
+        </td>
+    </tr>
+
+    <tr>
+        <td><em>选择文件: </em></td>
+        <td>
+            <input type="hidden" name="APKUrl" id="FileUrl" value=@Model.APKUrl />
+            <input type="hidden" name="APKName" id="FileName" value=@Model.APKName />
+            <input type="hidden" name="PicUrl" id="QrCode" value=@Model.PicUrl />
+            <input type="hidden" name="tempAPKUrl" id="tempFileUrl" value='' />
+            <input type="hidden" name="tempAPKName" id="tempFileName" value='' />
+            <input type="hidden" name="tempPicUrl" id="tempQrCode" value='' />
+            <div id="test"></div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><em>二维码: </em></td>
+        <td id="QrCodeTd" style="width: 200px;height: 200px">
+            @if (!string.IsNullOrWhiteSpace(Model.PicUrl))
+            {
+                <img src="@ViewBag.QrUrl"/>
+            }
+            @*<img src="~/Assets/Images/headdefault.gif" />*@
+        </td>
+        <td></td>
+    </tr>
+
+
+
+}
+@section Script
+{
+    <link rel="stylesheet" href="~/Assets/Plugins/Carouselfigure/pintuer.css" />
+    <link href="~/Assets/Plugins/diyUpload/css/webuploader.css" rel="stylesheet" />
+    <link href="~/Assets/Plugins/diyUpload/css/diyUpload.css" rel="stylesheet" />
+    <script src="~/Assets/Plugins/diyUpload/js/webuploader.html5only.min.js"></script>
+    <script src="~/Assets/Plugins/diyUpload/js/diyUpload.js"></script>
+    <script type="text/javascript" src="~/Assets/Plugins/Carouselfigure/pintuer.js"></script>
+    <script type="text/javascript">
+        $('#test').diyUpload({
+            url: "/handler/FileUp.ashx",
+            success: function (data) {
+                console.info(data);
+                var url = eval('(' + data._raw + ')').url;
+                var name = eval('(' + data._raw + ')').originalName;
+                $("#tempFileUrl").val(url);
+                $("#tempFileName").val(name);
+                $("#test").attr("style", "display:none");
+                GetQrCode();
+            },
+            error: function (err) {
+                console.info(err);
+            },
+            buttonText: '选择文件',
+            chunked: true,
+            // 分片大小
+            chunkSize: 30000 * 1024,
+            //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+            fileNumLimit: 1,
+            fileSizeLimit: 30000 * 1024,
+            fileSingleSizeLimit: 30000 * 1024,
+            accept: { extensions: "apk,doc,docx" }
+        });
+
+        function GetQrCode() {
+            var FileUrl = $("#tempFileUrl").val();
+            if (FileUrl == undefined || FileUrl == "" || FileUrl == null) {
+                alert("请先上传文件");
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "/SystemArea/Version/GetQrCode",
+                data: { FileUrl: FileUrl },
+                dataType: "JSON",
+                success: function (data) {
+                    $("#QrCodeTd").html('<image src="' + data.Url + '">');
+                    $("#tempQrCode").val(data.FileUrl);
+                }
+            })
+        }
+
+
+        //function GetIOSQrCode() {
+        //    var FileUrl = $('input[name="TestUrl"]').val();
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: "/SystemArea/Version/GetQrCode",
+        //        data: { FileUrl: FileUrl },
+        //        dataType: "JSON",
+        //        success: function (data) {
+        //            $("#QrCodeTd").html('<image src="' + data.Url + '" class="IOS">');
+        //            $("#tempQrCode").val(data.FileUrl);
+        //        }
+        //    })
+        //}
+
+        //function redioClick(node) {
+        //    if ($(node).val() == "1") {
+        //        $(".IOS").hide();
+        //        $(".Android").show();
+        //    } else {
+        //        $(".Android").hide();
+        //        $(".IOS").show();
+        //    }
+        //}
+        //$(function() {
+        //    redioClick($("input[type='radio'][checked='checked']"));
+        //})
+        function clear() {
+            $("#tempFileUrl").val('');
+            $("#tempFileName").val('');
+            $("#tempQrCode").val('');
+            $("#test").attr("style", "display:block");
+        }
+    </script>
+}

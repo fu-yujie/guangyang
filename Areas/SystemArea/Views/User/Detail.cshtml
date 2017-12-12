@@ -1,0 +1,62 @@
+﻿@using BasicUPMS.Models.Core
+@model User
+@{
+    Layout = "~/Views/Shared/_AjaxFormPageLayout.cshtml";
+    ViewBag.Title = "个人信息";
+    ViewBag.OperateType = "Update";
+}
+@section Form
+{
+    @if (SessionContext.Principal.RoleId == UPMSConfig.SystemRole)
+    {
+        <tr class="noborder">
+            <td><em>登录名:</em></td>
+            <td class="vatop rowform">
+                @User.Identity.Name
+            </td>
+            <td></td>
+        </tr>
+    }
+    else
+    {
+        <tr class="noborder">
+            <td><em>登录名:</em></td>
+            <td class="vatop rowform">
+                @Model.Name
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><em>真实姓名:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="RealName" value="@Model.RealName">
+            </td>
+            <td> </td>
+        </tr>
+
+        <tr>
+            <td><em>手机:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="Phone" value="@Model.Phone">
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td><em>邮箱:</em></td>
+            <td class="vatop rowform">
+                <input type="text" class="txt" name="Email" value="@Model.Email">
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td><em>上次登录IP: </em></td>
+            <td class="vatop rowform">@Model.LastLoginIp</td>
+            <td></td>
+        </tr>
+    }
+    <tr>
+        <td><em>本次登录IP: </em></td>
+        <td class="vatop rowform">@ViewBag.IP</td>
+        <td style="width: 800px"></td>
+    </tr>
+}

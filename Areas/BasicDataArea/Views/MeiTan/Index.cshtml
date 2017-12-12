@@ -1,0 +1,29 @@
+﻿@model IPagedList<MeiTan>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "煤经销点";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>污染源名称</th>
+        <td>
+            <input type="text" name="Name" class="txt"/>
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td>
+            <a href="javascript:showDataFormModalDialog('/BasicDataArea/MeiTan/FormForAdd','添加煤经销点')">添加煤经销点</a> |
+            <a _href="~/MeiTan/ExcelOutputs" onclick="excelOutput(this)" style="cursor: pointer;">Excel导出</a>
+        </td>
+    </tr>
+}
+<script type="text/javascript">
+    //
+    function excelOutput(obj) {
+         var href = $(obj).attr('_href');
+         window.location.href = href;
+    }
+</script>

@@ -1,0 +1,62 @@
+﻿@model IPagedList<BasicUPMS.Areas.BasicDataArea.Models.PollutionSourceViewModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "污染源管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <td>
+            <label>污染源名称</label>
+            <input type="text" name="Name" class="txt" />
+        </td>
+        <td>
+            <label>&nbsp;&nbsp;地址</label>
+            <input type="text" name="Address" class="txt" />
+        </td>
+        <td>
+            <label>网格名称</label>
+            @Html.DropDownList("Grid", (List<SelectListItem>)ViewBag.Grid)
+        </td>
+        <td>
+            <label>行业名称</label>
+            @Html.DropDownList("PollutionSourceType", (List<SelectListItem>)ViewBag.PollutionSourceType)
+        </td>
+        </tr>
+    <tr>
+        <td class="vatop" colspan="4">
+            <label>控制级别&nbsp;&nbsp;</label>
+            @Html.DropDownList("ControlLevel", (List<SelectListItem>)ViewBag.ControlLevel)
+        &nbsp; &nbsp;
+            <label>污染源性质&nbsp;&nbsp;</label>
+            @Html.DropDownList("OwnerShip", (List<SelectListItem>)ViewBag.OwnerShip)
+            <input type="submit" class="btn-search tooltip" value="查询" /><a href="javascript:showDataFormModalDialogWithCallback('/BasicDataArea/PollutionSource/FormForAdd','添加污染源',buttonClick)">&nbsp;添加污染源</a> </td>
+    </tr>
+}
+
+
+@section ScriptsPlug
+{
+    <script>
+        function buttonClick() {
+            console.log("sss");
+            if (top.$("div.diyFileName").length >= 0) {
+                top.$("#temPicUrl").val("");
+                for (var i = 0; i < top.$("div.diyFileName").length; i++) {
+                    if (top.$("#temPicUrl").val() == "") {
+                        top.$("#temPicUrl").val(top.$("div.diyFileName").eq(i).attr("data-url"));
+                    } else {
+                        var urls = top.$("#temPicUrl").val() + ',' + top.$("div.diyFileName").eq(i).attr("data-url");
+                        top.$("#temPicUrl").val(urls);
+                    }
+                }
+            }
+            top.$("#editForm").submit();
+            return false;
+        }
+    </script>
+}
+
+
+
+

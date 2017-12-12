@@ -1,0 +1,41 @@
+﻿@using BasicUPMS.Areas.SystemArea.Models
+@model IPagedList<OrgUserListModel>
+@{
+    Layout = "~/Views/Shared/_ItemsPageLayout.cshtml";
+    ViewBag.SubmitCallback = "refreshTree";
+}
+
+@section Head
+{
+@Html.Hidden("ParentId", (object)ViewBag.parent)
+    <th>选择</th>
+    <th>用户名</th>
+    <th>是否允许登陆PC</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td><input type="checkbox" name="Selected" value="@item.Id" id="@item.Id" @(item.Selected ? "checked=\"checked\"" : String.Empty) /></td>
+            <td class="UserName">@item.UserName</td>
+            <td class="AllowUser">@Html.EnumDescription(item.EnableLogin)</td>
+        </tr>
+    }
+}
+
+@section Scripts
+{
+    <script src="~/Assets/Js/Core/PureJsPagination.js"></script>
+    <script src="~/Assets/Js/Core/PureJsPaginationInitializer.js"></script>
+    <script>
+        p_listContainerId = "DialogContainer";
+        p_pagerUrl = "SystemArea/Organization/UserList";
+        p_pagerData = "ParentOrganization=" + @ViewBag.parent + "&PageIndex=";
+        function refreshTree(e) {
+            showSubmitResult(e, null, null, function () { window.frames['workspace'].loadTree(e.Data); });
+        }
+    </script>
+}

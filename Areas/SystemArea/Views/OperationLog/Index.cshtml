@@ -1,0 +1,20 @@
+﻿@model IPagedList<OperationLog>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "日志列表";
+}
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><span>@ViewBag.Title</span></div>
+    </div>
+    <div class="fixed-empty"></div>
+
+    <div id="listContainer">
+        @Html.Partial("_Items", (object)Model)
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Assets/Js/Core/PureJsPagination.js"></script>
+    <script src="~/Assets/Js/Core/PureJsPaginationInitializer.js"></script>
+}

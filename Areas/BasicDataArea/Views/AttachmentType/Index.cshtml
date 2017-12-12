@@ -1,0 +1,28 @@
+﻿@model IPagedList<AttachmentType>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "附件类型管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>编码:</label>
+        </th>
+        <td>
+            <input type="text" name="Code" class="txt" />
+        </td>
+        <th>
+            <label>名称:</label>
+        </th>
+        <td>
+            <input type="text" name="name" class="txt" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/AttachmentType/FormForAdd','添加附件类型')">添加附件类型</a> </td>
+    </tr>
+}
+
+

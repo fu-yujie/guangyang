@@ -1,0 +1,137 @@
+﻿@using BasicUPMS.Areas.BasicDataArea.Models
+@model EventDetailModel
+<script type="text/javascript" src="~/Assets/Plugins/Carouselfigure/pintuer.js"></script>
+<link rel="stylesheet" href="~/Assets/Plugins/Carouselfigure/pintuer.css"/>
+<form id="editForm">
+    <div class="page">
+        <table class="table tb-type2 nobdb">
+            <tbody>
+                @Html.AntiForgeryToken()
+                <tr class="noborder">
+                    <td><em>案件编号:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="EventId" value="@Model.EventId">
+                    </td>
+                    <td><em>案件来源:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="EventSource" value="@Model.EventSource">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>污染类型:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="EventTypeName" value="@Model.EventTypeName">
+                    </td>
+                    <td><em>案发时间:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="RecordingTime" value="@Model.RecordingTime">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>提交人:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="Author" value="@Model.Author">
+                    </td>
+                    <td><em>联系方式:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="ContactInformation" value="@Model.ContactInformation">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>提交时间:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="Submitted" value="@Model.Submitted">
+                    </td>
+                    <td><em>处理时间:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="RecordingTime" value="@Model.RecordingTime">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>网格名称:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="GridName" value="@Model.GridName">
+                    </td>
+                    <td><em>二级网格:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="SecondGridName" value="@Model.SecondGridName">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>描述:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="Description" value="@Model.Description">
+                    </td>
+                    <td><em>位置:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="Location" value="@Model.Location">
+                    </td>
+                </tr>
+                <tr class="noborder">
+                    <td><em>一级意见:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="OneResult" value="@Model.OneResult">
+                    </td>
+                    <td><em>二级意见:</em></td>
+                    <td class="vatop rowform">
+                        <input type="text" class="txt" readonly="readonly" name="TwoResult" value="@Model.TwoResult">
+                    </td>
+                </tr>
+            <tr class="noborder">
+                <td><em>处理状态:</em></td>
+                <td class="vatop rowform">
+                    <input type="text" class="txt" readonly="readonly" name="EventStatus" value="@Model.EventStatus">
+                </td>
+                <td><em>备注:</em></td>
+                <td class="vatop rowform">
+                    <input type="text" class="txt" readonly="readonly" name="Remarks" value="@Model.Remarks">
+                </td>
+            </tr>
+                <tr>
+                    <td><em>案发前: </em></td>
+                    <td>
+                        <div class="banner" style="width: 260px">
+                            <ul class="carousel">
+                                @if (ViewBag.AQFileUrl != null)
+                                {
+                                    foreach (var item in ViewBag.AQFileUrl)
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(item))
+                                        {
+                                            <li class="item" style="width: 200px">
+                                                <img src="@item" />
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </td>
+                    <td><em>案发后:</em></td>
+                    <td>
+                        <div class="banner" style="width: 260px">
+                            <ul class="carousel">
+                                @if (ViewBag.AHFileUrl != null)
+                                {
+                                    foreach (var item in ViewBag.AHFileUrl)
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(item))
+                                        {
+                                            <li class="item" style="width: 200px">
+                                                <img src="@item" />
+                                            </li>
+                                        }
+                                    }
+                                }
+                                
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</form>
+
+

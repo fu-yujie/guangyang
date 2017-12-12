@@ -1,0 +1,13 @@
+﻿@model IPagedList<PollutionSourceType>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "污染类型管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/PollutionSourceType/FormForAdd','添加污染源类别')">添加污染类型</a> </td>
+    </tr>
+}
+
+

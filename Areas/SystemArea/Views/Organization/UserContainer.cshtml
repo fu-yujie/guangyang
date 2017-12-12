@@ -1,0 +1,10 @@
+﻿@using BasicUPMS.Areas.SystemArea.Models
+@model IPagedList<OrgUserListModel>
+@foreach (var item in Model)
+{
+    <tr class="hover">
+        <td><input type="checkbox" name="Selected" value="@item.Id" id="@item.Id" @(item.Selected ? "checked=\"checked\"" : String.Empty) /></td>
+        <td class="UserName">@item.UserName</td>
+        <td class="AllowUser">@Html.EnumDescription(item.EnableLogin)</td>
+    </tr>
+}

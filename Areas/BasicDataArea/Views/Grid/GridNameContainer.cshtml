@@ -1,0 +1,11 @@
+﻿@using BasicUPMS.Areas.BasicDataArea.Models
+@model IPagedList<GridCodeAndName>
+
+
+@foreach (var item in Model)
+{
+    <tr class="hover" style="cursor:pointer" ondblclick="DbClick(this)">
+        <td class="Code">@item.GridCode</td>
+        <td class="Name">@item.GridName</td>
+    </tr>
+}

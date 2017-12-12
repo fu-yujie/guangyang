@@ -1,0 +1,35 @@
+﻿@model IPagedList<BasicData.Version>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>版本号</th>
+    <th>说明</th>
+    <th>系统类型</th>
+    <th class="align-center">操作</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.VersionNum</td>
+            <td>@item.Remark</td>
+            <td>@(item.Classfication==1? "Android":"IOS")</td>
+            <td class="align-center">
+                <a class="edit" href="javascript:showDataFormModalDialog('/SystemArea/Version/FormForUpdate?id=@item.Id&t=@(DateTime.Now.Millisecond)','编辑')">编辑</a>|
+                <a class="edit" href="javascript:confirmDelete('/SystemArea/Version/Remove','id=@item.Id',showSubmitResult)">删除</a>
+            </td>
+        </tr>
+    }
+}
+
+
+
+
+
+

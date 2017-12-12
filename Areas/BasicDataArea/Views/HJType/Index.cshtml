@@ -1,0 +1,22 @@
+﻿@model IPagedList<HJType>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "环境监测类型管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>编号</label>
+        </th>
+        <td>
+            <input type="text" name="Code" class="txt" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/BasicDataArea/HJType/FormForAdd','添加环境监测类型')">添加环境监测类型</a> </td>
+    </tr>
+}
+
+

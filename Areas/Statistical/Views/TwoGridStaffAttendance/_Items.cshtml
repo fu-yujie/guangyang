@@ -1,0 +1,29 @@
+﻿@using BasicUPMS.Areas.Statistical.Models
+@model IPagedList<TwoGridStaffAttendance>
+@{
+    Layout = "~/Views/Shared/_ItemsPartialLayout.cshtml";
+}
+
+@section Head
+{
+    <th>二级网格名称</th>
+    <th>三级网格数量</th>
+    <th>签到率</th>
+}
+
+@section Items
+{
+
+    @foreach (var item in Model)
+    {
+        <tr class="hover">
+            <td>@item.GridName</td>
+            <td>@item.GridCount</td>
+            <td>@item.Percent</td>
+        </tr>
+    }
+}
+
+
+
+

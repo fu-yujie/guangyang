@@ -1,0 +1,34 @@
+﻿@model IPagedList<BasicUPMS.Areas.Performance.Models.GridStarViewModel>
+@{
+    Layout = "~/Views/Shared/_ListPageLayout.cshtml";
+    ViewBag.Title = "明星网格员管理";
+}
+@section SearchCondition
+{
+    <tr>
+        <th>
+            <label>网格名称</label>
+        </th>
+        <td>
+            <input type="text" name="GridName" class="txt" />
+        </td>
+        <th>
+            <label>网格员名称</label>
+        </th>
+        <td>
+            <input type="text" name="LoginName" class="txt" />
+        </td>
+        <th>
+            <label>提交时间</label>
+        </th>
+        <td colspan="3">
+            <input type="text" name="RecordingTimeStart" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />-
+            <input type="text" name="RecordingTimeEnd" class="txt Wdate" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+        </td>
+        <td>
+            <input type="submit" class="btn-search tooltip" value="查询" />
+        </td>
+        <td><a href="javascript:showDataFormModalDialog('/Performance/GriderStar/FormForAdd','添加明星网格员')">添加明星网格员</a> </td>
+    </tr>
+}
+<script type="text/javascript" charset="utf-8" src="~/Assets/Plugins/My97DatePicker/WdatePicker.js"></script>
